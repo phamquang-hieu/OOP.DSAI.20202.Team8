@@ -35,6 +35,10 @@ public class Array {
     	}
 	}
 	
+	public Array clone() {
+		return this.clone();
+	}
+	
 	public int getLength() {
 		return this.length;
 	}

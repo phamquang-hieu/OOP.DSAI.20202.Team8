@@ -1,9 +1,17 @@
-package selectionsort;
+package controllers;
 
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
+
+import algorithms.SelectionSort;
+import datastructure.Array;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
@@ -13,11 +21,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
-public class SelectionSortController {
+public class SelectionSortController extends ScreenController{
 	
-	private int[] arr = {3, 1, 2, 5, 4};
+	private Array Arr;
+	private int[] arr;
 	private int comparing = 0;
-	private SelectionSort ss = new SelectionSort(arr);
+	private SelectionSort ss;
 	private int step = 0;
 	private int size = arr.length;
 	
@@ -27,35 +36,37 @@ public class SelectionSortController {
 //		this.ss = new SelectionSort(arr);
 //	}
 	
-	
-
-    @FXML
-    private ToggleGroup createArray;
-
-    @FXML
-    private TextField progressField;
-
-    @FXML
-    private Button btnNext;
-
-    @FXML
-    private ToggleGroup arraySize;
-
-    @FXML
-    private Button btnRun;
     
-    @FXML
-    private Pane arrayDisplayArea;
+    void randomArray() {
+    	arrayDisplayArea.getChildren().clear();
+    	//System.out.println("real Length: " + getLength(arraySize5, arraySize6, arraySize7, arraySize8));
+    	this.Arr = new Array(getLength(arraySize5, arraySize6, arraySize7, arraySize8));
+    	this.arr = Arrays.copyOf(this.Arr.data, this.Arr.getLength());
+    }
     
 
     @FXML
-    void btnRunPressed(ActionEvent event) {
-    	drawArray(arr, 0, -1, 0 ,arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
-    	ss.Sort();
+    void buttonRunPressed(ActionEvent event) throws Exception{
+    	try {
+			if (randomizeMode.isSelected()) {
+				randomArray();
+			} else {
+				arrayDisplayArea.getChildren().clear();
+				this.Arr = new Array(textFieldArray.getText());
+		    	this.arr = Arrays.copyOf(this.Arr.data, this.Arr.getLength());
+			}
+	    	arrayDisplayArea.getChildren().clear();
+	    	drawArray(arr, 0, -1, 0 ,arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
+	    	ss = new SelectionSort(this.arr);
+	    	ss.Sort();
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
+		}
     }
 
     @FXML
-    void btnNextPressed(ActionEvent event) {
+    void buttonNextPressed(ActionEvent event) {
     	arrayDisplayArea.getChildren().clear();
     	if (comparing<size-1) {
     		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing]], comparing, arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);

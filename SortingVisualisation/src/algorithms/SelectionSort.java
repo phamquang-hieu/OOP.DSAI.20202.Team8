@@ -1,4 +1,4 @@
-package selectionsort;
+package algorithms;
 
 public class SelectionSort {
 	private int[] arr;
