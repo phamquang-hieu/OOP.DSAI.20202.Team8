@@ -28,7 +28,7 @@ public class SelectionSortController extends ScreenController{
 	private int comparing = 0;
 	private SelectionSort ss;
 	private int step = 0;
-	private int size = arr.length;
+	private int size;
 	
 	
 //	public SelectionSortController(int[] arr) {
@@ -55,6 +55,7 @@ public class SelectionSortController extends ScreenController{
 				this.Arr = new Array(textFieldArray.getText());
 		    	this.arr = Arrays.copyOf(this.Arr.data, this.Arr.getLength());
 			}
+			this.size = this.Arr.getLength();
 	    	arrayDisplayArea.getChildren().clear();
 	    	drawArray(arr, 0, -1, 0 ,arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
 	    	ss = new SelectionSort(this.arr);
@@ -66,7 +67,7 @@ public class SelectionSortController extends ScreenController{
     }
 
     @FXML
-    void buttonNextPressed(ActionEvent event) {
+    void btnNextPressed(ActionEvent event) {
     	arrayDisplayArea.getChildren().clear();
     	if (comparing<size-1) {
     		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing]], comparing, arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
