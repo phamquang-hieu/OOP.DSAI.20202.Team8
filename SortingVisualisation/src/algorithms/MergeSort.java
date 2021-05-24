@@ -65,9 +65,7 @@ public class MergeSort {
 		
 		for(int i = start; i <= end; ++i)
 			this.arr[i] = aux[j++]; 
-		
-		//drawAnArray(Arrays.copyOfRange(this.arr, start, end+1), midX, startY);
-		
+				
 		
 	}
 	
@@ -76,7 +74,7 @@ public class MergeSort {
 			int mid = (int) (start + end)/2;
 			double midX = (startX + endX)/2;
 			
-			
+			assignSteps(start, end, midX, startY, 4, 0);
 			assignSteps(start, mid, (startX + midX)/2, startY+80, 0, 0);
 			assignSteps(mid+1, end, (midX + endX)/2, startY+80, 0, 0);
 			merge_sort(start, mid, startX, midX, startY +80);
@@ -98,6 +96,7 @@ public class MergeSort {
 		//1: red selected
 		//2: blueviolet merged
 		//3: white
+		//4: yellow
 		this.steps[0][this.step] = args1;
 		this.steps[1][this.step] = args2;
 		this.steps[2][this.step] = args3;
