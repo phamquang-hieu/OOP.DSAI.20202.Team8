@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import algorithms.SelectionSort;
 import datastructure.Array;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,9 +18,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.*;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 public class SelectionSortController extends ScreenController{
 	
@@ -29,17 +33,15 @@ public class SelectionSortController extends ScreenController{
 	private SelectionSort ss;
 	private int step = 0;
 	private int size;
+	private boolean changeMin;
+	private boolean swap;
+	private double X;
+	private double Y;
 	
-	
-//	public SelectionSortController(int[] arr) {
-//		this.arr = arr.clone();
-//		this.ss = new SelectionSort(arr);
-//	}
 	
     
     void randomArray() {
     	arrayDisplayArea.getChildren().clear();
-    	//System.out.println("real Length: " + getLength(arraySize5, arraySize6, arraySize7, arraySize8));
     	this.Arr = new Array(getLength(arraySize5, arraySize6, arraySize7, arraySize8));
     	this.arr = Arrays.copyOf(this.Arr.data, this.Arr.getLength());
     }
@@ -55,9 +57,14 @@ public class SelectionSortController extends ScreenController{
 				this.Arr = new Array(textFieldArray.getText());
 		    	this.arr = Arrays.copyOf(this.Arr.data, this.Arr.getLength());
 			}
+			progressField.setText("Start Selection Sort!");
+			comparing = 0;
+			step = 0;
 			this.size = this.Arr.getLength();
+			this.X = arrayDisplayArea.getWidth()/2;
+			this.Y = arrayDisplayArea.getHeight()/2 - 40;
 	    	arrayDisplayArea.getChildren().clear();
-	    	drawArray(arr, 0, -1, 0 ,arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
+	    	drawArray(arr, 0, -1, 0 ,X, Y);
 	    	ss = new SelectionSort(this.arr);
 	    	ss.Sort();
 		} catch (NullPointerException e) {
@@ -69,21 +76,74 @@ public class SelectionSortController extends ScreenController{
     @FXML
     void btnNextPressed(ActionEvent event) {
     	arrayDisplayArea.getChildren().clear();
-    	if (comparing<size-1) {
-    		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing]], comparing, arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
-    		comparing += 1;    	
+    	
+    	if (changeMin) {
+    		progressField.setText("Update the smallest value");
+    		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing]], comparing, X, Y);
+    		if ((comparing == size -1) && step < size -1) {
+    			step += 1;
+    			comparing = step;
+    		}
+    		else {
+    			comparing += 1;
+    		}
+    		changeMin=false;
     	}
+    	
+    	
+    	
+
+    	
+    	else if (comparing<size-1) {
+    		if (comparing > step) {
+        		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing-1]], comparing, X, Y);
+        		if (ss.getMinIndex()[step][comparing-1] != ss.getMinIndex()[step][comparing]) {
+        			progressField.setText("Found a smaller value!");
+        			changeMin=true;
+        		}
+        		else {
+        			progressField.setText("Compare to the smallest value");
+        			comparing += 1;
+        		}
+    		}
+    		else {
+    			if (comparing != 0) {
+    				progressField.setText("Move the smallest element to the last position of the sorted array. Continue with the unsorted array!");
+    			}
+    			else {
+    				progressField.setText("Start finding the smallest element");
+    			}
+	    		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing]], comparing, X, Y);
+	    		comparing += 1;
+    		}
+    	}
+    	
+
+    	
     	else if ((comparing == size -1) && step < size -1) {
-    		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing]], comparing, arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
-    		step += 1;
-    		comparing = step;
+    		drawArray(ss.getSteps()[step], step, ss.getSteps()[step][ss.getMinIndex()[step][comparing-1]], comparing, X, Y);
+    		if (ss.getMinIndex()[step][comparing-1] != ss.getMinIndex()[step][comparing]) {
+    			progressField.setText("Found a smaller value!");
+    			changeMin=true;
+    		}
+    		else {
+    			progressField.setText("Compare to the smallest value");
+    			step += 1;
+    			comparing = step;
+    		}
+    		
     	}
+    	
+
+    	
     	else if (step == size - 1){
-    		drawArray(ss.getSteps()[step], step, -1, -1, arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
+			progressField.setText("There is one value left!");
+    		drawArray(ss.getSteps()[step], step, -1, -1, X, Y);
     		step += 1;
     	}
     	else {
-    		drawArray(ss.getSteps()[step-1], step, -1, -1, arrayDisplayArea.getWidth()/2, arrayDisplayArea.getHeight()/2 - 40);
+			progressField.setText("Done sorting!");
+    		drawArray(ss.getSteps()[step-1], step, -1, -1, X, Y);
     	}
     }
 
@@ -125,6 +185,36 @@ public class SelectionSortController extends ScreenController{
     	}
     	
     }
+    
+//    public void animation(int element, double X, double Y, Color c, double targetX, double targetY) {
+//    	Rectangle rectangle = new Rectangle(X, Y, 40, 40);
+//    	rectangle.setFill(c);
+//    	rectangle.setStroke(Color.BLACK);
+//    	rectangle.setArcWidth(20);
+//    	rectangle.setArcHeight(20);
+//
+//    	
+//    	Label lb = new Label(Integer.toString(element));
+//    	
+//    	StackPane stack = new StackPane();
+//    	stack.getChildren().addAll(rectangle, lb);
+//    	stack.setLayoutX(X);
+//    	stack.setLayoutY(Y);
+//   
+//    	
+//    	Path path = new Path();
+//    	path.getElements().add(new MoveTo(targetX,targetY));
+//    	path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
+//    	path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));    	
+//    	PathTransition pathTransition = new PathTransition();
+//    	pathTransition.setDuration(Duration.millis(10000));
+//    	pathTransition.setPath(path);
+//    	pathTransition.setNode(stack);
+//    	pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+//    	pathTransition.setCycleCount(Timeline.INDEFINITE);
+//    	pathTransition.setAutoReverse(true);
+//    	pathTransition.play();
+//    }
     
     
 
