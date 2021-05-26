@@ -56,10 +56,22 @@
                            <toggleGroup>
                               <ToggleGroup fx:id="arraySize" />
                            </toggleGroup>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
                         </RadioButton>
-                        <RadioButton fx:id="arraySize6" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="6" toggleGroup="$arraySize" />
-                        <RadioButton fx:id="arraySize7" layoutX="20.0" layoutY="37.0" mnemonicParsing="false" text="7" toggleGroup="$arraySize" />
-                        <RadioButton fx:id="arraySize8" layoutX="20.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="8" toggleGroup="$arraySize" />
+                        <RadioButton fx:id="arraySize6" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="6" toggleGroup="$arraySize">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin></RadioButton>
+                        <RadioButton fx:id="arraySize7" layoutX="20.0" layoutY="37.0" mnemonicParsing="false" text="7" toggleGroup="$arraySize">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin></RadioButton>
+                        <RadioButton fx:id="arraySize8" layoutX="20.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="8" toggleGroup="$arraySize">
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin></RadioButton>
                      </children>
                   </VBox>
                </content>
