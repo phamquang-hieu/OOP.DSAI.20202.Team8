@@ -49,7 +49,6 @@ public class MergeSortScreenController extends ScreenController{
     void buttonRunPressed(ActionEvent event) throws Exception {
     	try {
 			if (randomizeMode.isSelected()) {
-				
 				randomArray();
 			} else {
 				arrayDisplayArea.getChildren().clear();
