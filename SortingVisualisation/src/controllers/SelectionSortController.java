@@ -339,7 +339,7 @@ public class SelectionSortController extends ScreenController{
 
     
     public void drawElement(int element, double X, double Y, Color c) {
-    	ElementShape stack = new ElementShape(element, X, Y, c);
+    	ElementShape stack = new ElementShape(element, 40, X, Y, c);
     	
     	arrayDisplayArea.getChildren().add(stack);
     	

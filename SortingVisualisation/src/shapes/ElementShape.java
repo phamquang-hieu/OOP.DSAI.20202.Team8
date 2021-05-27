@@ -9,13 +9,14 @@ import javafx.scene.text.Font;
 public class ElementShape extends StackPane{
 	private Rectangle rectangle;
 	private Label lb;
+
 	
-	public ElementShape(int element, double X, double Y, Color c) {
-    	rectangle = new Rectangle(X, Y, 40, 40);
+	public ElementShape(int element, double h, double X, double Y, Color c) {
+    	rectangle = new Rectangle(X, Y, h, h);
     	rectangle.setFill(c);
     	rectangle.setStroke(c);
-    	rectangle.setArcWidth(20);
-    	rectangle.setArcHeight(20);
+    	rectangle.setArcWidth(h/2);
+    	rectangle.setArcHeight(h/2);
 
     	
     	lb = new Label(Integer.toString(element));
