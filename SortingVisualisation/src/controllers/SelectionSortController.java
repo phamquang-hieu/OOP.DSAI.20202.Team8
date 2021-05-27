@@ -26,6 +26,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import shapes.ElementShape;
 
 public class SelectionSortController extends ScreenController{
 	
@@ -338,36 +339,27 @@ public class SelectionSortController extends ScreenController{
 
     
     public void drawElement(int element, double X, double Y, Color c) {
-    	Rectangle rectangle = new Rectangle(X, Y, 40, 40);
-    	rectangle.setFill(c);
-    	rectangle.setStroke(c);
-    	rectangle.setArcWidth(20);
-    	rectangle.setArcHeight(20);
-
-    	
-    	Label lb = new Label(Integer.toString(element));
-    	
-    	StackPane stack = new StackPane();
-    	stack.getChildren().addAll(rectangle, lb);
-    	stack.setLayoutX(X);
-    	stack.setLayoutY(Y);
+    	ElementShape stack = new ElementShape(element, X, Y, c);
     	
     	arrayDisplayArea.getChildren().add(stack);
     	
     }
     
     public void drawElement(int height, Color c, double X, double Y) {
-    	Rectangle rectangle = new Rectangle(X, Y-height, 20, height);
-    	rectangle.setFill(c);
-    	rectangle.setStroke(c);
-    	rectangle.setArcWidth(5);
-    	rectangle.setArcHeight(5);
+//    	Rectangle rectangle = new Rectangle(X, Y-height, 20, height);
+//    	rectangle.setFill(c);
+//    	rectangle.setStroke(c);
+//    	rectangle.setArcWidth(5);
+//    	rectangle.setArcHeight(5);
+//    	
+//    	rectangle.setLayoutX(X);
+//    	rectangle.setLayoutX(Y);
     	
-    	rectangle.setLayoutX(X);
-    	rectangle.setLayoutX(Y);
+    	ElementShape stack = new ElementShape(height, c, X, Y);
+
 
     	
-    	arrayDisplayArea.getChildren().add(rectangle);
+    	arrayDisplayArea.getChildren().add(stack);
     }
     
     public void drawArray(int[] arr, int seperate, int minValue, int index, double X, double Y) {
@@ -390,7 +382,7 @@ public class SelectionSortController extends ScreenController{
     
     public void drawArray(int[] arr, int seperate, int index, double X, double Y, int minIndex) {
     	double arrayLength = 20*arr.length + 5*(arr.length - 1); 
-    	double startX = X - arrayLength - 300;
+    	double startX = X - arrayLength/2;
     	double startY = Y + 250;
     	for (int i = 0; i < seperate; i++)
     	{
