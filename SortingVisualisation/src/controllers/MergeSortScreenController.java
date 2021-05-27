@@ -63,8 +63,8 @@ public class MergeSortScreenController extends ScreenController{
 			this.steps = ms.getSteps();
 			this.numStep = ms.getNumStep();
 			this.stepNum = 0;
-		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
 			e.printStackTrace();
 		}
     }
