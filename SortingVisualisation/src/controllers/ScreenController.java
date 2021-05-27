@@ -2,11 +2,14 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 public abstract class ScreenController {
 	
@@ -20,8 +23,8 @@ public abstract class ScreenController {
     RadioButton formBar;
     
     @FXML
-    TextField progressField;
-
+    TextArea progressField;
+    
     @FXML
     ToggleGroup arraySize;
 
@@ -59,8 +62,45 @@ public abstract class ScreenController {
     Menu menuHelp;
     
 
-//    @FXML
-//    TextField currentStep;
+    @FXML
+    Label sortedLabel;
+    
+    @FXML
+    Label unsortedLabel;
+    
+    @FXML
+    Rectangle sortedNode;
+    
+    @FXML
+    Rectangle unsortedNode;
+    
+    @FXML
+    Label sortedName;
+    
+    @FXML
+    Label smallestName;
+    
+    @FXML
+    Label unsortedName;
+    
+    @FXML
+    Label currentName;
+    
+    @FXML
+    Rectangle sortedBar;
+    
+    @FXML
+    Rectangle smallestBar;
+    
+    @FXML
+    Rectangle unsortedBar;
+    
+    @FXML
+    Rectangle currentBar;
+    
+    @FXML
+    Pane notePane;
+    
     
 	
 	protected int getLength(RadioButton arraySize5, RadioButton arraySize6, RadioButton arraySize7, RadioButton arraySize8) {

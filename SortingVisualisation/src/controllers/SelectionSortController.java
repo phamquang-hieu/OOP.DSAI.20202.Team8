@@ -67,12 +67,39 @@ public class SelectionSortController extends ScreenController{
 			this.size = this.Arr.getLength();
 			this.X = arrayDisplayArea.getWidth()/2;
 			this.Y = arrayDisplayArea.getHeight()/2 - 40;
-	    	arrayDisplayArea.getChildren().clear();
+	    	arrayDisplayArea.getChildren().clear();	    	
 	    	if (formNode.isSelected()) {
 	    		drawArray(arr, 0, -1, 0 ,X, Y);
+	    		sortedLabel.setVisible(true);
+	    		unsortedLabel.setVisible(true);
+	    		sortedNode.setVisible(true);
+	    		unsortedNode.setVisible(true);
+	    		sortedName.setVisible(false);
+	    		unsortedName.setVisible(false);
+	    		smallestName.setVisible(false);
+	    		currentName.setVisible(false);
+	    		sortedBar.setVisible(false);
+	    		unsortedBar.setVisible(false);
+	    		smallestBar.setVisible(false);
+	    		currentBar.setVisible(false);
+
 	    	}
+	    	
 	    	else {
 	    		drawArray(arr, 0, -1, X, Y, -1);
+	    		sortedLabel.setVisible(false);
+	    		unsortedLabel.setVisible(false);
+	    		sortedNode.setVisible(false);
+	    		unsortedNode.setVisible(false);
+	    		sortedName.setVisible(true);
+	    		unsortedName.setVisible(true);
+	    		smallestName.setVisible(true);
+	    		currentName.setVisible(true);
+	    		sortedBar.setVisible(true);
+	    		unsortedBar.setVisible(true);
+	    		smallestBar.setVisible(true);
+	    		currentBar.setVisible(true);
+
 	    	}
 	    	ss = new SelectionSort(this.arr);
 	    	ss.Sort();
@@ -84,7 +111,7 @@ public class SelectionSortController extends ScreenController{
 
     @FXML
     void btnNextPressed(ActionEvent event) {
-    	
+    	arrayDisplayArea.getChildren().clear();
     	if (changeMin==1) {
     		progressField.setText("Update the smallest value");
     		if (formNode.isSelected()) {
@@ -126,7 +153,7 @@ public class SelectionSortController extends ScreenController{
     		}
     		else {
     			if (comparing != 0) {
-    				progressField.setText("Move the smallest element to the last position of the sorted array. Continue with the unsorted array!");
+    				progressField.setText("Move the smallest element to the last position of the sorted array." + "\nContinue with the unsorted array!");
     			}
     			else {
     				progressField.setText("Start finding the smallest element");
@@ -292,6 +319,7 @@ public class SelectionSortController extends ScreenController{
 		progressField.setText("Done sorting!");
 		done = true;
 		step = size;
+		comparing = size-1;
 		if (formNode.isSelected()) {
 			drawArray(ss.getSteps()[step-1], step, -1, -1, X, Y);
 		}
