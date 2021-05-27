@@ -11,7 +11,7 @@ public class SelectionSortScreen extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/screens/Sort.fxml"));
+		loader.setLocation(getClass().getResource("/screens/SortScreen.fxml"));
 		loader.setController(new SelectionSortController());
 		
 		Parent root = loader.load();

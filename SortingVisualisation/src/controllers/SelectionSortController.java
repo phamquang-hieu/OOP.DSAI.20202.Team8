@@ -338,8 +338,8 @@ public class SelectionSortController extends ScreenController{
     }
 
     
-    public void drawElement(int element, double X, double Y, Color c) {
-    	ElementShape stack = new ElementShape(Integer.toString(element), X, Y, c);
+    public void drawElement(int element, double X, double Y, Color c, Color c2) {
+    	ElementShape stack = new ElementShape(Integer.toString(element), X, Y, c, 14, c2);
     	
     	arrayDisplayArea.getChildren().add(stack);
     	
@@ -368,14 +368,14 @@ public class SelectionSortController extends ScreenController{
     	double startY = Y - 20;
     	for (int i = 0; i < seperate; i++)
     	{
-			drawElement(arr[i], startX + i*50, startY , Color.PINK);
+			drawElement(arr[i], startX + i*50, startY , Color.web("#05141a"), Color.WHITE);
     	}
     	for (int i = seperate; i < arr.length; i++)
     	{
-			drawElement(arr[i], startX + 30 + i*50, startY , Color.LIGHTBLUE);
+			drawElement(arr[i], startX + 30 + i*50, startY , Color.web("#ffbea3"), Color.BLACK);
     	}
     	if (minValue!=-1) {
-    		drawElement(minValue, startX + 30 +index*50, startY + 50, Color.LIGHTBLUE);
+    		drawElement(minValue, startX + 30 +index*50, startY + 50, Color.web("#ffbea3"), Color.BLACK);
     	}
     	
     }
@@ -386,17 +386,17 @@ public class SelectionSortController extends ScreenController{
     	double startY = Y + 250;
     	for (int i = 0; i < seperate; i++)
     	{
-			drawElement(arr[i]*5, Color.PINK, startX + i*25, startY);
+			drawElement(arr[i]*5, Color.web("#05141a"), startX + i*25, startY);
     	}
     	for (int i = seperate; i < arr.length; i++)
     	{
-			drawElement(arr[i]*5, Color.LIGHTBLUE, startX + i*25, startY);
+			drawElement(arr[i]*5, Color.web("#ab93c9"), startX + i*25, startY);
     	}
     	if (minIndex != -1) {
-			drawElement(arr[minIndex]*5, Color.LIGHTCORAL, startX + minIndex*25, startY);
+			drawElement(arr[minIndex]*5, Color.web("#50435d"), startX + minIndex*25, startY);
     	}
     	if (index != -1 && minIndex != index) {
-    		drawElement(arr[index]*5, Color.STEELBLUE, startX + index*25, startY);
+    		drawElement(arr[index]*5, Color.web("#ffbea3"), startX + index*25, startY);
     	}
     }
     

@@ -12,7 +12,7 @@ public class ElementShape extends StackPane{
 	private Rectangle rectangle;
 	private Label lb;
 	
-	public ElementShape(String element, double X, double Y, Color c) {
+	public ElementShape(String element, double X, double Y, Color c, int font, Color c2) {
     	rectangle = new Rectangle(X, Y, 40, 40);
     	rectangle.setFill(c);
     	rectangle.setStroke(c);
@@ -21,7 +21,9 @@ public class ElementShape extends StackPane{
 
     	
     	lb = new Label(element);
-    	lb.setFont(new Font(21));
+    	lb.setFont(new Font(font));
+    	lb.setTextFill(c2);
+
     	this.getChildren().addAll(rectangle, lb);
     	this.setLayoutX(X);
     	this.setLayoutY(Y);

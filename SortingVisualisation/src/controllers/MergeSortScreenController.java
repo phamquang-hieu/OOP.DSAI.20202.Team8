@@ -124,7 +124,7 @@ public class MergeSortScreenController extends ScreenController{
     	
     	if(steps[0][stepNum] == -1) {
     		// merge phase
-    		drawAnElement((int) steps[1][stepNum], steps[2][stepNum], steps[3][stepNum], c);
+    		drawAnElement((int) steps[1][stepNum], steps[2][stepNum], steps[3][stepNum], c, 21);
     	}
     	else {
     		// divide phase
@@ -134,18 +134,18 @@ public class MergeSortScreenController extends ScreenController{
     		else {
     			int len = (int) (steps[1][stepNum] - steps[0][stepNum] + 1);
     			for(int i= 0; i < (len); ++i)
-    				drawAnElement(-1, steps[2][stepNum] + (i - len/2)*50, steps[3][stepNum], Color.WHITE);
+    				drawAnElement(-1, steps[2][stepNum] + (i - len/2)*50, steps[3][stepNum], Color.WHITE, 21);
     		}
     	}
     	progressField.setText(this.instructions[(int) steps[5][stepNum]]);
     }
        
-    public void drawAnElement(int x, double X, double Y, Color c) {
+    public void drawAnElement(int x, double X, double Y, Color c, int Font) {
     	String s;
     	if(x!=-1) s = Integer.toString(x);    		
     	else s = "";
     	
-    	ElementShape stack = new ElementShape(s, X, Y, c);
+    	ElementShape stack = new ElementShape(s, X, Y, c, 21, Color.BLACK);
    
     	arrayDisplayArea.getChildren().add(stack);
     }
@@ -153,7 +153,7 @@ public class MergeSortScreenController extends ScreenController{
     public void drawAnArray(int[] subarr, double midX, double startY, Color c) {
     	for(int i = 0; i < (subarr.length); i++)
     	{
-			drawAnElement(subarr[i], midX + (i - subarr.length/2)*50, startY, c);
+			drawAnElement(subarr[i], midX + (i - subarr.length/2)*50, startY, c, 21);
     	}	
     }
 }
