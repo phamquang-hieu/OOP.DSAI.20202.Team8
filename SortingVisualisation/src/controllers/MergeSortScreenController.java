@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import shapes.ElementShape;
-import shapes.ElementSquareShape;
 
 import java.util.Arrays;
 
