@@ -20,13 +20,18 @@ public class Array {
 	}
 
 	public Array(String s) throws Exception {
+		s = s.trim();
 		if (s.isEmpty()) {
 			throw new NullPointerException("Please input 5->8 element or switch to randomize mode");
 		}
 		String[] arrString = s.split(",");
 		data = new int[arrString.length];
 		for (length = 0; length < arrString.length; ++length) {
-			data[length] = Integer.parseInt(arrString[length].trim());
+			try {
+				data[length] = Integer.parseInt(arrString[length].trim());
+			} catch (NumberFormatException e) {
+				throw e;
+			}
 		}
 		if (this.length > 8 || this.length < 5) {
 			System.err.println("Your array length: " + this.length);
