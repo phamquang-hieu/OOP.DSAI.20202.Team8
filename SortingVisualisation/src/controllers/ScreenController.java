@@ -15,6 +15,7 @@ public abstract class ScreenController {
     
     @FXML
     RadioButton formNode;
+    
     @FXML
     RadioButton formBar;
     
@@ -56,6 +57,10 @@ public abstract class ScreenController {
 
     @FXML
     Menu menuHelp;
+    
+
+//    @FXML
+//    TextField currentStep;
     
 	
 	protected int getLength(RadioButton arraySize5, RadioButton arraySize6, RadioButton arraySize7, RadioButton arraySize8) {

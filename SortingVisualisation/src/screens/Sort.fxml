@@ -15,13 +15,12 @@
             <Pane prefHeight="82.0" prefWidth="1085.0">
                <children>
                   <TextField fx:id="textFieldArray" layoutX="14.0" layoutY="29.0" prefHeight="15.0" prefWidth="296.0" promptText="Please input an array (optional)" />
-                  <Button layoutX="638.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnNextPressed" text="&gt;" />
+                  <Button layoutX="565.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnNextPressed" text="&gt;" />
                 <Button layoutX="316.0" layoutY="29.0" mnemonicParsing="false" onAction="#buttonRunPressed" text="Run" />
-                  <TextField fx:id="progressField" layoutX="761.0" layoutY="10.0" prefHeight="62.0" prefWidth="313.0" />
-                  <Button layoutX="530.0" layoutY="29.0" mnemonicParsing="false" text="&lt;" />
-                  <Button layoutX="489.0" layoutY="29.0" mnemonicParsing="false" text="&lt;&lt;" />
-                  <Button layoutX="670.0" layoutY="29.0" mnemonicParsing="false" text="&gt;&gt;" />
-                  <TextField layoutX="558.0" layoutY="29.0" prefHeight="25.0" prefWidth="69.0" />
+                  <TextField fx:id="progressField" layoutX="676.0" layoutY="10.0" prefHeight="62.0" prefWidth="398.0" />
+                  <Button layoutX="530.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnBackPressed" text="&lt;" />
+                  <Button layoutX="489.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnResetPressed" text="&lt;&lt;" />
+                  <Button layoutX="597.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnSkipPressed" text="&gt;&gt;" />
                   <Button layoutX="359.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnAutoPressed" text="Auto" />
                </children>
             </Pane>
