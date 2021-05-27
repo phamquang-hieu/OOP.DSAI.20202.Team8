@@ -12,7 +12,7 @@ public class MergeSortScreen extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/screens/MergeSortScreen.fxml"));
+		loader.setLocation(getClass().getResource("/screens/Sort.fxml"));
 		loader.setController(new MergeSortScreenController());
 		
 		Parent root = loader.load();

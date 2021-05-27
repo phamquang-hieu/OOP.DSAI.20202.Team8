@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import shapes.ElementSquareShape;
 
 import java.util.Arrays;
 
@@ -68,6 +70,10 @@ public class MergeSortScreenController extends ScreenController{
 			e.printStackTrace();
 		}
     }
+    @FXML
+    void btnAutoPressed(ActionEvent event) {
+    	
+    }
     
     @FXML
    	void btnNextPressed(ActionEvent event) {
@@ -90,23 +96,18 @@ public class MergeSortScreenController extends ScreenController{
     	else if(steps[4][stepNum]==4) c = Color.YELLOW;
     	
     	if(steps[0][stepNum] == -1) {
+    		// merge phase
     		drawAnElement((int) steps[1][stepNum], steps[2][stepNum], steps[3][stepNum], c);
     	}
     	else {
+    		// divide phase
     		if(steps[4][stepNum]!=3) {
     			drawAnArray(Arrays.copyOfRange(cloneArr, (int) steps[0][stepNum], (int) steps[1][stepNum]+1), steps[2][stepNum], steps[3][stepNum], c);
     		}
     		else {
     			int len = (int) (steps[1][stepNum] - steps[0][stepNum] + 1);
-    			for(int i= 0; i < (len); ++i) {
-    				StackPane stack = new StackPane();
-    				Circle cir = new Circle(20);
-    				cir.setFill(Color.WHITE);
-    				stack.getChildren().add(cir);
-    				stack.setLayoutX(steps[2][stepNum] + (i - len/2)*50);
-    				stack.setLayoutY(steps[3][stepNum]);
-    				this.arrayDisplayArea.getChildren().add(stack);
-    			}
+    			for(int i= 0; i < (len); ++i)
+    				drawAnElement(-1, steps[2][stepNum] + (i - len/2)*50, steps[3][stepNum], Color.WHITE);
     		}
     	}
     	progressField.setText(this.instructions[(int) steps[5][stepNum]]);
@@ -114,21 +115,16 @@ public class MergeSortScreenController extends ScreenController{
     
     
     public void drawAnElement(int x, double X, double Y, Color c) {
-    	String s = Integer.toString(x);
-    	Label lb = new Label(s);
-		lb.setFont(new Font("Arial", 24));
-		Circle circle = new Circle(20);
-    	circle.setFill(c);
-    	StackPane stack = new StackPane();
-    	stack.getChildren().addAll(circle, lb);
-    	stack.setLayoutX(X);
-    	stack.setLayoutY(Y);
+    	String s;
+    	if(x!=-1) s = Integer.toString(x);    		
+    	else s = "";
+    	
+    	ElementSquareShape stack = new ElementSquareShape(s, X, Y, c);
    
     	arrayDisplayArea.getChildren().add(stack);
     }
     
     public void drawAnArray(int[] subarr, double midX, double startY, Color c) {
-    	
     	for(int i = 0; i < (subarr.length); i++)
     	{
 			drawAnElement(subarr[i], midX + (i - subarr.length/2)*50, startY, c);
