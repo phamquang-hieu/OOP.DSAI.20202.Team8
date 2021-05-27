@@ -1,11 +1,9 @@
 package algorithms;
 
-import javafx.scene.paint.Color;
 
 public class MergeSort {
 	private int[] arr;
 	private double [][] steps = new double[6][100];
-	private double [][] states = new double[100][10];
 	private int step=0;
 	public MergeSort(int[] arr) {
 		this.arr = arr;
@@ -29,6 +27,7 @@ public class MergeSort {
 			if(left_index > mid) {
 				// all element from left array has been taken.
 				aux[i] = this.arr[right_index++];	
+				assignSteps(-1, -1, startRightX, startY + 80, 3, 4);
 				assignSteps(-1 , aux[i], midX + (i-(end-start+1)/2)*50, startY, 2, 4);
 				if (right_index < end+1)  {
 					startRightX+=50;
@@ -38,6 +37,7 @@ public class MergeSort {
 			else if (right_index > end) {
 				// all element from right array has been taken.
 				aux[i] = this.arr[left_index++];
+				assignSteps(-1, -1, startLeftX, startY + 80, 3, 5);
 				assignSteps(-1 , aux[i], midX + (i-(end-start+1)/2)*50, startY, 2, 5);
 				if(left_index < mid+1) {
 					startLeftX+=50;
@@ -46,6 +46,7 @@ public class MergeSort {
 			}
 			else if(this.arr[left_index]  < this.arr[right_index]) {
 				aux[i] = this.arr[left_index++];
+				assignSteps(-1, -1, startLeftX, startY + 80, 3, 3);
 				assignSteps(-1 , aux[i], midX + (i-(end-start+1)/2)*50, startY, 2, 3);
 				if(left_index < mid+1) {
 					startLeftX+=50;
@@ -54,6 +55,7 @@ public class MergeSort {
 			}
 			else if(this.arr[left_index] >= this.arr[right_index]) {
 				aux[i] = this.arr[right_index++];
+				assignSteps(-1, -1, startRightX, startY + 80, 3, 3);
 				assignSteps(-1 , aux[i], midX + (i-(end-start+1)/2)*50, startY, 2, 3);
 				if (right_index < end+1) {
 					startRightX+=50;
@@ -93,10 +95,10 @@ public class MergeSort {
 	private void assignSteps(double args1, double args2, double args3, double args4, int color, int instruction) {
 		// color: 
 		//0: yellowgreen
-		//1: red selected
-		//2: blueviolet merged
-		//3: white
-		//4: yellow
+		//1: red: selected and ready to merge
+		//2: blueviolet: merged
+		//3: white: vanished
+		//4: yellow: selected and ready to split
 		this.steps[0][this.step] = args1;
 		this.steps[1][this.step] = args2;
 		this.steps[2][this.step] = args3;

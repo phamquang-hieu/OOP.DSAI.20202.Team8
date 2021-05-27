@@ -2,12 +2,7 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import shapes.ElementSquareShape;
 
@@ -31,20 +26,17 @@ public class MergeSortScreenController extends ScreenController{
 	public void initialize() {
 		instructions = new String[6];
 		instructions[0] = "Split the selected array (as evenly as possible)";
-		instructions[1] = "Select the left array and ready to merge";
-		instructions[2] = "Select the right array and ready to merge";
-		instructions[3] = "Select the minimum of the two selected \n (rightmost red) values to put into the sorted array";
-		instructions[4] = "All the elements from the left array has been taken, \n copy all values from the right array into the sorted array";
-		instructions[5] = "All the elements from the left array has been taken, \n copy all values from the right array into the sorted array";
+		instructions[1] = "Select the left sub-array and ready to merge";
+		instructions[2] = "Select the right sub-array and ready to merge";
+		instructions[3] = "Select the minimum of the two selected values to put into the sorted array";
+		instructions[4] = "All the elements from the left array has been taken, copy all values from the right array into the sorted array";
+		instructions[5] = "All the elements from the left array has been taken, copy all values from the right array into the sorted array";
 		progressField.setEditable(false);
 		progressField.setFont(new Font("Arial", 20));
 	}
 	
     void randomArray() {
-    	arrayDisplayArea.getChildren().clear();
-    	//System.out.println("real Length: " + getLength(arraySize5, arraySize6, arraySize7, arraySize8));
     	this.arr = new Array(getLength(arraySize5, arraySize6, arraySize7, arraySize8));
-    	this.firstLine = 50;	
     }
     
     @FXML
@@ -55,10 +47,9 @@ public class MergeSortScreenController extends ScreenController{
 			} else {
 				arrayDisplayArea.getChildren().clear();
 				this.arr = new Array(textFieldArray.getText());
-				this.firstLine = 50;
 			}
 			cloneArr = Arrays.copyOf(this.arr.data, this.arr.getLength());
-			drawAnArray(cloneArr, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN);
+			resetView();
 			
 			MergeSort ms = new MergeSort(this.arr.data);
 			ms.merge_sort(0, this.arr.getLength() - 1, 0, this.arrayDisplayArea.getWidth(), firstLine);
@@ -76,16 +67,52 @@ public class MergeSortScreenController extends ScreenController{
     }
     
     @FXML
+    void btnBackPressed(ActionEvent event) {
+    	arrayDisplayArea.getChildren().clear();
+    	int tmp = this.stepNum;
+    	if(tmp==1) {
+    		resetView();
+    		return;
+    	}
+    	for(this.stepNum =0; stepNum < tmp-1; stepNum++) {
+    		displayStep(stepNum);
+    	}
+    }
+    
+    @FXML
    	void btnNextPressed(ActionEvent event) {
 	   if(this.arr.getLength()==0)
 		   return;       // no element initiated
-	   if(this.stepNum >= this.numStep)
+	   if(this.stepNum == this.numStep) showLastView();
+	   if(this.stepNum > this.numStep) {
+		   resetView();
 		   return;
+	   }
 	   
 	   displayStep(this.stepNum);
 	   this.stepNum++;
     }
+    @FXML
+    void btnResetPressed(ActionEvent event) {
+    	resetView();
+    }
+    void resetView() {
+    	arrayDisplayArea.getChildren().clear();
+    	this.firstLine = 50;
+		drawAnArray(cloneArr, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN);
+		this.stepNum = 0;
+    }
     
+    @FXML
+    void btnSkipPressed(ActionEvent event) {
+    	showLastView();
+    }
+    
+    void showLastView() {
+    	arrayDisplayArea.getChildren().clear();
+    	this.firstLine = 50;
+    	drawAnArray(this.arr.data, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN);
+    }
     
     private void displayStep(int stepNum) {
     	Color c= Color.YELLOWGREEN;
@@ -112,8 +139,7 @@ public class MergeSortScreenController extends ScreenController{
     	}
     	progressField.setText(this.instructions[(int) steps[5][stepNum]]);
     }
-    
-    
+       
     public void drawAnElement(int x, double X, double Y, Color c) {
     	String s;
     	if(x!=-1) s = Integer.toString(x);    		
