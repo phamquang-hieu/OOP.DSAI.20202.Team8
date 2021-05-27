@@ -26,12 +26,7 @@ public class Array {
 		String[] arrString = s.split(",");
 		data = new int[arrString.length];
 		for (length = 0; length < arrString.length; ++length) {
-			try {
-				data[length] = Integer.parseInt(arrString[length].trim());
-			} catch (NumberFormatException e) {
-				data[length] = 0;
-				continue;
-			}
+			data[length] = Integer.parseInt(arrString[length].trim());
 		}
 		if (this.length > 8 || this.length < 5) {
 			System.err.println("Your array length: " + this.length);
