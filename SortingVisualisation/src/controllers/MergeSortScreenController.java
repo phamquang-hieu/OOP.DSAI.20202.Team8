@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import shapes.ElementShape;
 import shapes.ElementSquareShape;
 
 import java.util.Arrays;
@@ -145,7 +146,7 @@ public class MergeSortScreenController extends ScreenController{
     	if(x!=-1) s = Integer.toString(x);    		
     	else s = "";
     	
-    	ElementSquareShape stack = new ElementSquareShape(s, X, Y, c);
+    	ElementShape stack = new ElementShape(s, X, Y, c);
    
     	arrayDisplayArea.getChildren().add(stack);
     }
