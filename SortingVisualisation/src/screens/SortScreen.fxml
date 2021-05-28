@@ -12,9 +12,9 @@
 
 <BorderPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <ToolBar prefHeight="92.0" prefWidth="1100.0" style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: bottom;" BorderPane.alignment="CENTER">
+      <ToolBar prefHeight="92.0" prefWidth="1100.0" style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif'); -fx-background-position: bottom;" BorderPane.alignment="CENTER">
         <items>
-            <Pane prefHeight="82.0" prefWidth="1085.0" style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: bottom;">
+            <Pane prefHeight="82.0" prefWidth="1085.0" style="-fx-background-color: transparent;">
                <children>
                   <TextField fx:id="textFieldArray" layoutX="182.0" layoutY="28.0" prefHeight="30.0" prefWidth="213.0" promptText="Please input an array (optional)">
                      <font>
@@ -40,55 +40,54 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <TextArea fx:id="progressField" layoutX="852.0" layoutY="16.0" prefHeight="50.0" prefWidth="403.0" style="-fx-text-alignment: center;" />
+                  <TextArea fx:id="progressField" layoutX="875.0" layoutY="15.0" prefHeight="50.0" prefWidth="403.0" style="-fx-text-alignment: center;" />
                </children>
             </Pane>
         </items>
       </ToolBar>
    </bottom>
    <left>
-      <VBox style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
+      <VBox style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif');" BorderPane.alignment="CENTER">
          <children>
-            <TitledPane animated="false" text="Create Array">
-               <content>
-                  <VBox prefHeight="67.0" prefWidth="145.0" style="-fx-background-image: url('screens/8bit.gif');">
-                     <children>
-                        <RadioButton fx:id="randomizeMode" mnemonicParsing="false" selected="true" text="Randomize">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="createArray" />
-                           </toggleGroup>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="customizeMode" mnemonicParsing="false" text="Customize" toggleGroup="$createArray">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </VBox>
-               </content>
-               <VBox.margin>
-                  <Insets left="10.0" right="20.0" top="10.0" />
-               </VBox.margin>
+            <Label text="Create Array">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
-            </TitledPane>
-            <TitledPane animated="false" prefHeight="112.0" prefWidth="150.0" style="-fx-background-image: url('screens/8bit.gif');" text="Visualizing Form">
                <VBox.margin>
-                  <Insets left="10.0" right="20.0" top="10.0" />
+                  <Insets left="10.0" top="10.0" />
                </VBox.margin>
-               <content>
-                  <VBox prefHeight="88.0" prefWidth="145.0" style="-fx-background-image: url('screens/8bit.gif');">
+            </Label>
+            <VBox prefHeight="67.0" prefWidth="145.0" style="-fx-background-color: transparent;">
+               <children>
+                  <RadioButton fx:id="randomizeMode" mnemonicParsing="false" selected="true" text="Randomize">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="createArray" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="customizeMode" mnemonicParsing="false" text="Customize" toggleGroup="$createArray">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <VBox prefHeight="88.0" prefWidth="145.0" style="-fx-background-color: url('file:C:/Users/DELL/Pictures/8bit.gif');">
                      <children>
+                        <Label text="Label">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
                         <RadioButton fx:id="formNode" mnemonicParsing="false" selected="true" text="Nodes">
                            <VBox.margin>
                               <Insets left="10.0" />
@@ -110,62 +109,60 @@
                         </RadioButton>
                      </children>
                   </VBox>
-               </content>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </TitledPane>
-            <TitledPane animated="false" prefHeight="183.0" prefWidth="150.0" text="Array size">
-               <VBox.margin>
-                  <Insets left="10.0" right="20.0" top="10.0" />
-               </VBox.margin>
-               <content>
-                  <VBox prefHeight="151.0" prefWidth="148.0" style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: 10;">
-                     <children>
-                        <RadioButton fx:id="arraySize5" mnemonicParsing="false" text="5" textFill="WHITE">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="arraySize" />
-                           </toggleGroup>
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="arraySize6" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="6" textFill="WHITE" toggleGroup="$arraySize">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font></RadioButton>
-                        <RadioButton fx:id="arraySize7" layoutX="20.0" layoutY="37.0" mnemonicParsing="false" text="7" textFill="WHITE" toggleGroup="$arraySize">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font></RadioButton>
-                        <RadioButton fx:id="arraySize8" layoutX="20.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="8" textFill="WHITE" toggleGroup="$arraySize">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font></RadioButton>
-                     </children>
-                  </VBox>
-               </content>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </TitledPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="151.0" prefWidth="148.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Label text="Array Size">
+                     <padding>
+                        <Insets left="10.0" top="20.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="arraySize5" mnemonicParsing="false" text="5">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="arraySize" />
+                     </toggleGroup>
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="arraySize6" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="6" toggleGroup="$arraySize">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="arraySize7" layoutX="20.0" layoutY="37.0" mnemonicParsing="false" text="7" textFill="WHITE" toggleGroup="$arraySize">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="arraySize8" layoutX="20.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="8" textFill="WHITE" toggleGroup="$arraySize">
+                     <VBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </left>
    <top>
-      <MenuBar prefHeight="30.0" prefWidth="1100.0" style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="30.0" prefWidth="1100.0" style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif');" BorderPane.alignment="CENTER">
         <menus>
           <Menu fx:id="menuBack" mnemonicParsing="false" text="Back">
             <items>
@@ -184,9 +181,9 @@
       <Pane fx:id="arrayDisplayArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif');" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="notePane" prefHeight="634.0" prefWidth="100.0" style="-fx-background-image: url('screens/8bit.gif');">
+            <Pane fx:id="notePane" prefHeight="634.0" prefWidth="100.0" style="-fx-background-color: transparent;">
                <children>
                   <Rectangle fx:id="sortedNode" arcHeight="20.0" arcWidth="20.0" fill="#05141a" height="40.0" layoutX="30.0" layoutY="173.0" stroke="#05141a" strokeType="INSIDE" visible="false" width="40.0" />
                   <Label fx:id="sortedLabel" layoutX="33.0" layoutY="218.0" text="Sorted" visible="false">

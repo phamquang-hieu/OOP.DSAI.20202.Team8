@@ -39,8 +39,8 @@ public class SelectionSortController extends ScreenController{
 	private int changeMin = 0;
 	private double X;
 	private double Y;
-	private boolean done;
 	private int[] originalArray;
+	private int stepNum = 0;
 	
 	
     
@@ -68,7 +68,7 @@ public class SelectionSortController extends ScreenController{
 			this.size = this.Arr.getLength();
 			this.X = arrayDisplayArea.getWidth()/2;
 			this.Y = arrayDisplayArea.getHeight()/2 - 40;
-	    	arrayDisplayArea.getChildren().clear();	    	
+	    	arrayDisplayArea.getChildren().clear();	
 	    	if (formNode.isSelected()) {
 	    		drawArray(arr, 0, -1, 0 ,X, Y);
 	    		sortedLabel.setVisible(true);
@@ -104,8 +104,9 @@ public class SelectionSortController extends ScreenController{
 	    	}
 	    	ss = new SelectionSort(this.arr);
 	    	ss.Sort();
-		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
 			e.printStackTrace();
 		}
     }
@@ -113,6 +114,12 @@ public class SelectionSortController extends ScreenController{
     @FXML
     void btnNextPressed(ActionEvent event) {
     	arrayDisplayArea.getChildren().clear();
+
+    	//case when we have a sub-step updating min;
+    	if (stepNum <= ss.getStepNum()) {
+    		stepNum += 1;
+        	System.out.println(stepNum);
+
     	if (changeMin==1) {
     		progressField.setText("Update the smallest value");
     		if (formNode.isSelected()) {
@@ -131,10 +138,7 @@ public class SelectionSortController extends ScreenController{
     		changeMin=0;
     	}
     	
-    	
-    	
-
-    	
+    	//normal case
     	else if (comparing<size-1 && step < size) {
     		if (comparing > step) {
         		if (formNode.isSelected()) {
@@ -152,6 +156,7 @@ public class SelectionSortController extends ScreenController{
         			comparing += 1;
         		}
     		}
+    		
     		else {
     			if (comparing != 0) {
     				progressField.setText("Move the smallest element to the last position of the sorted array." + "\nContinue with the unsorted array!");
@@ -204,7 +209,6 @@ public class SelectionSortController extends ScreenController{
     	}
     	else {
 			progressField.setText("Done sorting!");
-			done = true;
 			if (formNode.isSelected()) {
 				drawArray(ss.getSteps()[step-1], step, -1, -1, X, Y);
 			}
@@ -212,97 +216,46 @@ public class SelectionSortController extends ScreenController{
 	    		drawArray(ss.getSteps()[step-1], step, -1, X, Y, -1);
 			}
     	}
-//    	System.out.println("next ----------------------------------------------------------------");
-////    	System.out.println(changeMin);
-////    	System.out.println("Min Index right now: " + ss.getMinIndex()[step][comparing]);
-//    	System.out.println("comparing " + comparing);
-//    	System.out.println("step " + step);
+    	}
+    	
+    	else {
+			progressField.setText("Done sorting!");
+			if (formNode.isSelected()) {
+				drawArray(ss.getSteps()[step-1], step, -1, -1, X, Y);
+			}
+			else {
+	    		drawArray(ss.getSteps()[step-1], step, -1, X, Y, -1);
+			}
+    	}
     }
     
-    @FXML
+    @FXML 
     void btnBackPressed(ActionEvent event) {
-    	//handle the changeMin situation
-//    	System.out.println("back ----------------------------------------------------------------");
-//    	System.out.println(changeMin);
-//    	System.out.println("Min Index right now: " + ss.getMinIndex()[step][comparing]);
-//    	System.out.println("comparing " + comparing);
-//    	System.out.println("step " + step);
-    	if (comparing == 0 && step == 0) {
-	    	if (formNode.isSelected()) {
-	    		drawArray(this.originalArray, 0, -1, 0 ,X, Y);
-	    	}
-	    	else {
-	    		drawArray(this.originalArray, 0, -1, X, Y, -1);
-	    	}
-			progressField.setText("Start Selection Sort!");
+    	arrayDisplayArea.getChildren().clear();
+    	int tmp = this.stepNum;
+    	comparing = 0;
+    	step = 0;
+    	this.stepNum = 0;
+//    	done = false;
+    	if(tmp <=1) {
+    		if (formNode.isSelected()) {
+        		drawArray(this.originalArray, 0, -1, 0 ,X, Y);
+        	}
+        	else {
+        		drawArray(this.originalArray, 0, -1, X, Y, -1);
+        	}
+    		progressField.setText("Start Selection Sort!");    	
     	}
-    	else if (changeMin==1) {
-    		comparing -= 1;
-    		changeMin = 0;
+    	for(int i =0; i < tmp-1; i++) {
     		btnNextPressed(event);
     	}
-    	else if (comparing == 1 && step == 0){
-    		comparing -= 1;
-        	arrayDisplayArea.getChildren().clear();
-    		if (formNode.isSelected()) {
-	    		drawArray(this.originalArray, 0, -1, 0 ,X, Y);
-	    	}
-	    	else {
-	    		drawArray(this.originalArray, 0, -1, X, Y, -1);
-	    	}
-			progressField.setText("Start Selection Sort!");
-    	}
-    			
-	    else {
-//	    	if (ss.getMinIndex()[step][comparing] + 2 == comparing) {
-//	    		comparing -= 2;
-//	    		changeMin = true;
-//	    		btnNextPressed(event);
-//
-//	    	}
-//	    	else if (ss.getMinIndex()[step][comparing] + 1 == comparing) {
-//	    		comparing -= 1;
-//	    		btnNextPressed(event);
-//
-//	    	}
-	    	if (comparing == step) {
-	    		comparing = size-2;
-	    		step -= 1;
-	    		btnNextPressed(event);
-
-	    	}
-	    	else if (comparing + 1 == step) {
-	    		if (!done) {
-		    		comparing = size -1;
-		    		step = size - 2;
-		    		btnNextPressed(event);
-	    		}
-	    		else {
-	    			comparing = size-1;
-	    			step = size - 1;
-	    		    btnNextPressed(event);
-		    		done = false;
-
-
-	    		}
-
-	    	}
-	    	else if (comparing > step + 1) {
-	    		comparing -= 2;
-	    		btnNextPressed(event);
-	    	}
-	    	else if (comparing == step + 1){
-	    		comparing = size-1;
-	    		step -= 1;
-	    		btnNextPressed(event);
-	    	}
-	    }
-	    	
     }
+    
     
     @FXML
     void btnResetPressed(ActionEvent event) {
 		arrayDisplayArea.getChildren().clear();
+		stepNum = 0;
 		comparing = 0 ;
 		step = 0;
 		if (formNode.isSelected()) {
@@ -318,9 +271,9 @@ public class SelectionSortController extends ScreenController{
     void btnSkipPressed(ActionEvent event) {
 		arrayDisplayArea.getChildren().clear();
 		progressField.setText("Done sorting!");
-		done = true;
 		step = size;
 		comparing = size-1;
+		stepNum = this.ss.getStepNum() + 1;
 		if (formNode.isSelected()) {
 			drawArray(ss.getSteps()[step-1], step, -1, -1, X, Y);
 		}
@@ -329,13 +282,13 @@ public class SelectionSortController extends ScreenController{
 		}
     }
     
-    @FXML
-    void btnAutoPressed(ActionEvent event) throws InterruptedException {
-    	while (!done) {
-    		btnNextPressed(event);
-//    		Platform.runLater(null);
-    	}
-    }
+//    @FXML
+//    void btnAutoPressed(ActionEvent event) throws InterruptedException {
+//    	while (!done) {
+//    		btnNextPressed(event);
+////    		Platform.runLater(null);
+//    	}
+//    }
 
     
     public void drawElement(int element, double X, double Y, Color c, Color c2) {
@@ -346,19 +299,8 @@ public class SelectionSortController extends ScreenController{
     }
     
     public void drawElement(int height, Color c, double X, double Y) {
-//    	Rectangle rectangle = new Rectangle(X, Y-height, 20, height);
-//    	rectangle.setFill(c);
-//    	rectangle.setStroke(c);
-//    	rectangle.setArcWidth(5);
-//    	rectangle.setArcHeight(5);
-//    	
-//    	rectangle.setLayoutX(X);
-//    	rectangle.setLayoutX(Y);
     	
     	ElementShape stack = new ElementShape(height, c, X, Y);
-
-
-    	
     	arrayDisplayArea.getChildren().add(stack);
     }
     
