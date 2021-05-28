@@ -28,11 +28,11 @@ public class MergeSortScreenController extends ScreenController{
 		instructions[0] = "Split the selected array (as evenly as possible)";
 		instructions[1] = "Select the left sub-array and ready to merge";
 		instructions[2] = "Select the right sub-array and ready to merge";
-		instructions[3] = "Select the minimum of the two selected values to put into the sorted array";
-		instructions[4] = "All the elements from the left array has been taken, copy all values from the right array into the sorted array";
-		instructions[5] = "All the elements from the left array has been taken, copy all values from the right array into the sorted array";
+		instructions[3] = "Select the minimum of the two selected values \nto put into the sorted array";
+		instructions[4] = "All the elements from the left array has been taken, \ncopy all values from the right array to the sorted array";
+		instructions[5] = "All the elements from the right array has been taken, \ncopy all values from the left array to the sorted array";
 		progressField.setEditable(false);
-		progressField.setFont(new Font("Arial", 20));
+		progressField.setFont(new Font("Arial", 15));
 	}
 	
     void randomArray() {
@@ -100,6 +100,7 @@ public class MergeSortScreenController extends ScreenController{
     	arrayDisplayArea.getChildren().clear();
     	this.firstLine = 50;
 		drawAnArray(cloneArr, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN);
+		this.progressField.clear();
 		this.stepNum = 0;
     }
     
@@ -112,6 +113,8 @@ public class MergeSortScreenController extends ScreenController{
     	arrayDisplayArea.getChildren().clear();
     	this.firstLine = 50;
     	drawAnArray(this.arr.data, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN);
+    	this.progressField.setText("Done Sorting!");
+    	this.stepNum = this.numStep+1;
     }
     
     private void displayStep(int stepNum) {
