@@ -110,6 +110,9 @@ public abstract class SortScreenController {
     @FXML
     Pane notePane;
     
+    @FXML
+    Label stepShow;
+    
     
     @FXML
     protected void closeMenuPressed(ActionEvent event) throws IOException {

@@ -62,8 +62,8 @@ public class SelectionSortController extends SortScreenController{
 		    	this.arr = Arrays.copyOf(this.Arr.data, this.Arr.getLength());
 			}
 			this.originalArray = arr.clone();
-			progressField.setText("Start Selection Sort!");
-			comparing = 0;
+    		stepShow.setTextFill(Color.WHITE);
+    		comparing = 0;
 			step = 0;
 			this.size = this.Arr.getLength();
 			this.X = arrayDisplayArea.getWidth()/2;
@@ -104,6 +104,8 @@ public class SelectionSortController extends SortScreenController{
 	    	}
 	    	ss = new SelectionSort(this.arr);
 	    	ss.Sort();
+			progressField.setText("Start Selection Sort!");
+    		stepShow.setText("" + stepNum + "/" + (ss.getStepNum()+1));
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
@@ -115,10 +117,14 @@ public class SelectionSortController extends SortScreenController{
     void btnNextPressed(ActionEvent event) {
     	arrayDisplayArea.getChildren().clear();
 
+
     	//case when we have a sub-step updating min;
     	if (stepNum <= ss.getStepNum()) {
     		stepNum += 1;
-        	System.out.println(stepNum);
+    		stepShow.setText("" + stepNum + "/" + (ss.getStepNum()+1));
+    		stepShow.setTextFill(Color.WHITE);
+
+
 
     	if (changeMin==1) {
     		progressField.setText("Update the smallest value");
@@ -255,9 +261,13 @@ public class SelectionSortController extends SortScreenController{
     @FXML
     void btnResetPressed(ActionEvent event) {
 		arrayDisplayArea.getChildren().clear();
+		
 		stepNum = 0;
 		comparing = 0 ;
 		step = 0;
+		stepShow.setText("" + stepNum + "/" + (ss.getStepNum()+1));
+		stepShow.setTextFill(Color.WHITE);
+
 		if (formNode.isSelected()) {
     		drawArray(this.originalArray, 0, -1, 0 ,X, Y);
     	}
@@ -274,6 +284,8 @@ public class SelectionSortController extends SortScreenController{
 		step = size;
 		comparing = size-1;
 		stepNum = this.ss.getStepNum() + 1;
+		stepShow.setText("" + stepNum + "/" + (ss.getStepNum()+1));
+		stepShow.setTextFill(Color.WHITE);
 		if (formNode.isSelected()) {
 			drawArray(ss.getSteps()[step-1], step, -1, -1, X, Y);
 		}

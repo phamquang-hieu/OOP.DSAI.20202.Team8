@@ -11,43 +11,8 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <bottom>
-      <ToolBar prefHeight="92.0" prefWidth="1100.0" style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif'); -fx-background-position: bottom;" BorderPane.alignment="CENTER">
-        <items>
-            <Pane prefHeight="82.0" prefWidth="1085.0" style="-fx-background-color: transparent;">
-               <children>
-                  <TextField fx:id="textFieldArray" layoutX="182.0" layoutY="28.0" prefHeight="30.0" prefWidth="213.0" promptText="Please input an array (optional)">
-                     <font>
-                        <Font size="14.0" />
-                     </font></TextField>
-                  <Button layoutX="677.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnNextPressed" prefHeight="30.0" prefWidth="26.0" text="&gt;">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                <Button layoutX="402.0" layoutY="28.0" mnemonicParsing="false" onAction="#buttonRunPressed" prefHeight="30.0" prefWidth="54.0" text="Run">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                  <Button layoutX="640.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnBackPressed" text="&lt;">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                  <Button layoutX="584.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnResetPressed" prefHeight="30.0" prefWidth="48.0" text="&lt;&lt;">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                  <Button layoutX="715.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnSkipPressed" prefHeight="25.0" prefWidth="48.0" text="&gt;&gt;">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                  <TextArea fx:id="progressField" layoutX="875.0" layoutY="15.0" prefHeight="50.0" prefWidth="403.0" style="-fx-text-alignment: center;" />
-               </children>
-            </Pane>
-        </items>
-      </ToolBar>
-   </bottom>
    <left>
-      <VBox style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif');" BorderPane.alignment="CENTER">
+      <VBox style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
          <children>
             <Label text="Create Array">
                <font>
@@ -78,7 +43,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </RadioButton>
-                  <VBox prefHeight="88.0" prefWidth="145.0" style="-fx-background-color: url('file:C:/Users/DELL/Pictures/8bit.gif');">
+                  <VBox prefHeight="88.0" prefWidth="145.0" style="-fx-background-color: url('screens/8bit.gif');">
                      <children>
                         <Label text="Label">
                            <font>
@@ -162,7 +127,7 @@
       </VBox>
    </left>
    <top>
-      <MenuBar prefHeight="30.0" prefWidth="1100.0" style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif');" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="30.0" prefWidth="1100.0" style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
         <menus>
           <Menu fx:id="menuBack" mnemonicParsing="false" text="Back">
             <items>
@@ -181,7 +146,7 @@
       <Pane fx:id="arrayDisplayArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-image: url('file:C:/Users/DELL/Pictures/8bit.gif');" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
          <children>
             <Pane fx:id="notePane" prefHeight="634.0" prefWidth="100.0" style="-fx-background-color: transparent;">
                <children>
@@ -219,4 +184,50 @@
          </children>
       </VBox>
    </right>
+   <bottom>
+      <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="1090.0" style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: bottom;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="textFieldArray" layoutX="152.0" layoutY="27.0" prefHeight="30.0" prefWidth="192.0" promptText="Please input an array (optional)" AnchorPane.leftAnchor="152.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnNextPressed" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: transparent;" text="&gt;" textFill="WHITE" AnchorPane.rightAnchor="476.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+          <Button layoutX="344.0" layoutY="26.0" mnemonicParsing="false" onAction="#buttonRunPressed" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="Run" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="477.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: transparent;" text="&lt;" textFill="WHITE" AnchorPane.leftAnchor="477.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnResetPressed" prefHeight="44.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="&lt;&lt;" textFill="WHITE" AnchorPane.leftAnchor="418.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="624.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnSkipPressed" prefHeight="44.0" prefWidth="57.0" style="-fx-background-color: transparent;" text="&gt;&gt;" textFill="WHITE" AnchorPane.rightAnchor="419.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <TextArea fx:id="progressField" layoutX="740.0" layoutY="18.0" prefHeight="50.0" prefWidth="245.0" style="-fx-text-alignment: center;" AnchorPane.rightAnchor="115.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </TextArea>
+            <Label fx:id="stepShow" alignment="CENTER" layoutX="520.0" layoutY="23.0" prefHeight="41.0" prefWidth="61.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="519.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>
