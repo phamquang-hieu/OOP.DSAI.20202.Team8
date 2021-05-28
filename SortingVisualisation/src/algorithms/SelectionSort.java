@@ -5,6 +5,7 @@ public class SelectionSort {
 	private int[][] steps;
 	private int[][] minIndex;
 	private int size;
+	private int stepNum = 1;
 	
 	public int[] getArr() {
 		return arr;
@@ -20,6 +21,10 @@ public class SelectionSort {
 
 	public int getSize() {
 		return size;
+	}
+	
+	public int getStepNum() {
+		return stepNum;
 	}
 
 	public SelectionSort(int[] arr) {
@@ -42,14 +47,19 @@ public class SelectionSort {
 			for (int j = i+1; j < size; j++) {
 				if (arr[j] < arr[currentMinIndex]) {
 					currentMinIndex = j;
+					stepNum += 1;
+
 				}
 				minIndex[i][j] = currentMinIndex;
+				stepNum += 1;
+
 			}
 			
 			int tmp = arr[currentMinIndex];
 			arr[currentMinIndex] = arr[i];
 			arr[i] = tmp;
 			steps[i+1]=arr.clone();
+			stepNum += 1;
 		}
 	}
 	

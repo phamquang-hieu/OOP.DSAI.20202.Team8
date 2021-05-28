@@ -1,12 +1,13 @@
 package shapes;
 
-import javax.swing.text.StyleConstants.FontConstants;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 public class ElementShape extends StackPane{
 	private Rectangle rectangle;
@@ -40,5 +41,23 @@ public class ElementShape extends StackPane{
     	this.getChildren().addAll(rectangle);
     	this.setLayoutX(X);
     	this.setLayoutY(Y-height);
+	}
+	
+	public TranslateTransition movingX(int X) {
+	    TranslateTransition t = new TranslateTransition();
+	    t.setNode(this);
+	    t.setDuration(Duration.millis(100));
+	    t.setByX(X);
+
+	    return t; 
+	}
+	
+	public TranslateTransition movingY(int Y) {
+	    TranslateTransition t = new TranslateTransition();
+	    t.setNode(this);
+	    t.setDuration(Duration.millis(100));
+	    t.setByY(Y);
+
+	    return t; 
 	}
 }
