@@ -28,7 +28,7 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import shapes.ElementShape;
 
-public class SelectionSortController extends ScreenController{
+public class SelectionSortController extends SortScreenController{
 	
 	private Array Arr;
 	private int[] arr;
