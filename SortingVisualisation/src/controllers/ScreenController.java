@@ -100,7 +100,7 @@ public abstract class ScreenController {
     
     @FXML
     Pane notePane;
-    
+
     
 	
 	protected int getLength(RadioButton arraySize5, RadioButton arraySize6, RadioButton arraySize7, RadioButton arraySize8) {
