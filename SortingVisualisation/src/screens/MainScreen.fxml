@@ -28,32 +28,32 @@
       </Label>
       <StackPane layoutX="589.0" layoutY="302.0" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="589.0" AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="302.0">
          <children>
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="120.0" />
             <Button fx:id="btnMergeSort" mnemonicParsing="false" onAction="#btnMergeSortPressed" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: transparent;" text="Merge Sort" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="120.0" />
          </children>
       </StackPane>
       <StackPane layoutX="892.0" layoutY="302.0" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="892.0" AnchorPane.rightAnchor="284.0" AnchorPane.topAnchor="302.0">
          <children>
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="120.0" />
             <Button fx:id="btnShellSort" mnemonicParsing="false" onAction="#btnShellSortPressed" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: transparent;" text="Shell Sort" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="120.0" />
          </children>
       </StackPane>
       <StackPane layoutX="280.0" layoutY="302.0" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="896.0" AnchorPane.topAnchor="302.0">
          <children>
+            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="120.0" />
             <Button fx:id="btnSelectionSort" mnemonicParsing="false" onAction="#btnSelectionSortPressed" prefHeight="120.0" prefWidth="120.0" style="-fx-background-color: transparent;" text="Selection Sort" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0" width="120.0" />
          </children>
       </StackPane>
    </children>

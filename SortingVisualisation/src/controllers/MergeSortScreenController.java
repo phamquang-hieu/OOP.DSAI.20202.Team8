@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import algorithms.MergeSort;
 import datastructure.Array;
 
-public class MergeSortScreenController extends ScreenController{
+public class MergeSortScreenController extends SortScreenController{
 	private Array arr;
 	private int[] cloneArr;
 	private double firstLine;
