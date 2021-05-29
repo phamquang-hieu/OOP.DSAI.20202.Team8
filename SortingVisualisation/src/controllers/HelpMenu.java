@@ -43,7 +43,6 @@ public class HelpMenu extends JPanel {
 	    panel.setOpaque(true);
 	
 	    JFrame frame = new JFrame("Help");
-	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	    frame.setContentPane(panel);
 	    frame.pack();
 	    frame.setVisible(true);
