@@ -42,6 +42,7 @@ public class ElementShape extends StackPane{
     	this.X = X;
     	this.Y = Y;
 	}
+	
 
 	
 	public ElementShape(int height, Color c, double X, double Y) {
