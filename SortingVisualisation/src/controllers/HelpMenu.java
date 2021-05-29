@@ -22,7 +22,6 @@ public class HelpMenu extends JPanel {
 	    textArea.setLineWrap(true);
 	    textArea.setTabSize(0);
 	    JScrollPane scrollPane = new JScrollPane(textArea);
-	    System.out.println(textArea.getTabSize());
 	    textArea.setEditable(false);
 	    try {
 	    	textArea.read(new InputStreamReader(
