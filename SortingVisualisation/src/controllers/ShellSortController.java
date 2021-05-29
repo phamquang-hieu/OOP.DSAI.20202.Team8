@@ -104,12 +104,15 @@ public class ShellSortController extends SortScreenController implements Initial
 			drawArrayAnimation1(shellsort.getArrState(curSteps), pos);
 
 		} else if (shellsort.getFlags(curSteps) == 2) {
-			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Done!");
 			drawArrayAnimation2(shellsort.getArrState(curSteps), pos);
 		} else if (shellsort.getFlags(curSteps) == 3) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Swap elements at position "
 					+ pos[0] + ", " + pos[1]);
 			drawArrayAnimation3(shellsort.getArrState(curSteps - 1), pos);
+		} else if (shellsort.getFlags(curSteps) == 4) {
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
+			drawArrayStart(shellsort.getArrState(curSteps));
 		}
 		if (!flag)
 			for (int i = 0; i < n; i++) {
@@ -136,12 +139,15 @@ public class ShellSortController extends SortScreenController implements Initial
 					+ pos[0] + ", " + pos[1]);
 			drawArrayAnimation2(shellsort.getArrState(curSteps), pos);
 		} else if (shellsort.getFlags(curSteps) == 2) {
-			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Done!");
 			drawArrayAnimation1(shellsort.getArrState(curSteps), pos);
 		} else if (shellsort.getFlags(curSteps) == 3) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Swap elements at position "
 					+ pos[0] + ", " + pos[1]);
 			drawArrayAnimation3(shellsort.getArrState(curSteps), pos);
+		} else if (shellsort.getFlags(curSteps) == 4) {
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
+			drawArrayStart(shellsort.getArrState(curSteps));
 		}
 	}
 
@@ -313,5 +319,8 @@ public class ShellSortController extends SortScreenController implements Initial
 		t0.play();
 		TranslateTransition t1 = s1.movingX(50 * (pos[0] - pos[1]));
 		t1.play();
+	}
+
+	public void drawArrayAnimation4(int[] arr, int[] pos) {
 	}
 }
