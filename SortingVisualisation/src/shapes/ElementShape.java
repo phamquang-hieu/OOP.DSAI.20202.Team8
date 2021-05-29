@@ -12,8 +12,6 @@ import javafx.util.Duration;
 public class ElementShape extends StackPane{
 	private Rectangle rectangle;
 	private Label lb;
-	private double X;
-	private double Y;
 	
 	
 	
@@ -39,8 +37,6 @@ public class ElementShape extends StackPane{
     	this.setLayoutX(X);
     	this.setLayoutY(Y);
     	
-    	this.X = X;
-    	this.Y = Y;
 	}
 
 	
@@ -54,9 +50,7 @@ public class ElementShape extends StackPane{
     	this.getChildren().addAll(rectangle);
     	this.setLayoutX(X);
     	this.setLayoutY(Y-height);
-    	
-    	this.X = X;
-    	this.Y = Y;
+
     	}
 	
 	public TranslateTransition movingX(double X) {

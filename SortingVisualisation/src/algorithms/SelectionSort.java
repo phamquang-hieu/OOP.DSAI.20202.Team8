@@ -17,10 +17,10 @@ public class SelectionSort {
 	private int size;
 	private int stepNum = 1;
 	private Transition[] transitions = new Transition[100];
-	private Transition[] movements = new Transition[100];
 	private ElementShape[] bars;
-	private ElementShape[] nodes;
 	private int auto = 0;
+	private double X;
+	private double Y;
 
 	
 	
@@ -60,31 +60,25 @@ public class SelectionSort {
 		this.steps[0] = arr.clone();
 		this.minIndex = new int[size-1][size];
 		this.bars = new ElementShape[size];
-		this.nodes = new ElementShape[size];
 		for (int i = 0; i< size; i++) {
 			bars[i] = new ElementShape(arr[i]*5, Color.web("#ab93c9"), X - (20*arr.length + 5*(arr.length - 1))/2 + i*25, Y + 250);
-			nodes[i] = new ElementShape(arr[i], Color.web("#ffbea3"), X - (40*(arr.length + 1) + 10*(arr.length - 2))/2 + i*25, Y - 20);
 		}
 	}
 	
 	
 	
 	FillTransition colorElement(ElementShape e, Color c) {
-		
+				
 	    FillTransition ft = new FillTransition();
 	    ft.setShape(e.getRectangle());
 	    ft.setToValue(c);
 	    ft.setDuration(Duration.millis(500));
 		
-		
 		return ft;
-		
 	}
     
-    ParallelTransition colorArray(ElementShape[] elems, int seperate, int index, int minIndex) {
-    	
+    ParallelTransition colorArray(ElementShape[] elems, int seperate, int index, int minIndex) {	
     	ParallelTransition pt = new ParallelTransition();
-
         
     	for (int i = 0; i < seperate; i++)
     	{
@@ -102,25 +96,6 @@ public class SelectionSort {
     		pt.getChildren().add(colorElement(elems[index], Color.web("#ffbea3")));
     	}
     	return pt;
-    }
-    
-    public void colorArray(ElementShape[] node, int seperate, int minValue, int index, int height) {
-    	ParallelTransition pt = new ParallelTransition();
-
-    	for (int i = 0; i < seperate; i++)
-    	{
-			pt.getChildren().addAll(colorElement(node[i], Color.web("#05141a")), node[i].movingX(30));
-
-    	}
-    	for (int i = seperate; i < arr.length; i++)
-    	{
-    		pt.getChildren().add(colorElement(node[i], Color.web("#ffbea3")));
-
-    	}
-    	if (minValue!=-1) {
-    		pt.getChildren().add(colorElement(node[minValue], Color.web("#ffbea3")));
-    	}
-    	
     }
     
     ParallelTransition swap(int i, int j, double dist) {
