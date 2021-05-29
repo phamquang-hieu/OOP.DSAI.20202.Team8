@@ -59,6 +59,12 @@ public class ShellSort {
 						arrState[numSteps] = arr.clone();
 						flags[numSteps] = 2;
 						++numSteps;
+
+						steps[numSteps][0] = i;
+						steps[numSteps][1] = j;
+						arrState[numSteps] = arr.clone();
+						flags[numSteps] = 4;
+						++numSteps;
 						break;
 					}
 
