@@ -143,7 +143,7 @@
 		</MenuBar>
 	</top>
 	<center>
-		<Pane fx:id="arrayDisplayArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+		<Pane fx:id="arrayDisplayArea" prefHeight="467.0" prefWidth="852.0" BorderPane.alignment="CENTER" />
 	</center>
 	<right>
 		<VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
@@ -224,9 +224,9 @@
 						<Font name="System Bold" size="20.0" />
 					</font>
 				</Button>
-				<TextArea fx:id="progressField" layoutX="740.0" layoutY="18.0" prefHeight="50.0" prefWidth="240.0" style="-fx-text-alignment: center;" AnchorPane.rightAnchor="116.0">
+				<TextArea fx:id="progressField" layoutX="740.0" layoutY="10.0" prefHeight="62.0" prefWidth="252.0" style="-fx-text-alignment: center;" AnchorPane.rightAnchor="104.0">
 					<font>
-						<Font name="System Bold" size="14.0" />
+						<Font name="System Bold" size="12.0" />
 					</font>
 				</TextArea>
 				<Label fx:id="stepShow" alignment="CENTER" layoutX="520.0" layoutY="23.0" prefHeight="41.0" prefWidth="61.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="519.0">
@@ -234,7 +234,7 @@
 						<Font name="System Bold" size="14.0" />
 					</font>
 				</Label>
-				<Button layoutX="690.0" layoutY="27.0" mnemonicParsing="false" onAction="#buttonAutoPressed" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="Auto" textFill="WHITE">
+				<Button fx:id="btnAuto" layoutX="690.0" layoutY="27.0" mnemonicParsing="false" onAction="#buttonAutoPressed" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="Auto" textFill="WHITE" AnchorPane.rightAnchor="356.0">
 					<font>
 						<Font name="System Bold" size="14.0" />
 					</font>

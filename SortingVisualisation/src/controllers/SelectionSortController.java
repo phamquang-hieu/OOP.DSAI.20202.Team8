@@ -8,9 +8,9 @@ import algorithms.SelectionSort;
 import datastructure.Array;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
-import shapes.ElementShape;
 
 public class SelectionSortController extends SortScreenController {
 
@@ -45,34 +45,13 @@ public class SelectionSortController extends SortScreenController {
 			ss.Sort();
 			if (formNode.isSelected()) {
 				arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[0]);
-				sortedLabel.setVisible(true);
-				unsortedLabel.setVisible(true);
-				sortedNode.setVisible(true);
-				unsortedNode.setVisible(true);
-				sortedName.setVisible(false);
-				unsortedName.setVisible(false);
-				smallestName.setVisible(false);
-				currentName.setVisible(false);
-				sortedBar.setVisible(false);
-				unsortedBar.setVisible(false);
-				smallestBar.setVisible(false);
-				currentBar.setVisible(false);
+				colorNode();
 			}
 
 			else {
 				arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[0]);
-				sortedLabel.setVisible(false);
-				unsortedLabel.setVisible(false);
-				sortedNode.setVisible(false);
-				unsortedNode.setVisible(false);
-				sortedName.setVisible(true);
-				unsortedName.setVisible(true);
-				smallestName.setVisible(true);
-				currentName.setVisible(true);
-				sortedBar.setVisible(true);
-				unsortedBar.setVisible(true);
-				smallestBar.setVisible(true);
-				currentBar.setVisible(true);
+				colorBar();
+
 
 			}
 
@@ -86,7 +65,37 @@ public class SelectionSortController extends SortScreenController {
 			e.printStackTrace();
 		}
 	}
-
+	
+	void colorNode() {
+		sortedLabel.setVisible(true);
+		unsortedLabel.setVisible(true);
+		sortedNode.setVisible(true);
+		unsortedNode.setVisible(true);
+		sortedName.setVisible(false);
+		unsortedName.setVisible(false);
+		smallestName.setVisible(false);
+		currentName.setVisible(false);
+		sortedBar.setVisible(false);
+		unsortedBar.setVisible(false);
+		smallestBar.setVisible(false);
+		currentBar.setVisible(false);
+	}
+	
+	void colorBar() {
+		sortedLabel.setVisible(false);
+		unsortedLabel.setVisible(false);
+		sortedNode.setVisible(false);
+		unsortedNode.setVisible(false);
+		sortedName.setVisible(true);
+		unsortedName.setVisible(true);
+		smallestName.setVisible(true);
+		currentName.setVisible(true);
+		sortedBar.setVisible(true);
+		unsortedBar.setVisible(true);
+		smallestBar.setVisible(true);
+		currentBar.setVisible(true);
+	}
+	
 	@FXML
 	void btnNextPressed(ActionEvent event) {
 		arrayDisplayArea.getChildren().clear();
@@ -96,9 +105,11 @@ public class SelectionSortController extends SortScreenController {
 		
 		if (stepNum < ss.getAuto()) {
 			if (formNode.isSelected()) {
+				colorNode();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[stepNum]);
 			} 
 			else {
+				colorBar();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[stepNum]);
 			}
 			stepNum += 1;
@@ -108,9 +119,11 @@ public class SelectionSortController extends SortScreenController {
 			stepShow.setText("" + (ss.getAuto() -1) + "/" + (ss.getAuto()-1));
 
 			if (formNode.isSelected()) {
+				colorNode();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[ss.getAuto()-1]);
 			} 
 			else {
+				colorBar();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[ss.getAuto()-1]);
 			}
 		}
@@ -121,20 +134,24 @@ public class SelectionSortController extends SortScreenController {
 		arrayDisplayArea.getChildren().clear();
 		if (stepNum <= 1) {
 			stepShow.setText("" + (0) + "/" + (ss.getAuto()-1));
-			stepNum = 0;
+			stepNum = 1;
 			if (formNode.isSelected()) {
+				colorNode();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[0]);
 			} 
 			else {
+				colorBar();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[0]);
 			}
 			progressField.setText("Start Selection Sort!");
 		}
 		else {
 			if (formNode.isSelected()) {
+				colorNode();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[stepNum - 2]);
 			} 
 			else {
+				colorBar();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[stepNum - 2]);
 			}
 			progressField.setText(ss.getExplanation()[stepNum-2]);
@@ -154,9 +171,11 @@ public class SelectionSortController extends SortScreenController {
 		stepShow.setTextFill(Color.WHITE);
 
 		if (formNode.isSelected()) {
+			colorNode();
 			arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[0]);
 		} 
 		else {
+			colorBar();
 			arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[0]);
 		}
 		progressField.setText("Start Selection Sort!");
@@ -170,9 +189,13 @@ public class SelectionSortController extends SortScreenController {
 		stepShow.setText("" + (ss.getAuto()-1) + "/" + (ss.getAuto()-1));
 		stepShow.setTextFill(Color.WHITE);
 		if (formNode.isSelected()) {
+			colorNode();
+
 			arrayDisplayArea.getChildren().addAll(ss.getStaticNodes()[stepNum-1]);
 		} 
 		else {
+			colorBar();
+
 			arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[stepNum-1]);
 		}
 	}
@@ -180,24 +203,26 @@ public class SelectionSortController extends SortScreenController {
 	@FXML
 	void buttonAutoPressed(ActionEvent event) throws InterruptedException {
 		arrayDisplayArea.getChildren().clear();
-		sortedLabel.setVisible(false);
-		unsortedLabel.setVisible(false);
-		sortedNode.setVisible(false);
-		unsortedNode.setVisible(false);
-		sortedName.setVisible(true);
-		unsortedName.setVisible(true);
-		smallestName.setVisible(true);
-		currentName.setVisible(true);
-		sortedBar.setVisible(true);
-		unsortedBar.setVisible(true);
-		smallestBar.setVisible(true);
-		currentBar.setVisible(true);
+		colorBar();
+
 
 		arrayDisplayArea.getChildren().addAll(ss.getElems());
 		stepShow.setText("");
 		progressField.setText("");
 
 		SequentialTransition sq = new SequentialTransition();
+		sq.setOnFinished(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(final ActionEvent actionEvent) {
+				btnNext.setDisable(false);
+				btnBack.setDisable(false);
+				btnReset.setDisable(false);
+				btnSkip.setDisable(false);
+
+
+			}
+		});
+
 		stepNum = this.ss.getAuto();
 
 		for (int i = 0; i < 100; i++) {
@@ -206,7 +231,10 @@ public class SelectionSortController extends SortScreenController {
 			}
 
 		}
-
+		btnReset.setDisable(true);
+		btnSkip.setDisable(true);
+		btnNext.setDisable(true);
+		btnBack.setDisable(true);
 		sq.play();
 	}
 
