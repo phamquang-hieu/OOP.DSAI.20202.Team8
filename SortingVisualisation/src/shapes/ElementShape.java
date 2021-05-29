@@ -46,7 +46,7 @@ public class ElementShape extends StackPane {
 		this.setLayoutY(Y);
 	}
 
-	public ElementShape(int height, Color c, double X, double Y) {
+	public ElementShape(double height, Color c, double X, double Y) {
 		rectangle = new Rectangle(X, Y - height, 40, height);
 		rectangle.setFill(c);
 		rectangle.setStroke(Color.WHITE);

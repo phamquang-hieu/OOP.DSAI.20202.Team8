@@ -37,6 +37,7 @@ public class ShellSortController extends SortScreenController implements Initial
 	private double startX;
 	private double startY;
 	private boolean flag;
+	private double ratio;
 
 	public void screenStart() {
 		progressField.setText("Start Shell Sort!");
@@ -67,10 +68,18 @@ public class ShellSortController extends SortScreenController implements Initial
 			stepShow.setText("" + curSteps + "/" + numSteps);
 			stepShow.setTextFill(Color.WHITE);
 
+			int max = Arr.data[0];
+			for (int i = 1; i < n; ++i)
+				max = max < Arr.data[i] ? Arr.data[i] : max;
+			ratio = 0 > arrayDisplayArea.getHeight() / (1.3 * max) ? 0 : arrayDisplayArea.getHeight() / (1.3 * max);
+
 			flag = formNode.isSelected();
 
 			startX = arrayDisplayArea.getWidth() / 2 - 25 * n;
 			startY = arrayDisplayArea.getHeight() / 2;
+
+			if (!flag)
+				startY += 100;
 
 			screenStart();
 		} catch (Exception e) {
@@ -186,7 +195,7 @@ public class ShellSortController extends SortScreenController implements Initial
 	}
 
 	public ElementShape preDrawElement(int height, Color c, double X, double Y) {
-		return new ElementShape(height * 2, c, X, Y);
+		return new ElementShape(height * ratio, c, X, Y);
 	}
 
 	public void drawArrayStart(int[] arr) {
