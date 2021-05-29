@@ -12,9 +12,22 @@ public class ElementShape extends StackPane {
 	private Rectangle rectangle;
 	private Label lb;
 
-
 	public Rectangle getRectangle() {
 		return rectangle;
+	}
+
+	public ElementShape(String element, double X, double Y) {
+		rectangle = new Rectangle(X, Y, 40, 20);
+		rectangle.setFill(Color.WHITE);
+		rectangle.setStroke(Color.WHITE);
+
+		lb = new Label(element);
+		lb.setFont(new Font(14));
+		lb.setTextFill(Color.BLACK);
+
+		this.getChildren().addAll(rectangle, lb);
+		this.setLayoutX(X);
+		this.setLayoutY(Y);
 	}
 
 	public ElementShape(String element, double X, double Y, Color c, int font, Color c2) {
@@ -31,7 +44,6 @@ public class ElementShape extends StackPane {
 		this.getChildren().addAll(rectangle, lb);
 		this.setLayoutX(X);
 		this.setLayoutY(Y);
-
 	}
 
 	public ElementShape(int height, Color c, double X, double Y) {
@@ -44,7 +56,6 @@ public class ElementShape extends StackPane {
 		this.getChildren().addAll(rectangle);
 		this.setLayoutX(X);
 		this.setLayoutY(Y - height);
-
 	}
 
 	public TranslateTransition movingX(double X) {
