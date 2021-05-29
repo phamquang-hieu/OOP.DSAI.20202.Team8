@@ -10,229 +10,318 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <VBox style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Create Array">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="10.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <VBox prefHeight="67.0" prefWidth="145.0" style="-fx-background-color: transparent;">
-               <children>
-                  <RadioButton fx:id="randomizeMode" mnemonicParsing="false" selected="true" text="Randomize">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="createArray" />
-                     </toggleGroup>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="customizeMode" mnemonicParsing="false" text="Customize" toggleGroup="$createArray">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </RadioButton>
-                  <VBox prefHeight="88.0" prefWidth="145.0" style="-fx-background-color: url('screens/8bit.gif');">
-                     <children>
-                        <Label text="Label">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="10.0" top="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <RadioButton fx:id="formNode" mnemonicParsing="false" selected="true" text="Nodes">
-                           <VBox.margin>
-                              <Insets left="10.0" />
-                           </VBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="visualForm" />
-                           </toggleGroup>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton fx:id="formBar" mnemonicParsing="false" text="Bars" toggleGroup="$visualForm">
-                           <VBox.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="151.0" prefWidth="148.0" style="-fx-background-color: transparent;">
-               <children>
-                  <Label text="Array Size">
-                     <padding>
-                        <Insets left="10.0" top="20.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <RadioButton fx:id="arraySize5" mnemonicParsing="false" text="5">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="arraySize" />
-                     </toggleGroup>
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="arraySize6" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="6" toggleGroup="$arraySize">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="arraySize7" layoutX="20.0" layoutY="37.0" mnemonicParsing="false" text="7" textFill="WHITE" toggleGroup="$arraySize">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-                  <RadioButton fx:id="arraySize8" layoutX="20.0" layoutY="54.0" mnemonicParsing="false" selected="true" text="8" textFill="WHITE" toggleGroup="$arraySize">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </RadioButton>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
-   </left>
-   <top>
-      <MenuBar prefHeight="30.0" prefWidth="1100.0" style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu fx:id="menuBack" mnemonicParsing="false" text="Back">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#closeMenuPressed" text="Close" />
-            </items>
-          </Menu>
-          <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <center>
-      <Pane fx:id="arrayDisplayArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-image: url('screens/8bit.gif');" BorderPane.alignment="CENTER">
-         <children>
-            <Pane fx:id="notePane" prefHeight="634.0" prefWidth="100.0" style="-fx-background-color: transparent;">
-               <children>
-                  <Rectangle fx:id="sortedNode" arcHeight="20.0" arcWidth="20.0" fill="#05141a" height="40.0" layoutX="30.0" layoutY="173.0" stroke="#05141a" strokeType="INSIDE" visible="false" width="40.0" />
-                  <Label fx:id="sortedLabel" layoutX="33.0" layoutY="218.0" text="Sorted" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-                  <Rectangle fx:id="unsortedNode" arcHeight="20.0" arcWidth="20.0" fill="#ffbea3" height="40.0" layoutX="30.0" layoutY="254.0" stroke="#ffbea3" strokeType="INSIDE" visible="false" width="40.0" />
-                  <Label fx:id="unsortedLabel" layoutX="26.0" layoutY="300.0" text="Unsorted" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-                  <Rectangle fx:id="sortedBar" arcHeight="10.0" arcWidth="10.0" fill="#05141a" height="20.0" layoutX="39.0" layoutY="102.0" stroke="#05141a" strokeType="INSIDE" visible="false" width="20.0" />
-                  <Rectangle fx:id="unsortedBar" arcHeight="10.0" arcWidth="10.0" fill="#ab93c9" height="20.0" layoutX="38.0" layoutY="225.0" stroke="#ab93c9" strokeType="INSIDE" visible="false" width="20.0" />
-                  <Rectangle fx:id="smallestBar" arcHeight="10.0" arcWidth="10.0" fill="#50435d" height="20.0" layoutX="38.0" layoutY="163.0" stroke="#50435d" strokeType="INSIDE" visible="false" width="20.0" />
-                  <Rectangle fx:id="currentBar" arcHeight="10.0" arcWidth="10.0" fill="#ffbea3" height="20.0" layoutX="38.0" layoutY="284.0" stroke="#ffbea3" strokeType="INSIDE" visible="false" width="20.0" />
-                  <Label fx:id="sortedName" layoutX="32.0" layoutY="127.0" text="Sorted" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-                  <Label fx:id="smallestName" layoutX="26.0" layoutY="185.0" text="Smallest" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-                  <Label fx:id="unsortedName" layoutX="24.0" layoutY="247.0" text="Unsorted" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-                  <Label fx:id="currentName" layoutX="29.0" layoutY="309.0" text="Current" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-               </children></Pane>
-         </children>
-      </VBox>
-   </right>
-   <bottom>
-      <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="1090.0" style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: bottom;" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="textFieldArray" layoutX="152.0" layoutY="27.0" prefHeight="30.0" prefWidth="192.0" promptText="Please input an array (optional)" AnchorPane.leftAnchor="152.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnNextPressed" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: transparent;" text="&gt;" textFill="WHITE" AnchorPane.rightAnchor="476.0">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-          <Button layoutX="344.0" layoutY="26.0" mnemonicParsing="false" onAction="#buttonRunPressed" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="Run" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="477.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: transparent;" text="&lt;" textFill="WHITE" AnchorPane.leftAnchor="477.0">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnResetPressed" prefHeight="44.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="&lt;&lt;" textFill="WHITE" AnchorPane.leftAnchor="418.0">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <Button layoutX="624.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnSkipPressed" prefHeight="44.0" prefWidth="57.0" style="-fx-background-color: transparent;" text="&gt;&gt;" textFill="WHITE" AnchorPane.rightAnchor="419.0">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Button>
-            <TextArea fx:id="progressField" layoutX="740.0" layoutY="18.0" prefHeight="50.0" prefWidth="240.0" style="-fx-text-alignment: center;" AnchorPane.rightAnchor="116.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </TextArea>
-            <Label fx:id="stepShow" alignment="CENTER" layoutX="520.0" layoutY="23.0" prefHeight="41.0" prefWidth="61.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="519.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <Button layoutX="690.0" layoutY="27.0" mnemonicParsing="false" onAction="#buttonAutoPressed" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="Auto" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-   </bottom>
+<BorderPane prefHeight="600.0" prefWidth="1100.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<left>
+		<VBox style="-fx-background-image: url('screens/8bit.gif');"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Label text="Create Array">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+					<VBox.margin>
+						<Insets left="10.0" top="10.0" />
+					</VBox.margin>
+				</Label>
+				<VBox prefHeight="67.0" prefWidth="145.0"
+					style="-fx-background-color: transparent;">
+					<children>
+						<RadioButton fx:id="randomizeMode"
+							mnemonicParsing="false" selected="true" text="Randomize">
+							<VBox.margin>
+								<Insets left="10.0" top="10.0" />
+							</VBox.margin>
+							<toggleGroup>
+								<ToggleGroup fx:id="createArray" />
+							</toggleGroup>
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="customizeMode"
+							mnemonicParsing="false" text="Customize"
+							toggleGroup="$createArray">
+							<VBox.margin>
+								<Insets left="10.0" top="10.0" />
+							</VBox.margin>
+							<font>
+								<Font name="System Bold" size="13.0" />
+							</font>
+						</RadioButton>
+						<VBox prefHeight="88.0" prefWidth="145.0"
+							style="-fx-background-color: url('screens/8bit.gif');">
+							<children>
+								<Label text="Label">
+									<font>
+										<Font name="System Bold" size="14.0" />
+									</font>
+									<VBox.margin>
+										<Insets left="10.0" top="20.0" />
+									</VBox.margin>
+								</Label>
+								<RadioButton fx:id="formNode"
+									mnemonicParsing="false" selected="true" text="Nodes">
+									<VBox.margin>
+										<Insets left="10.0" />
+									</VBox.margin>
+									<toggleGroup>
+										<ToggleGroup fx:id="visualForm" />
+									</toggleGroup>
+									<font>
+										<Font name="System Bold" size="14.0" />
+									</font>
+								</RadioButton>
+								<RadioButton fx:id="formBar" mnemonicParsing="false"
+									text="Bars" toggleGroup="$visualForm">
+									<VBox.margin>
+										<Insets left="10.0" top="10.0" />
+									</VBox.margin>
+									<font>
+										<Font name="System Bold" size="14.0" />
+									</font>
+								</RadioButton>
+							</children>
+						</VBox>
+					</children>
+				</VBox>
+				<VBox prefHeight="151.0" prefWidth="148.0"
+					style="-fx-background-color: transparent;">
+					<children>
+						<Label text="Array Size">
+							<padding>
+								<Insets left="10.0" top="20.0" />
+							</padding>
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<RadioButton fx:id="arraySize5"
+							mnemonicParsing="false" text="5">
+							<toggleGroup>
+								<ToggleGroup fx:id="arraySize" />
+							</toggleGroup>
+							<VBox.margin>
+								<Insets left="10.0" top="10.0" />
+							</VBox.margin>
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="arraySize6" layoutX="20.0"
+							layoutY="20.0" mnemonicParsing="false" text="6"
+							toggleGroup="$arraySize">
+							<VBox.margin>
+								<Insets left="10.0" top="10.0" />
+							</VBox.margin>
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="arraySize7" layoutX="20.0"
+							layoutY="37.0" mnemonicParsing="false" text="7" textFill="WHITE"
+							toggleGroup="$arraySize">
+							<VBox.margin>
+								<Insets left="10.0" top="10.0" />
+							</VBox.margin>
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</RadioButton>
+						<RadioButton fx:id="arraySize8" layoutX="20.0"
+							layoutY="54.0" mnemonicParsing="false" selected="true" text="8"
+							textFill="WHITE" toggleGroup="$arraySize">
+							<VBox.margin>
+								<Insets left="10.0" top="10.0" />
+							</VBox.margin>
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</RadioButton>
+					</children>
+				</VBox>
+			</children>
+		</VBox>
+	</left>
+	<top>
+		<MenuBar prefHeight="30.0" prefWidth="1100.0"
+			style="-fx-background-image: url('screens/8bit.gif');"
+			BorderPane.alignment="CENTER">
+			<menus>
+				<Menu fx:id="menuBack" mnemonicParsing="false" text="Back">
+					<items>
+						<MenuItem mnemonicParsing="false"
+							onAction="#closeMenuPressed" text="Close" />
+					</items>
+				</Menu>
+				<Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
+					<items>
+						<MenuItem mnemonicParsing="false" text="About" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<center>
+		<Pane fx:id="arrayDisplayArea" prefHeight="200.0"
+			prefWidth="200.0" BorderPane.alignment="CENTER" />
+	</center>
+	<right>
+		<VBox prefHeight="200.0" prefWidth="100.0"
+			style="-fx-background-image: url('screens/8bit.gif');"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Pane fx:id="notePane" prefHeight="634.0" prefWidth="100.0"
+					style="-fx-background-color: transparent;">
+					<children>
+						<Rectangle fx:id="sortedNode" arcHeight="20.0"
+							arcWidth="20.0" fill="#05141a" height="40.0" layoutX="30.0"
+							layoutY="173.0" stroke="#05141a" strokeType="INSIDE"
+							visible="false" width="40.0" />
+						<Label fx:id="sortedLabel" layoutX="33.0" layoutY="218.0"
+							text="Sorted" visible="false">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rectangle fx:id="unsortedNode" arcHeight="20.0"
+							arcWidth="20.0" fill="#ffbea3" height="40.0" layoutX="30.0"
+							layoutY="254.0" stroke="#ffbea3" strokeType="INSIDE"
+							visible="false" width="40.0" />
+						<Label fx:id="unsortedLabel" layoutX="26.0" layoutY="300.0"
+							text="Unsorted" textFill="WHITE" visible="false">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Rectangle fx:id="sortedBar" arcHeight="10.0"
+							arcWidth="10.0" fill="#05141a" height="20.0" layoutX="39.0"
+							layoutY="102.0" stroke="#05141a" strokeType="INSIDE"
+							visible="false" width="20.0" />
+						<Rectangle fx:id="unsortedBar" arcHeight="10.0"
+							arcWidth="10.0" fill="#ab93c9" height="20.0" layoutX="38.0"
+							layoutY="225.0" stroke="#ab93c9" strokeType="INSIDE"
+							visible="false" width="20.0" />
+						<Rectangle fx:id="smallestBar" arcHeight="10.0"
+							arcWidth="10.0" fill="#50435d" height="20.0" layoutX="38.0"
+							layoutY="163.0" stroke="#50435d" strokeType="INSIDE"
+							visible="false" width="20.0" />
+						<Rectangle fx:id="currentBar" arcHeight="10.0"
+							arcWidth="10.0" fill="#ffbea3" height="20.0" layoutX="38.0"
+							layoutY="284.0" stroke="#ffbea3" strokeType="INSIDE"
+							visible="false" width="20.0" />
+						<Label fx:id="sortedName" layoutX="32.0" layoutY="127.0"
+							text="Sorted" visible="false">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Label fx:id="smallestName" layoutX="26.0" layoutY="185.0"
+							text="Smallest" visible="false">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Label fx:id="unsortedName" layoutX="24.0" layoutY="247.0"
+							text="Unsorted" textFill="WHITE" visible="false">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+						<Label fx:id="currentName" layoutX="29.0" layoutY="309.0"
+							text="Current" textFill="WHITE" visible="false">
+							<font>
+								<Font name="System Bold" size="14.0" />
+							</font>
+						</Label>
+					</children>
+				</Pane>
+			</children>
+		</VBox>
+	</right>
+	<bottom>
+		<AnchorPane maxWidth="1.7976931348623157E308"
+			prefHeight="82.0" prefWidth="1090.0"
+			style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: bottom;"
+			BorderPane.alignment="CENTER">
+			<children>
+				<TextField fx:id="textFieldArray" layoutX="152.0"
+					layoutY="27.0" prefHeight="30.0" prefWidth="192.0"
+					promptText="Please input an array (optional)"
+					AnchorPane.leftAnchor="152.0">
+					<font>
+						<Font size="14.0" />
+					</font>
+				</TextField>
+				<Button layoutX="581.0" layoutY="20.0"
+					mnemonicParsing="false" onAction="#btnNextPressed"
+					prefHeight="30.0" prefWidth="26.0"
+					style="-fx-background-color: transparent;" text="&gt;"
+					textFill="WHITE" AnchorPane.rightAnchor="476.0">
+					<font>
+						<Font name="System Bold" size="20.0" />
+					</font>
+				</Button>
+				<Button layoutX="344.0" layoutY="26.0"
+					mnemonicParsing="false" onAction="#buttonRunPressed"
+					prefHeight="30.0" prefWidth="54.0"
+					style="-fx-background-color: transparent;" text="Run"
+					textFill="WHITE">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+				<Button layoutX="477.0" layoutY="20.0"
+					mnemonicParsing="false" onAction="#btnBackPressed"
+					style="-fx-background-color: transparent;" text="&lt;"
+					textFill="WHITE" AnchorPane.leftAnchor="477.0">
+					<font>
+						<Font name="System Bold" size="20.0" />
+					</font>
+				</Button>
+				<Button layoutX="418.0" layoutY="19.0"
+					mnemonicParsing="false" onAction="#btnResetPressed"
+					prefHeight="44.0" prefWidth="59.0"
+					style="-fx-background-color: transparent;" text="&lt;&lt;"
+					textFill="WHITE" AnchorPane.leftAnchor="418.0">
+					<font>
+						<Font name="System Bold" size="20.0" />
+					</font>
+				</Button>
+				<Button layoutX="624.0" layoutY="19.0"
+					mnemonicParsing="false" onAction="#btnSkipPressed"
+					prefHeight="44.0" prefWidth="57.0"
+					style="-fx-background-color: transparent;" text="&gt;&gt;"
+					textFill="WHITE" AnchorPane.rightAnchor="419.0">
+					<font>
+						<Font name="System Bold" size="20.0" />
+					</font>
+				</Button>
+				<TextArea fx:id="progressField" layoutX="740.0"
+					layoutY="18.0" prefHeight="50.0" prefWidth="240.0"
+					style="-fx-text-alignment: center;" AnchorPane.rightAnchor="116.0">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</TextArea>
+				<Label fx:id="stepShow" alignment="CENTER" layoutX="520.0"
+					layoutY="23.0" prefHeight="41.0" prefWidth="61.0"
+					style="-fx-background-color: transparent;"
+					AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="519.0">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Label>
+				<Button layoutX="690.0" layoutY="27.0"
+					mnemonicParsing="false" onAction="#buttonAutoPressed"
+					prefHeight="30.0" prefWidth="54.0"
+					style="-fx-background-color: transparent;" text="Auto"
+					textFill="WHITE">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+			</children>
+		</AnchorPane>
+	</bottom>
 </BorderPane>
