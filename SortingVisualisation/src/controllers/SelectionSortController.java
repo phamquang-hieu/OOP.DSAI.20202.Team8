@@ -198,6 +198,7 @@ public class SelectionSortController extends SortScreenController {
 		progressField.setText("");
 
 		SequentialTransition sq = new SequentialTransition();
+		stepNum = this.ss.getAuto();
 
 		for (int i = 0; i < 100; i++) {
 			if (ss.getTransitions()[i] != null) {
