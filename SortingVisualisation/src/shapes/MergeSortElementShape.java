@@ -3,6 +3,7 @@ package shapes;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -10,12 +11,18 @@ import javafx.util.Duration;
 public class MergeSortElementShape extends ElementShape {
 	private String instruction;
 	private TextArea txt;
+	private Label lb;
+	int stepNum;
+	int numStep;
 
 	public MergeSortElementShape(String element, double X, double Y, Color c, int font, Color c2, String instruction,
-			TextArea txt) {
+			TextArea txt, Label lb, int stepNum, int numStep) {
 		super(element, X, Y, c, font, c2);
 		this.instruction = instruction;
 		this.txt = txt;
+		this.lb = lb;
+		this.stepNum = stepNum;
+		this.numStep = numStep;
 	}
 
 	public FadeTransition display() {
@@ -31,6 +38,7 @@ public class MergeSortElementShape extends ElementShape {
 			public void handle(final ActionEvent actionEvent) {
 				setVisible(true);
 				txt.setText(instruction);
+				lb.setText((stepNum+1)+ "/" + (numStep));
 			}
 		});
 

@@ -46,6 +46,7 @@ public class MergeSortScreenController extends SortScreenController {
 				showLastView();
 				btnNext.setDisable(false);
 				btnBack.setDisable(false);
+				btnSkip.setDisable(false);
 			}
 		});
 
@@ -119,6 +120,7 @@ public class MergeSortScreenController extends SortScreenController {
 		}
 		btnNext.setDisable(true);
 		btnBack.setDisable(true);
+		btnSkip.setDisable(true);
 		sq.play();
 	}
 
@@ -211,7 +213,7 @@ public class MergeSortScreenController extends SortScreenController {
 			s = "";
 
 		MergeSortElementShape stack = new MergeSortElementShape(s, X, Y, c, fontsz, Color.BLACK, instruction,
-				progressField);
+										progressField, stepShow, stepNum, numStep);
 
 		arrayDisplayArea.getChildren().add(stack);
 		if (flag == 1) {
