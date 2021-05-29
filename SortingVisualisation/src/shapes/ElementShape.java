@@ -29,6 +29,7 @@ public class ElementShape extends StackPane{
     	this.setLayoutX(X);
     	this.setLayoutY(Y);
 	}
+	
 
 	
 	public ElementShape(int height, Color c, double X, double Y) {
