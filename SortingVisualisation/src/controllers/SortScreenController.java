@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
@@ -108,6 +109,18 @@ public abstract class SortScreenController {
 
 	@FXML
 	Label stepShow;
+	
+	@FXML
+	Button btnSkip;
+	
+	@FXML
+	Button btnBack;
+	
+	@FXML
+	Button btnNext;
+	
+	@FXML
+	Button btnReset;
 
 	@FXML
 	protected void backMenuPressed(ActionEvent event) throws IOException {
