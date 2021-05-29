@@ -41,7 +41,22 @@ public class SelectionSort {
 	public int getSize() {
 		return size;
 	}
+	
+	public ElementShape[] getBars() {
+		return bars;
+	}
 
+	public StackPane[][] getStaticNodes() {
+		return staticNodes;
+	}
+
+	public StackPane[][] getStaticBars() {
+		return staticBars;
+	}
+
+	public int getAuto() {
+		return auto;
+	}
 
 
 	public SelectionSort(int[] arr, double X, double Y) {
@@ -230,22 +245,6 @@ public class SelectionSort {
 
 		auto += 1;
 
-	}
-
-	public ElementShape[] getBars() {
-		return bars;
-	}
-
-	public StackPane[][] getStaticNodes() {
-		return staticNodes;
-	}
-
-	public StackPane[][] getStaticBars() {
-		return staticBars;
-	}
-
-	public int getAuto() {
-		return auto;
 	}
 
 }
