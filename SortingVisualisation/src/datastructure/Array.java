@@ -44,7 +44,7 @@ public class Array {
 		length = n;
 		data = new int[n];
 		for (int i = 0; i < n; i++) {
-			data[i] = rand.nextInt(100);
+			data[i] = rand.nextInt(80);
 		}
 	}
 

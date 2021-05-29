@@ -83,7 +83,6 @@ public class SelectionSortController extends SortScreenController{
 	    		unsortedBar.setVisible(false);
 	    		smallestBar.setVisible(false);
 	    		currentBar.setVisible(false);
-
 	    	}
 	    	
 	    	else {
@@ -102,7 +101,7 @@ public class SelectionSortController extends SortScreenController{
 	    		currentBar.setVisible(true);
 
 	    	}
-	    	ss = new SelectionSort(this.arr);
+	    	ss = new SelectionSort(this.arr, X, Y);
 	    	ss.Sort();
 			progressField.setText("Start Selection Sort!");
     		stepShow.setText("" + stepNum + "/" + (ss.getStepNum()+1));
@@ -242,7 +241,6 @@ public class SelectionSortController extends SortScreenController{
     	comparing = 0;
     	step = 0;
     	this.stepNum = 0;
-//    	done = false;
     	if(tmp <=1) {
     		if (formNode.isSelected()) {
         		drawArray(this.originalArray, 0, -1, 0 ,X, Y);
@@ -294,14 +292,41 @@ public class SelectionSortController extends SortScreenController{
 		}
     }
     
-//    @FXML
-//    void btnAutoPressed(ActionEvent event) throws InterruptedException {
-//    	while (!done) {
-//    		btnNextPressed(event);
-////    		Platform.runLater(null);
-//    	}
-//    }
+    @FXML
+    void buttonAutoPressed(ActionEvent event) throws InterruptedException {
+		arrayDisplayArea.getChildren().clear();
+		sortedLabel.setVisible(false);
+		unsortedLabel.setVisible(false);
+		sortedNode.setVisible(false);
+		unsortedNode.setVisible(false);
+		sortedName.setVisible(true);
+		unsortedName.setVisible(true);
+		smallestName.setVisible(true);
+		currentName.setVisible(true);
+		sortedBar.setVisible(true);
+		unsortedBar.setVisible(true);
+		smallestBar.setVisible(true);
+		currentBar.setVisible(true);
+		
+		arrayDisplayArea.getChildren().addAll(ss.getElems());
+		stepShow.setText("");
+		progressField.setText("");
 
+		
+		SequentialTransition sq = new SequentialTransition();
+		
+
+		for (int i = 0; i < 100; i++) {
+			if (ss.getTransitions()[i] != null) {
+			sq.getChildren().add(ss.getTransitions()[i]);
+			}
+			
+		}
+		
+		sq.play();        
+    }
+
+    	
     
     public void drawElement(int element, double X, double Y, Color c, Color c2) {
     	ElementShape stack = new ElementShape(Integer.toString(element), X, Y, c, 14, c2);
@@ -353,37 +378,5 @@ public class SelectionSortController extends SortScreenController{
     		drawElement(arr[index]*5, Color.web("#ffbea3"), startX + index*25, startY);
     	}
     }
-    
-//    public void animation(int element, double X, double Y, Color c, double targetX, double targetY) {
-//    	Rectangle rectangle = new Rectangle(X, Y, 40, 40);
-//    	rectangle.setFill(c);
-//    	rectangle.setStroke(Color.BLACK);
-//    	rectangle.setArcWidth(20);
-//    	rectangle.setArcHeight(20);
-//
-//    	
-//    	Label lb = new Label(Integer.toString(element));
-//    	
-//    	StackPane stack = new StackPane();
-//    	stack.getChildren().addAll(rectangle, lb);
-//    	stack.setLayoutX(X);
-//    	stack.setLayoutY(Y);
-//   
-//    	
-//    	Path path = new Path();
-//    	path.getElements().add(new MoveTo(targetX,targetY));
-//    	path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-//    	path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));    	
-//    	PathTransition pathTransition = new PathTransition();
-//    	pathTransition.setDuration(Duration.millis(10000));
-//    	pathTransition.setPath(path);
-//    	pathTransition.setNode(stack);
-//    	pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-//    	pathTransition.setCycleCount(Timeline.INDEFINITE);
-//    	pathTransition.setAutoReverse(true);
-//    	pathTransition.play();
-//    }
-    
-    
 
 }

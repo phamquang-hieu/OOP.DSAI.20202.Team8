@@ -217,7 +217,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <TextArea fx:id="progressField" layoutX="740.0" layoutY="18.0" prefHeight="50.0" prefWidth="245.0" style="-fx-text-alignment: center;" AnchorPane.rightAnchor="115.0">
+            <TextArea fx:id="progressField" layoutX="740.0" layoutY="18.0" prefHeight="50.0" prefWidth="240.0" style="-fx-text-alignment: center;" AnchorPane.rightAnchor="116.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -227,6 +227,11 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Button layoutX="690.0" layoutY="27.0" mnemonicParsing="false" onAction="#buttonAutoPressed" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="Auto" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </bottom>
