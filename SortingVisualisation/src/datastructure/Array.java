@@ -6,19 +6,6 @@ public class Array {
 	public int[] data;
 	private int length;
 
-	public static void main(String args[]) {
-		Array arr = null;
-		try {
-			arr = new Array("1,2,3,4,5a,6,7,8");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("After catch");
-		}
-		for (int x : arr.data) {
-			System.out.println(x);
-		}
-	}
-
 	public Array(String s) throws Exception {
 		s = s.trim();
 		if (s.isEmpty()) {
@@ -29,13 +16,13 @@ public class Array {
 		for (length = 0; length < arrString.length; ++length) {
 			try {
 				data[length] = Integer.parseInt(arrString[length].trim());
+				if(data[length] < 0) throw new NumberFormatException("Array element have to be positive!");
 			} catch (NumberFormatException e) {
 				throw e;
 			}
 		}
 		if (this.length > 8 || this.length < 5) {
-			System.err.println("Your array length: " + this.length);
-			throw new Exception("Please input 5->8 element only");
+			throw new Exception("Your array length: " + this.length+". Please input 5->8 element only");
 		}
 	}
 

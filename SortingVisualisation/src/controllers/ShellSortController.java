@@ -76,7 +76,7 @@ public class ShellSortController extends SortScreenController implements Initial
 			startX = arrayDisplayArea.getWidth() / 2 - 25 * n;
 			startY = arrayDisplayArea.getHeight() / 2;
 			screenStart();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			e.printStackTrace();
 		}

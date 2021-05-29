@@ -34,8 +34,9 @@ public class MainScreen extends Application {
 			public void handle(WindowEvent e) {
 				int x = JOptionPane.showConfirmDialog(null, "Are you sure?", "Quit", 
 						JOptionPane.YES_NO_OPTION);
-				if(x==1)
+				if(x==1 || x ==-1)
 					e.consume();
+					
 			}
 		});
 		stage.show();
