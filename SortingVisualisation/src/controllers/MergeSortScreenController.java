@@ -38,12 +38,15 @@ public class MergeSortScreenController extends SortScreenController {
 		instructions[4] = "All the elements from the left array has been taken, \ncopy all values from the right array to the sorted array";
 		instructions[5] = "All the elements from the right array has been taken, \ncopy all values from the left array to the sorted array";
 		progressField.setEditable(false);
-		progressField.setFont(new Font("Arial", 13));
+		progressField.setFont(new Font("Arial", 12));
 		this.sq = new SequentialTransition();
 		sq.setOnFinished(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent actionEvent) {
 				showLastView();
+				btnNext.setDisable(false);
+				btnBack.setDisable(false);
+				btnSkip.setDisable(false);
 			}
 		});
 
@@ -61,14 +64,17 @@ public class MergeSortScreenController extends SortScreenController {
 			else {
 				this.arr = new Array(textFieldArray.getText());
 			}
+
 			cloneArr = Arrays.copyOf(this.arr.data, this.arr.getLength());
-			resetView();
 
 			MergeSort ms = new MergeSort(this.arr.data);
+			this.firstLine = 50;
 			ms.merge_sort(0, this.arr.getLength() - 1, 0, this.arrayDisplayArea.getWidth(), firstLine);
 			this.steps = ms.getSteps();
 			this.numStep = ms.getNumStep();
 			this.stepNum = 0;
+			
+			resetView();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
 			e.printStackTrace();
@@ -105,12 +111,16 @@ public class MergeSortScreenController extends SortScreenController {
 
 	@FXML
 	void buttonAutoPressed(ActionEvent event) {
+		if(this.arr == null || this.arr.getLength()==0) return;
 		this.stepNum = 0;
 		sq.getChildren().clear();
 		this.arrayDisplayArea.getChildren().clear();
 		for (; this.stepNum < this.numStep; this.stepNum++) {
 			displayStep(this.stepNum, 1);
 		}
+		btnNext.setDisable(true);
+		btnBack.setDisable(true);
+		btnSkip.setDisable(true);
 		sq.play();
 	}
 
@@ -123,6 +133,8 @@ public class MergeSortScreenController extends SortScreenController {
 		arrayDisplayArea.getChildren().clear();
 		this.progressField.clear();
 		this.sq.stop();
+		stepShow.setText((this.stepNum) + "/" + this.numStep);
+		stepShow.setTextFill(Color.WHITE);
 		this.firstLine = 50;
 		drawAnArray(cloneArr, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN, 0, "");
 		this.stepNum = 0;
@@ -201,7 +213,7 @@ public class MergeSortScreenController extends SortScreenController {
 			s = "";
 
 		MergeSortElementShape stack = new MergeSortElementShape(s, X, Y, c, fontsz, Color.BLACK, instruction,
-				progressField);
+										progressField, stepShow, stepNum, numStep);
 
 		arrayDisplayArea.getChildren().add(stack);
 		if (flag == 1) {

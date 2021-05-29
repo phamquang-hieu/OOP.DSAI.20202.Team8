@@ -34,7 +34,7 @@ public class MainScreenController {
 	void btnQuitPressed(ActionEvent event) {
 		int x = JOptionPane.showConfirmDialog(null, "Are you sure?", "Quit", 
 				JOptionPane.YES_NO_OPTION);
-		if(x==1)
+		if(x==1 || x==-1)
 			event.consume();
 		else {
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

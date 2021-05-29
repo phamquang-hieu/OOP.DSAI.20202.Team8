@@ -18,7 +18,7 @@ public class HelpMenu extends JPanel {
 
 	public HelpMenu() {
 	    JTextArea textArea = new JTextArea();
-	    textArea.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+	    textArea.setFont(new Font("Arial", Font.CENTER_BASELINE, 14));
 	    textArea.setLineWrap(true);
 	    textArea.setTabSize(0);
 	    JScrollPane scrollPane = new JScrollPane(textArea);
@@ -43,7 +43,6 @@ public class HelpMenu extends JPanel {
 	    panel.setOpaque(true);
 	
 	    JFrame frame = new JFrame("Help");
-	    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	    frame.setContentPane(panel);
 	    frame.pack();
 	    frame.setVisible(true);

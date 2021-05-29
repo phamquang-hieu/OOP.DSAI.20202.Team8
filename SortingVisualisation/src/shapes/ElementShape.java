@@ -50,8 +50,8 @@ public class ElementShape extends StackPane {
 		rectangle = new Rectangle(X, Y - height, 40, height);
 		rectangle.setFill(c);
 		rectangle.setStroke(Color.WHITE);
-		rectangle.setArcWidth(5);
-		rectangle.setArcHeight(5);
+		rectangle.setArcWidth(10);
+		rectangle.setArcHeight(10);
 
 		this.getChildren().addAll(rectangle);
 		this.setLayoutX(X);

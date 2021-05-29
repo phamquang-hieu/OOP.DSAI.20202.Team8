@@ -121,6 +121,9 @@ public abstract class SortScreenController {
 
 	@FXML
 	Button btnReset;
+	
+	@FXML
+	Button btnAuto;
 
 	@FXML
 	Label selectingLabel;
