@@ -2,7 +2,6 @@ package controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
 import algorithms.ShellSort;
 import datastructure.Array;
@@ -16,7 +15,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import shapes.ElementShape;
 
@@ -25,7 +23,8 @@ public class ShellSortController extends SortScreenController implements Initial
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		boolean tmp = true;
-		formBar.setVisible(!tmp);
+		progressField.setEditable(false);
+		formBar.setVisible(false);
 		sortedLabel.setVisible(tmp);
 		unsortedLabel.setVisible(tmp);
 		sortedNode.setVisible(tmp);
@@ -42,19 +41,21 @@ public class ShellSortController extends SortScreenController implements Initial
 
 	private int n, numSteps, curSteps;
 	ShellSort shellsort;
-	private double X;
-	private double Y;
 	private double startX;
 	private double startY;
 
-	public void screenInit() {
+	public void screenStart() {
 		progressField.setText("Start Shell Sort!");
-		drawArray(shellsort.getArrState(0));
+		drawArrayStart(shellsort.getArrState(0));
+	}
+
+	public void screenFinal() {
+		progressField.setText("The array already sorted!");
+		drawArrayFinal(shellsort.getArrState(numSteps - 1));
 	}
 
 	@FXML
 	void buttonRunPressed(ActionEvent event) throws Exception {
-		progressField.setEditable(false);
 		try {
 			Array Arr;
 			arrayDisplayArea.getChildren().clear();
@@ -63,16 +64,18 @@ public class ShellSortController extends SortScreenController implements Initial
 			} else {
 				Arr = new Array(textFieldArray.getText());
 			}
+
 			n = Arr.getLength();
 			shellsort = new ShellSort(Arr.data);
 			shellsort.Sort();
 			numSteps = shellsort.getNumSteps();
 			curSteps = 0;
-			X = arrayDisplayArea.getWidth() / 2;
-			Y = arrayDisplayArea.getHeight() / 2;
-			startX = X - 25 * n;
-			startY = Y;
-			screenInit();
+			stepShow.setText("" + curSteps + "/" + numSteps);
+			stepShow.setTextFill(Color.WHITE);
+
+			startX = arrayDisplayArea.getWidth() / 2 - 25 * n;
+			startY = arrayDisplayArea.getHeight() / 2;
+			screenStart();
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			e.printStackTrace();
@@ -83,23 +86,24 @@ public class ShellSortController extends SortScreenController implements Initial
 	void btnNextPressed(ActionEvent event) {
 		arrayDisplayArea.getChildren().clear();
 		if (curSteps == numSteps) {
-			drawArrayFinal(shellsort.getArrState(numSteps - 1));
-			progressField.setText("The array already sorted!");
+			stepShow.setText("" + curSteps + "/" + numSteps);
+			screenFinal();
 			return;
 		}
+		stepShow.setText("" + (curSteps + 1) + "/" + numSteps);
 		int[] pos = shellsort.getSteps(curSteps);
 		if (shellsort.getFlags(curSteps) == 1) {
-			drawArray(shellsort.getArrState(curSteps), pos);
-			progressField.setText("Steps: " + curSteps + "." + " Increment size = " + (pos[1] - pos[0]) + ".\n"
-					+ "Comparing elements at position " + pos[0] + ", " + pos[1]);
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Comparing elements at position "
+					+ pos[0] + ", " + pos[1]);
+			drawArrayAnimation1(shellsort.getArrState(curSteps), pos);
+
 		} else if (shellsort.getFlags(curSteps) == 2) {
-			drawArray(shellsort.getArrState(curSteps));
-			progressField
-					.setText("Steps: " + curSteps + "." + " Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
-		} else {
-			drawArrayAnimation(shellsort.getArrState(curSteps), pos);
-			progressField.setText("Steps: " + curSteps + "." + " Increment size = " + (pos[1] - pos[0]) + ".\n"
-					+ "Swap elements at position " + pos[0] + ", " + pos[1]);
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
+			drawArrayAnimation2(shellsort.getArrState(curSteps), pos);
+		} else if (shellsort.getFlags(curSteps) == 3) {
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Swap elements at position "
+					+ pos[0] + ", " + pos[1]);
+			drawArrayAnimation3(shellsort.getArrState(curSteps - 1), pos);
 		}
 		++curSteps;
 	}
@@ -108,24 +112,25 @@ public class ShellSortController extends SortScreenController implements Initial
 	void btnBackPressed(ActionEvent event) {
 		arrayDisplayArea.getChildren().clear();
 		if (curSteps == 0) {
-			progressField.setText("Start Shell Sort!");
-			drawArray(shellsort.getArrState(0));
+			stepShow.setText("" + curSteps + "/" + numSteps);
+			screenStart();
 			return;
 		}
+		stepShow.setText("" + curSteps + "/" + numSteps);
 		--curSteps;
 		int[] pos = shellsort.getSteps(curSteps);
 		if (shellsort.getFlags(curSteps) == 1) {
-			drawArray(shellsort.getArrState(curSteps), pos);
-			progressField.setText("Steps: " + curSteps + "." + " Increment size = " + (pos[1] - pos[0]) + ".\n"
-					+ "Comparing elements at position " + pos[0] + ", " + pos[1]);
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Comparing elements at position "
+					+ pos[0] + ", " + pos[1]);
+			drawArrayAnimation2(shellsort.getArrState(curSteps), pos);
+
 		} else if (shellsort.getFlags(curSteps) == 2) {
-			drawArray(shellsort.getArrState(curSteps));
-			progressField
-					.setText("Steps: " + curSteps + "." + " Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
-		} else {
-			drawArrayAnimation(shellsort.getArrState(curSteps - 1), pos);
-			progressField.setText("Steps: " + curSteps + "." + " Increment size = " + (pos[1] - pos[0]) + ".\n"
-					+ "Swap elements at position " + pos[0] + ", " + pos[1]);
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
+			drawArrayAnimation1(shellsort.getArrState(curSteps), pos);
+		} else if (shellsort.getFlags(curSteps) == 3) {
+			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Swap elements at position "
+					+ pos[0] + ", " + pos[1]);
+			drawArrayAnimation3(shellsort.getArrState(curSteps), pos);
 		}
 	}
 
@@ -174,29 +179,16 @@ public class ShellSortController extends SortScreenController implements Initial
 		return new ElementShape(Integer.toString(element), X, Y, c1, 14, c2);
 	}
 
-	public void drawElement(int element, double X, double Y, Color c1, Color c2) {
-		ElementShape stack = new ElementShape(Integer.toString(element), X, Y, c1, 14, c2);
-		arrayDisplayArea.getChildren().add(stack);
+	public void drawArrayStart(int[] arr) {
+		for (int i = 0; i < n; i++)
+			arrayDisplayArea.getChildren()
+					.add(preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK));
 	}
 
 	public void drawArrayFinal(int[] arr) {
 		for (int i = 0; i < n; i++)
-			drawElement(arr[i], startX + i * 50, startY, Color.web("#05141a"), Color.WHITE);
-	}
-
-	public void drawArray(int[] arr) {
-		for (int i = 0; i < n; i++)
-			drawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
-	}
-
-	public void drawArray(int[] arr, int[] pos) {
-		for (int i = 0; i < n; i++) {
-			if (i == pos[0] || i == pos[1])
-				continue;
-			drawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
-		}
-		for (int i : pos)
-			drawElement(arr[i], startX + i * 50, startY - 50, Color.web("#ff7f50"), Color.WHITE);
+			arrayDisplayArea.getChildren()
+					.add(preDrawElement(arr[i], startX + i * 50, startY, Color.web("#05141a"), Color.WHITE));
 	}
 
 	private static PathTransition newPathTransitionTo(ElementShape block, double toX, double toY) {
@@ -217,15 +209,54 @@ public class ShellSortController extends SortScreenController implements Initial
 		return transition;
 	}
 
-	public void drawArrayAnimation(int[] arr, int[] pos) {
+	public void drawArrayAnimation1(int[] arr, int[] pos) {
 		for (int i = 0; i < n; i++) {
 			if (i == pos[0] || i == pos[1])
 				continue;
-			drawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
+			arrayDisplayArea.getChildren()
+					.add(preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK));
 		}
-		ElementShape s0 = preDrawElement(arr[pos[1]], startX + pos[0] * 50, startY - 50, Color.web("#ff7f50"),
+		ElementShape s0 = preDrawElement(arr[pos[0]], startX + pos[0] * 50, startY, Color.web("#ff7f50"), Color.WHITE);
+		ElementShape s1 = preDrawElement(arr[pos[1]], startX + pos[1] * 50, startY, Color.web("#ff7f50"), Color.WHITE);
+		arrayDisplayArea.getChildren().add(s0);
+		arrayDisplayArea.getChildren().add(s1);
+		PathTransition transition01, transition10;
+		transition01 = newPathTransitionTo(s0, s0.getLayoutX(), s0.getLayoutY() - 50);
+		transition10 = newPathTransitionTo(s1, s1.getLayoutX(), s1.getLayoutY() - 50);
+		transition01.play();
+		transition10.play();
+	}
+
+	public void drawArrayAnimation2(int[] arr, int[] pos) {
+		for (int i = 0; i < n; i++) {
+			if (i == pos[0] || i == pos[1])
+				continue;
+			arrayDisplayArea.getChildren()
+					.add(preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK));
+		}
+		ElementShape s0 = preDrawElement(arr[pos[0]], startX + pos[0] * 50, startY - 50, Color.web("#ff7f50"),
 				Color.WHITE);
-		ElementShape s1 = preDrawElement(arr[pos[0]], startX + pos[1] * 50, startY - 50, Color.web("#ff7f50"),
+		ElementShape s1 = preDrawElement(arr[pos[1]], startX + pos[1] * 50, startY - 50, Color.web("#ff7f50"),
+				Color.WHITE);
+		arrayDisplayArea.getChildren().add(s0);
+		arrayDisplayArea.getChildren().add(s1);
+		PathTransition transition01, transition10;
+		transition01 = newPathTransitionTo(s0, s0.getLayoutX(), s0.getLayoutY() + 50);
+		transition10 = newPathTransitionTo(s1, s1.getLayoutX(), s1.getLayoutY() + 50);
+		transition01.play();
+		transition10.play();
+	}
+
+	public void drawArrayAnimation3(int[] arr, int[] pos) {
+		for (int i = 0; i < n; i++) {
+			if (i == pos[0] || i == pos[1])
+				continue;
+			arrayDisplayArea.getChildren()
+					.add(preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK));
+		}
+		ElementShape s0 = preDrawElement(arr[pos[0]], startX + pos[0] * 50, startY - 50, Color.web("#ff7f50"),
+				Color.WHITE);
+		ElementShape s1 = preDrawElement(arr[pos[1]], startX + pos[1] * 50, startY - 50, Color.web("#ff7f50"),
 				Color.WHITE);
 		arrayDisplayArea.getChildren().add(s0);
 		arrayDisplayArea.getChildren().add(s1);
