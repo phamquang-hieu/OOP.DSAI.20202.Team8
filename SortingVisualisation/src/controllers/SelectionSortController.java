@@ -242,7 +242,6 @@ public class SelectionSortController extends SortScreenController{
     	comparing = 0;
     	step = 0;
     	this.stepNum = 0;
-//    	done = false;
     	if(tmp <=1) {
     		if (formNode.isSelected()) {
         		drawArray(this.originalArray, 0, -1, 0 ,X, Y);
@@ -294,19 +293,46 @@ public class SelectionSortController extends SortScreenController{
 		}
     }
     
-//    @FXML
-//    void btnAutoPressed(ActionEvent event) throws InterruptedException {
-//    	while (!done) {
-//    		btnNextPressed(event);
-////    		Platform.runLater(null);
-//    	}
-//    }
+    @FXML
+    void buttonAutoPressed(ActionEvent event) throws InterruptedException {
+		arrayDisplayArea.getChildren().clear();
+		sortedLabel.setVisible(false);
+		unsortedLabel.setVisible(false);
+		sortedNode.setVisible(false);
+		unsortedNode.setVisible(false);
+		sortedName.setVisible(true);
+		unsortedName.setVisible(true);
+		smallestName.setVisible(true);
+		currentName.setVisible(true);
+		sortedBar.setVisible(true);
+		unsortedBar.setVisible(true);
+		smallestBar.setVisible(true);
+		currentBar.setVisible(true);
+		
+		arrayDisplayArea.getChildren().addAll(ss.getElems());
+		
+		SequentialTransition sq = new SequentialTransition();
+		
 
+		for (int i = 0; i < 100; i++) {
+			if (ss.getTransitions()[i] != null) {
+			sq.getChildren().add(ss.getTransitions()[i]);
+			}
+			
+		}
+		
+		sq.play();
+		
+        
+    }
+
+    	
     
     public void drawElement(int element, double X, double Y, Color c, Color c2) {
     	ElementShape stack = new ElementShape(Integer.toString(element), X, Y, c, 14, c2);
     	
     	arrayDisplayArea.getChildren().add(stack);
+//    	stack.display();
     	
     }
     

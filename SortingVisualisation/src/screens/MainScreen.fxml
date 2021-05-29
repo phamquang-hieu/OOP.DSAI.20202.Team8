@@ -21,7 +21,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Label alignment="TOP_CENTER" layoutX="365.0" layoutY="125.0" text="The Sorting Project" textAlignment="CENTER" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="365.0" AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="125.0">
+      <Label alignment="TOP_CENTER" layoutX="365.0" layoutY="125.0" text="Sorting Visualizer" textAlignment="CENTER" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="365.0" AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="125.0">
          <font>
             <Font name="System Bold" size="32.0" />
          </font>

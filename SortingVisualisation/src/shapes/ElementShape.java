@@ -1,7 +1,7 @@
 package shapes;
 
 
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -13,12 +13,20 @@ public class ElementShape extends StackPane{
 	private Rectangle rectangle;
 	private Label lb;
 	
+	
+	
+	public Rectangle getRectangle() {
+		return rectangle;
+	}
+
+
 	public ElementShape(String element, double X, double Y, Color c, int font, Color c2) {
     	rectangle = new Rectangle(X, Y, 40, 40);
     	rectangle.setFill(c);
     	rectangle.setStroke(c);
     	rectangle.setArcWidth(20);
     	rectangle.setArcHeight(20);
+
 
     	
     	lb = new Label(element);
@@ -32,7 +40,7 @@ public class ElementShape extends StackPane{
 
 	
 	public ElementShape(int height, Color c, double X, double Y) {
-    	Rectangle rectangle = new Rectangle(X, Y-height, 20, height);
+    	rectangle = new Rectangle(X, Y-height, 20, height);
     	rectangle.setFill(c);
     	rectangle.setStroke(c);
     	rectangle.setArcWidth(5);
@@ -43,10 +51,10 @@ public class ElementShape extends StackPane{
     	this.setLayoutY(Y-height);
 	}
 	
-	public TranslateTransition movingX(int X) {
+	public TranslateTransition movingX(double X) {
 	    TranslateTransition t = new TranslateTransition();
 	    t.setNode(this);
-	    t.setDuration(Duration.millis(100));
+	    t.setDuration(Duration.millis(500));
 	    t.setByX(X);
 
 	    return t; 
@@ -55,9 +63,10 @@ public class ElementShape extends StackPane{
 	public TranslateTransition movingY(int Y) {
 	    TranslateTransition t = new TranslateTransition();
 	    t.setNode(this);
-	    t.setDuration(Duration.millis(100));
+	    t.setDuration(Duration.millis(500));
 	    t.setByY(Y);
 
 	    return t; 
 	}
+
 }
