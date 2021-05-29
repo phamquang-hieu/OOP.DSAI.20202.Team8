@@ -8,12 +8,15 @@ import algorithms.ShellSort;
 import datastructure.Array;
 import javafx.animation.PathTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import shapes.ElementShape;
 
@@ -35,7 +38,6 @@ public class ShellSortController extends SortScreenController implements Initial
 		unsortedBar.setVisible(!tmp);
 		smallestBar.setVisible(!tmp);
 		currentBar.setVisible(!tmp);
-
 	}
 
 	private int n, numSteps, curSteps;
@@ -50,18 +52,6 @@ public class ShellSortController extends SortScreenController implements Initial
 		drawArray(shellsort.getArrState(0));
 	}
 
-	void init(Array Arr) {
-		n = Arr.getLength();
-		shellsort = new ShellSort(Arr.data);
-		shellsort.Sort();
-		numSteps = shellsort.getNumSteps();
-		curSteps = 0;
-		X = arrayDisplayArea.getWidth() / 2;
-		Y = arrayDisplayArea.getHeight() / 2;
-		startX = X - 25 * n;
-		startY = Y;
-	}
-
 	@FXML
 	void buttonRunPressed(ActionEvent event) throws Exception {
 		progressField.setEditable(false);
@@ -73,7 +63,15 @@ public class ShellSortController extends SortScreenController implements Initial
 			} else {
 				Arr = new Array(textFieldArray.getText());
 			}
-			init(Arr);
+			n = Arr.getLength();
+			shellsort = new ShellSort(Arr.data);
+			shellsort.Sort();
+			numSteps = shellsort.getNumSteps();
+			curSteps = 0;
+			X = arrayDisplayArea.getWidth() / 2;
+			Y = arrayDisplayArea.getHeight() / 2;
+			startX = X - 25 * n;
+			startY = Y;
 			screenInit();
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -144,7 +142,32 @@ public class ShellSortController extends SortScreenController implements Initial
 	}
 
 	@FXML
-	void buttonAutoPressed(ActionEvent event) throws InterruptedException {
+	void buttonAutoPressed(ActionEvent event) {
+		if (curSteps == numSteps) {
+			btnNextPressed(new ActionEvent());
+			return;
+		}
+		btnNextPressed(new ActionEvent());
+
+		Circle s = new Circle(0, 0, 3);
+		arrayDisplayArea.getChildren().add(s);
+
+		Path path = new Path();
+		path.getElements().add(new MoveTo(0, 0));
+		path.getElements().add(new LineTo(arrayDisplayArea.getWidth(), 0));
+
+		PathTransition delay = new PathTransition();
+		delay.setDelay(Duration.seconds(0));
+		delay.setDuration(Duration.seconds(0.5));
+		delay.setNode(s);
+		delay.setPath(path);
+		delay.setOnFinished(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(final ActionEvent actionEvent) {
+				buttonAutoPressed(new ActionEvent());
+			}
+		});
+		delay.play();
 	}
 
 	public ElementShape preDrawElement(int element, double X, double Y, Color c1, Color c2) {
