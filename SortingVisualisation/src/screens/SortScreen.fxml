@@ -162,6 +162,12 @@
 								<Font name="System Bold" size="14.0" />
 							</font>
 						</Label>
+                  <Rectangle fx:id="selectingNode" arcHeight="20.0" arcWidth="20.0" fill="CORAL" height="40.0" layoutX="30.0" layoutY="335.0" stroke="CORAL" strokeType="INSIDE" visible="false" width="40.0" />
+                  <Label fx:id="selectingLabel" layoutX="26.0" layoutY="382.0" text="Selecting" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
 						<Rectangle fx:id="sortedBar" arcHeight="10.0" arcWidth="10.0" fill="#05141a" height="20.0" layoutX="39.0" layoutY="102.0" stroke="#05141a" strokeType="INSIDE" visible="false" width="20.0" />
 						<Rectangle fx:id="unsortedBar" arcHeight="10.0" arcWidth="10.0" fill="#ab93c9" height="20.0" layoutX="38.0" layoutY="225.0" stroke="#ab93c9" strokeType="INSIDE" visible="false" width="20.0" />
 						<Rectangle fx:id="smallestBar" arcHeight="10.0" arcWidth="10.0" fill="#50435d" height="20.0" layoutX="38.0" layoutY="163.0" stroke="#50435d" strokeType="INSIDE" visible="false" width="20.0" />

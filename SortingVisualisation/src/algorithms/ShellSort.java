@@ -78,6 +78,7 @@ public class ShellSort {
 					j -= gap;
 				}
 			}
+		arrState[numSteps] = arr.clone();
 	}
 
 	void printArray() {

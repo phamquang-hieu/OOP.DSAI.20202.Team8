@@ -109,18 +109,24 @@ public abstract class SortScreenController {
 
 	@FXML
 	Label stepShow;
-	
+
 	@FXML
 	Button btnSkip;
-	
+
 	@FXML
 	Button btnBack;
-	
+
 	@FXML
 	Button btnNext;
-	
+
 	@FXML
 	Button btnReset;
+
+	@FXML
+	Label selectingLabel;
+
+	@FXML
+	Rectangle selectingNode;
 
 	@FXML
 	protected void backMenuPressed(ActionEvent event) throws IOException {
@@ -132,6 +138,7 @@ public abstract class SortScreenController {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 	}
+
 	@FXML
 	protected void helpMenuPressed(ActionEvent event) {
 		HelpMenu.showFrame();
