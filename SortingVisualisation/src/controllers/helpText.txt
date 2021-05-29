@@ -1,0 +1,39 @@
+-----------------------------------------------Welcome to our application----------------------------------------------
+
+**Note: because the main purpose of visualization is to help user understand how the algorithm works,
+we put some restriction to our application:
+  1. Only non-negative numbers (>0) are accepted
+  2. The array size is between 5 and 8 (5 <= array's size <=8)
+
+
+Option menu (on the left of the screen):
+* You can:
+  - Choose to either:
+
+    + randomize input with predefined array size. 
+      The array have to be entered in comma separated form (eg: 1, 2, 3, 4, 5)
+	
+	+ input your own array in the text field at the bottom of the screen
+	
+  - Choose your visualize form: node form or bar form (if available)
+
+Control bar (at the bottom of the screen):
+* From left to right:
+  - A text field to input your array
+  
+  - A "run" button: 
+	if you choose randomize mode -> the array will be automatically created
+	otherwise you have to input in the text field array before.
+		 
+  - A "<<" reset button: go back to your first view.
+  
+  - A "<" back button: go back to previous view.
+  
+  - A ">" next button: go to next step.
+  
+  - A ">>" skip button: to go to the last view (array is sorted).
+  
+  - An "Auto" button: to automatically run the visualization animation.
+  
+  - A text area to display the instant step of the algorithm.
+		 

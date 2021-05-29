@@ -110,7 +110,7 @@ public abstract class SortScreenController {
 	Label stepShow;
 
 	@FXML
-	protected void closeMenuPressed(ActionEvent event) throws IOException {
+	protected void backMenuPressed(ActionEvent event) throws IOException {
 		Stage stage = (Stage) arrayDisplayArea.getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Screens/MainScreen.fxml"));
@@ -118,6 +118,10 @@ public abstract class SortScreenController {
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
+	}
+	@FXML
+	protected void helpMenuPressed(ActionEvent event) {
+		HelpMenu.showFrame();
 	}
 
 	protected int getLength() {
