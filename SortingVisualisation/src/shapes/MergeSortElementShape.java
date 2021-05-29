@@ -11,30 +11,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-public class TestElementShape extends StackPane {
-	private Rectangle rectangle;
-	private Label lb;
+public class MergeSortElementShape extends ElementShape {
 	private String instruction;
 	private TextArea txt;
 	
-	public TestElementShape(String element, double X, double Y, Color c, int font, Color c2, String instruction, TextArea txt) {
-    	rectangle = new Rectangle(X, Y, 40, 40);
-    	rectangle.setFill(c);
-    	rectangle.setStroke(c);
-    	rectangle.setArcWidth(20);
-    	rectangle.setArcHeight(20);
-
-    	
-    	lb = new Label(element);
-    	lb.setFont(new Font(font));
-    	lb.setTextFill(c2);
-    	
-    	this.getChildren().addAll(rectangle, lb);
-    	this.setLayoutX(X);
-    	this.setLayoutY(Y);
+	public MergeSortElementShape(String element, double X, double Y, Color c, int font, Color c2, String instruction, TextArea txt) {
+    	super(element, X, Y, c, font, c2);
     	this.instruction = instruction;
     	this.txt = txt;
-    	
 	}
 	
 	public FadeTransition display() {

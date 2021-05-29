@@ -70,7 +70,6 @@ public abstract class SortScreenController {
     @FXML
     Menu menuHelp;
     
-
     @FXML
     Label sortedLabel;
     
@@ -127,16 +126,13 @@ public abstract class SortScreenController {
     
     
 	protected int getLength(RadioButton arraySize5, RadioButton arraySize6, RadioButton arraySize7, RadioButton arraySize8) {
-    	int len=0;
     	if(arraySize5.isSelected()) {
-    		len = 5;
+    		return 5;
     	}else if(arraySize6.isSelected()) {
-    		len = 6 ;
+    		return 6;
     	} else if(arraySize7.isSelected()) {
-    		len = 7;
-    	} else if(arraySize8.isSelected()) {
-    		len = 8;
+    		return 7;
     	}
-    	return len;
+    	return 8;
     }
 }

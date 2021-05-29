@@ -4,12 +4,13 @@ import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import shapes.ElementShape;
-import shapes.TestElementShape;
+import shapes.MergeSortElementShape;
 
 import java.util.Arrays;
 
@@ -30,6 +31,7 @@ public class MergeSortScreenController extends SortScreenController{
 	
 	@FXML
 	public void initialize() {
+		formBar.setVisible(false);
 		instructions = new String[6];
 		instructions[0] = "Split the selected array (as evenly as possible)";
 		instructions[1] = "Select the left sub-array and ready to merge";
@@ -38,8 +40,15 @@ public class MergeSortScreenController extends SortScreenController{
 		instructions[4] = "All the elements from the left array has been taken, \ncopy all values from the right array to the sorted array";
 		instructions[5] = "All the elements from the right array has been taken, \ncopy all values from the left array to the sorted array";
 		progressField.setEditable(false);
-		progressField.setFont(new Font("Arial", 15));
+		progressField.setFont(new Font("Arial", 13));
 		this.sq = new SequentialTransition();
+		sq.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent actionEvent) {
+                showLastView();
+            }
+        });
+		
 	}
 	
     void randomArray() {
@@ -56,6 +65,7 @@ public class MergeSortScreenController extends SortScreenController{
 			}
 			cloneArr = Arrays.copyOf(this.arr.data, this.arr.getLength());
 			resetView();
+			
 			MergeSort ms = new MergeSort(this.arr.data);
 			ms.merge_sort(0, this.arr.getLength() - 1, 0, this.arrayDisplayArea.getWidth(), firstLine);
 			this.steps = ms.getSteps();
@@ -86,13 +96,16 @@ public class MergeSortScreenController extends SortScreenController{
 		   showLastView();
 		   return;
 	   }
-	  
+	   
 	   displayStep(this.stepNum, 0);
+	   stepShow.setText((this.stepNum+1) + "/" + this.numStep);
+	   stepShow.setTextFill(Color.WHITE);
 	   this.stepNum++;
+	   
     }
     
     @FXML
-    void btnAutoPressed(ActionEvent event) {
+    void buttonAutoPressed(ActionEvent event) {
     	this.stepNum = 0;
     	sq.getChildren().clear();
     	this.arrayDisplayArea.getChildren().clear();
@@ -109,6 +122,7 @@ public class MergeSortScreenController extends SortScreenController{
     void resetView() {
     	arrayDisplayArea.getChildren().clear();
 		this.progressField.clear();	
+		this.sq.stop();
 		this.firstLine = 50;
 		drawAnArray(cloneArr, this.arrayDisplayArea.getWidth() / 2, firstLine, Color.YELLOWGREEN, 0, "");
 		this.stepNum = 0;
@@ -148,9 +162,9 @@ public class MergeSortScreenController extends SortScreenController{
     	else {
     		// divide phase
     		if(steps[4][stepNum]!=3) {
-    			sq.getChildren().add(drawAnArray(Arrays.copyOfRange(cloneArr, (int) steps[0][stepNum], 
-    								(int) steps[1][stepNum]+1), 
-    								steps[2][stepNum], steps[3][stepNum], 
+    			sq.getChildren().add(drawAnArray(Arrays.copyOfRange(cloneArr, (int) steps[0][stepNum], (int) steps[1][stepNum]+1), 
+    								steps[2][stepNum], 
+    								steps[3][stepNum], 
     								c, 
     								flag, 
     								instruction));
@@ -168,24 +182,28 @@ public class MergeSortScreenController extends SortScreenController{
     		}
     		else {
     			int len = (int) (steps[1][stepNum] - steps[0][stepNum] + 1);
+    			int[] tmp = new int[len];
     			for(int i= 0; i < (len); ++i)
-    				sq.getChildren().add(drawAnElement(-1, steps[2][stepNum] + (i - len/2)*50, steps[3][stepNum], Color.WHITE, 21, flag, instruction));
+    				tmp[i] = -1; // create array with full of -1 to draw white square.
+    			sq.getChildren().add(drawAnArray(tmp, steps[2][stepNum], steps[3][stepNum], c, flag, instruction));
     		}
     	}
     	if(flag == 0) progressField.setText(instruction);
     }
        
-    public FadeTransition drawAnElement(int x, double X, double Y, Color c, int Font, int flag, String instruction) {
+    public FadeTransition drawAnElement(int x, double X, double Y, Color c, int fontsz, int flag, String instruction) {
+    	// flag = 1 -> add element to get ready for auto mode
     	String s;
     	if(x!=-1) s = Integer.toString(x);    		
     	else s = "";
     	
-    	TestElementShape stack = new TestElementShape(s, X, Y, c, 21, Color.BLACK, instruction, progressField);
+    	MergeSortElementShape stack = new MergeSortElementShape(s, X, Y, c, fontsz, Color.BLACK, instruction, progressField);
     	
     	arrayDisplayArea.getChildren().add(stack);
     	if(flag==1) {
     		stack.setVisible(false);
     	}
+    	
     	return stack.display();
     }
     
