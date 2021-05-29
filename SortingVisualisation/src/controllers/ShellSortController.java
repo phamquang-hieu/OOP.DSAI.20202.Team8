@@ -69,7 +69,7 @@ public class ShellSortController extends SortScreenController implements Initial
 			Array Arr;
 			arrayDisplayArea.getChildren().clear();
 			if (randomizeMode.isSelected()) {
-				Arr = new Array(getLength(arraySize5, arraySize6, arraySize7, arraySize8));
+				Arr = new Array(getLength());
 			} else {
 				Arr = new Array(textFieldArray.getText());
 			}
