@@ -199,7 +199,7 @@
 						<Font size="14.0" />
 					</font>
 				</TextField>
-				<Button layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnNextPressed" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: transparent;" text="&gt;" textFill="WHITE" AnchorPane.rightAnchor="476.0">
+				<Button fx:id="btnNext" layoutX="581.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnNextPressed" prefHeight="30.0" prefWidth="26.0" style="-fx-background-color: transparent;" text="&gt;" textFill="WHITE" AnchorPane.rightAnchor="476.0">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>
@@ -209,17 +209,17 @@
 						<Font name="System Bold" size="14.0" />
 					</font>
 				</Button>
-				<Button layoutX="477.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: transparent;" text="&lt;" textFill="WHITE" AnchorPane.leftAnchor="477.0">
+				<Button fx:id="btnBack" layoutX="477.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnBackPressed" style="-fx-background-color: transparent;" text="&lt;" textFill="WHITE" AnchorPane.leftAnchor="477.0">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>
 				</Button>
-				<Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnResetPressed" prefHeight="44.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="&lt;&lt;" textFill="WHITE" AnchorPane.leftAnchor="418.0">
+				<Button fx:id="btnReset" layoutX="418.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnResetPressed" prefHeight="44.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="&lt;&lt;" textFill="WHITE" AnchorPane.leftAnchor="418.0">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>
 				</Button>
-				<Button layoutX="624.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnSkipPressed" prefHeight="44.0" prefWidth="57.0" style="-fx-background-color: transparent;" text="&gt;&gt;" textFill="WHITE" AnchorPane.rightAnchor="419.0">
+				<Button fx:id="btnSkip" layoutX="624.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnSkipPressed" prefHeight="44.0" prefWidth="57.0" style="-fx-background-color: transparent;" text="&gt;&gt;" textFill="WHITE" AnchorPane.rightAnchor="419.0">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>
