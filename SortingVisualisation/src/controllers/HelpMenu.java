@@ -18,7 +18,7 @@ public class HelpMenu extends JPanel {
 
 	public HelpMenu() {
 	    JTextArea textArea = new JTextArea();
-	    textArea.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+	    textArea.setFont(new Font("Arial", Font.CENTER_BASELINE, 14));
 	    textArea.setLineWrap(true);
 	    textArea.setTabSize(0);
 	    JScrollPane scrollPane = new JScrollPane(textArea);

@@ -10,10 +10,7 @@ import shapes.ElementShape;
 
 public class SelectionSort {
 	private int[] arr;
-	private int[][] steps;
-	private int[][] minIndex;
 	private int size;
-	private int stepNum = 1;
 	private Transition[] transitions = new Transition[100];
 	private ElementShape[] bars;
 	private StackPane[][] staticNodes;
@@ -21,11 +18,12 @@ public class SelectionSort {
 	private String[] explanation = new String[100];
 	private int auto = 0;
 	private double X;
+	private double Y;
+
 	public String[] getExplanation() {
 		return explanation;
 	}
 
-	private double Y;
 
 	public ElementShape[] getElems() {
 		return bars;
@@ -39,28 +37,16 @@ public class SelectionSort {
 		return arr;
 	}
 
-	public int[][] getSteps() {
-		return steps;
-	}
-
-	public int[][] getMinIndex() {
-		return minIndex;
-	}
 
 	public int getSize() {
 		return size;
 	}
 
-	public int getStepNum() {
-		return stepNum;
-	}
+
 
 	public SelectionSort(int[] arr, double X, double Y) {
 		this.arr = arr;
 		this.size = arr.length;
-		this.steps = new int[size][size];
-		this.steps[0] = arr.clone();
-		this.minIndex = new int[size - 1][size];
 		this.bars = new ElementShape[size];
 		this.staticBars = new StackPane[100][size];
 		this.staticNodes = new StackPane[100][size+1];
@@ -69,7 +55,7 @@ public class SelectionSort {
 		this.Y = Y;
 		for (int i = 0; i < size; i++) {
 			bars[i] = new ElementShape(arr[i] * 5, Color.web("#ab93c9"),
-					X - (20 * arr.length + 5 * (arr.length - 1)) / 2 + i * 25, Y + 250);
+					X - (40 * arr.length + 10 * (arr.length - 1)) / 2 + i * 50, Y + 250);
 		}
 	}
 	
@@ -111,22 +97,22 @@ public class SelectionSort {
 
 	public StackPane[] drawArray(int[] arr, int seperate, int index, double X, double Y, int minIndex) {
 		
-		double arrayLength = 20 * arr.length + 5 * (arr.length - 1);
+		double arrayLength = 40 * arr.length + 10 * (arr.length - 1);
 		double startX = X - arrayLength / 2;
 		double startY = Y + 250;
 		StackPane[] currentArr = new StackPane[size];
 
 		for (int i = 0; i < seperate; i++) {
-			currentArr[i] = drawElement(arr[i] * 5, Color.web("#05141a"), startX + i * 25, startY);
+			currentArr[i] = drawElement(arr[i] * 5, Color.web("#05141a"), startX + i * 50, startY);
 		}
 		for (int i = seperate; i < arr.length; i++) {
-			currentArr[i] = drawElement(arr[i] * 5, Color.web("#ab93c9"), startX + i * 25, startY);
+			currentArr[i] = drawElement(arr[i] * 5, Color.web("#ab93c9"), startX + i * 50, startY);
 		}
 		if (minIndex != -1) {
-			currentArr[minIndex] = drawElement(arr[minIndex] * 5, Color.web("#50435d"), startX + minIndex * 25, startY);
+			currentArr[minIndex] = drawElement(arr[minIndex] * 5, Color.web("#50435d"), startX + minIndex * 50, startY);
 		}
 		if (index != -1 && minIndex != index) {
-			currentArr[index] = drawElement(arr[index] * 5, Color.web("#ffbea3"), startX + index * 25, startY);
+			currentArr[index] = drawElement(arr[index] * 5, Color.web("#ffbea3"), startX + index * 50, startY);
 		}
 		return currentArr;
 	}
@@ -162,22 +148,6 @@ public class SelectionSort {
 		return pt;
 	}
 
-	public void colorArray(ElementShape[] node, int seperate, int minValue, int index, int height) {
-		ParallelTransition pt = new ParallelTransition();
-
-		for (int i = 0; i < seperate; i++) {
-			pt.getChildren().addAll(colorElement(node[i], Color.web("#05141a")), node[i].movingX(30));
-
-		}
-		for (int i = seperate; i < arr.length; i++) {
-			pt.getChildren().add(colorElement(node[i], Color.web("#ffbea3")));
-
-		}
-		if (minValue != -1) {
-			pt.getChildren().add(colorElement(node[minValue], Color.web("#ffbea3")));
-		}
-
-	}
 
 	ParallelTransition swap(int i, int j, double dist) {
 		ParallelTransition pt = new ParallelTransition();
@@ -206,7 +176,6 @@ public class SelectionSort {
 
 		for (int i = 0; i < size - 1; i++) {
 			currentMinIndex = i;
-			minIndex[i][i] = currentMinIndex;
 			transitions[auto] = colorArray(this.bars, i, -1, i);
 			staticBars[auto] = drawArray(arr, i, -1,  X, Y, i);
 			staticNodes[auto] = drawArray(arr, i, arr[i], i, X, Y);
@@ -226,7 +195,6 @@ public class SelectionSort {
 
 				if (arr[j] < arr[currentMinIndex]) {
 					currentMinIndex = j;
-					stepNum += 1;
 					transitions[auto] = colorArray(this.bars, i, j, currentMinIndex);
 					staticBars[auto] = drawArray(arr, i, j, X, Y, currentMinIndex);
 					staticNodes[auto] = drawArray(arr, i, arr[currentMinIndex], j, X, Y);
@@ -234,22 +202,19 @@ public class SelectionSort {
 
 					auto += 1;
 				}
-				minIndex[i][j] = currentMinIndex;
-				stepNum += 1;
 			}
 
 			int tmp = arr[currentMinIndex];
 			arr[currentMinIndex] = arr[i];
 			arr[i] = tmp;
-			transitions[auto] = swap(i, currentMinIndex, 25);
+			transitions[auto] = swap(i, currentMinIndex, 50);
 			staticBars[auto] = drawArray(arr, i+1, -1, X, Y, -1);
 			staticNodes[auto] = drawArray(arr, i + 1, -1, -1, X, Y);
 			explanation[auto] = "Move the smallest value to the end of the sorted array";
 
 			auto += 1;
 
-			steps[i + 1] = arr.clone();
-			stepNum += 1;
+
 		}
 
 		transitions[auto] = colorArray(this.bars, size - 1, size - 1, size - 1);

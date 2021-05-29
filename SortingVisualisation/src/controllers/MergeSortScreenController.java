@@ -38,7 +38,7 @@ public class MergeSortScreenController extends SortScreenController {
 		instructions[4] = "All the elements from the left array has been taken, \ncopy all values from the right array to the sorted array";
 		instructions[5] = "All the elements from the right array has been taken, \ncopy all values from the left array to the sorted array";
 		progressField.setEditable(false);
-		progressField.setFont(new Font("Arial", 13));
+		progressField.setFont(new Font("Arial", 12));
 		this.sq = new SequentialTransition();
 		sq.setOnFinished(new EventHandler<ActionEvent>() {
 			@Override
