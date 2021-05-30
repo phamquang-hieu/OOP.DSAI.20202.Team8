@@ -7,5 +7,6 @@ Members:
   + SortScreenController.java
   + HelpMenu.java
   + helpText.txt
+  + ElementShape.java (30%)
 3. Nguyen Van Thanh Tung - 20190090 - DSAI
 4. Nguyen Vu Thien Trang - 20194459 -DSAI
