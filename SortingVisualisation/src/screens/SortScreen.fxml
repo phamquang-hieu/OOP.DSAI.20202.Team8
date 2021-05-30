@@ -45,7 +45,7 @@
 						</RadioButton>
 						<VBox prefHeight="88.0" prefWidth="145.0" style="-fx-background-color: url('screens/8bit.gif');">
 							<children>
-								<Label text="Label">
+								<Label text="Shapes">
 									<font>
 										<Font name="System Bold" size="14.0" />
 									</font>
