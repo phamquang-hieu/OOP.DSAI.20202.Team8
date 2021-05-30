@@ -16,5 +16,6 @@ Members:
     + SortScreen.fxml
     + ElementShape.java (70%)
     + Presenting Slides
+ references: for the auto transition mode, I use the idea of chriszq/VisualSortingAlgorithms
 
 3. Nguyen Van Thanh Tung - 20190090 - DSAI
