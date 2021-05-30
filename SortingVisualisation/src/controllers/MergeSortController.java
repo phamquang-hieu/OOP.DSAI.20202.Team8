@@ -207,7 +207,7 @@ public class MergeSortController extends SortScreenController {
 			progressField.setText(instruction);
 	}
 
-	public FadeTransition drawAnElement(int x, double X, double Y, Color c, int fontsz, int flag, String instruction, int stepNum) {
+	private FadeTransition drawAnElement(int x, double X, double Y, Color c, int fontsz, int flag, String instruction, int stepNum) {
 		// flag = 1 -> add element to get ready for auto mode
 		String s;
 		if (x != -1)
@@ -225,7 +225,7 @@ public class MergeSortController extends SortScreenController {
 		return addTransition(stack, instruction, stepNum);
 	}
 
-	public ParallelTransition drawAnArray(int[] subarr, double midX, double startY, Color c, int flag,
+	private ParallelTransition drawAnArray(int[] subarr, double midX, double startY, Color c, int flag,
 			String instruction, int stepNum) {
 		ParallelTransition pt = new ParallelTransition();
 		for (int i = 0; i < (subarr.length); i++) {
@@ -235,7 +235,7 @@ public class MergeSortController extends SortScreenController {
 		return pt;
 	}
 	
-	public FadeTransition addTransition(ElementShape e, String instruction, int stepNum) {
+	private FadeTransition addTransition(ElementShape e, String instruction, int stepNum) {
 		FadeTransition fd = new FadeTransition();
 		fd.setDuration(Duration.millis(500));
 		fd.setFromValue(0);
