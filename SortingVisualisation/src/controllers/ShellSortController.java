@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import algorithms.ShellSort;
 import datastructure.Array;
 import javafx.animation.PathTransition;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -79,7 +78,7 @@ public class ShellSortController extends SortScreenController implements Initial
 			startY = arrayDisplayArea.getHeight() / 2;
 
 			if (!flag)
-				startY += 100;
+				startY += 200;
 
 			screenStart();
 		} catch (Exception e) {
@@ -101,25 +100,19 @@ public class ShellSortController extends SortScreenController implements Initial
 		if (shellsort.getFlags(curSteps) == 1) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Comparing elements at position "
 					+ pos[0] + ", " + pos[1]);
-			drawArrayAnimation1(shellsort.getArrState(curSteps), pos);
+			drawArrayAnimation(shellsort.getArrState(curSteps), pos, startX, startY, 1);
 
 		} else if (shellsort.getFlags(curSteps) == 2) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Done!");
-			drawArrayAnimation2(shellsort.getArrState(curSteps), pos);
+			drawArrayAnimation(shellsort.getArrState(curSteps), pos, startX, startY - 50, 2);
 		} else if (shellsort.getFlags(curSteps) == 3) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Swap elements at position "
 					+ pos[0] + ", " + pos[1]);
-			drawArrayAnimation3(shellsort.getArrState(curSteps - 1), pos);
+			drawArrayAnimation(shellsort.getArrState(curSteps - 1), pos, startX, startY - 50, 3);
 		} else if (shellsort.getFlags(curSteps) == 4) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
 			drawArrayStart(shellsort.getArrState(curSteps));
 		}
-		if (!flag)
-			for (int i = 0; i < n; i++) {
-				ElementShape s;
-				s = preDrawElement(shellsort.getArrState(curSteps)[i], startX + i * 50, startY + 100);
-				arrayDisplayArea.getChildren().add(s);
-			}
 		++curSteps;
 	}
 
@@ -137,17 +130,17 @@ public class ShellSortController extends SortScreenController implements Initial
 		if (shellsort.getFlags(curSteps) == 1) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Comparing elements at position "
 					+ pos[0] + ", " + pos[1]);
-			drawArrayAnimation2(shellsort.getArrState(curSteps), pos);
+			drawArrayAnimation(shellsort.getArrState(curSteps), pos, startX, startY - 50, 2);
 		} else if (shellsort.getFlags(curSteps) == 2) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Done!");
-			drawArrayAnimation1(shellsort.getArrState(curSteps), pos);
+			drawArrayAnimation(shellsort.getArrState(curSteps), pos, startX, startY, 1);
 		} else if (shellsort.getFlags(curSteps) == 3) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Swap elements at position "
 					+ pos[0] + ", " + pos[1]);
-			drawArrayAnimation3(shellsort.getArrState(curSteps), pos);
+			drawArrayAnimation(shellsort.getArrState(curSteps), pos, startX, startY - 50, 3);
 		} else if (shellsort.getFlags(curSteps) == 4) {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
-			drawArrayStart(shellsort.getArrState(curSteps));
+			drawArray(shellsort.getArrState(curSteps), null, Color.web("#ffbea3"), Color.BLACK);
 		}
 	}
 
@@ -204,123 +197,49 @@ public class ShellSortController extends SortScreenController implements Initial
 		return new ElementShape(height * ratio, c, X, Y);
 	}
 
-	public void drawArrayStart(int[] arr) {
+	public void drawArrayBottom(int[] arr) {
 		for (int i = 0; i < n; i++) {
 			ElementShape s;
+			s = preDrawElement(arr[i], startX + i * 50, startY);
+			arrayDisplayArea.getChildren().add(s);
+		}
+	}
+
+	public void drawArray(int arr[], int pos[], Color c1, Color c2) {
+		for (int i = 0; i < n; i++) {
+			if (pos != null && (i == pos[0] || i == pos[1]))
+				continue;
+			ElementShape s;
 			if (flag)
-				s = preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
+				s = preDrawElement(arr[i], startX + i * 50, startY, c1, c2);
 			else
-				s = preDrawElement(arr[i], Color.web("#ffbea3"), startX + i * 50, startY + 100);
+				s = preDrawElement(arr[i], c1, startX + i * 50, startY);
 			arrayDisplayArea.getChildren().add(s);
 		}
 		if (!flag)
-			for (int i = 0; i < n; i++) {
-				ElementShape s;
-				s = preDrawElement(shellsort.getArrState(curSteps)[i], startX + i * 50, startY + 100);
-				arrayDisplayArea.getChildren().add(s);
-			}
+			drawArrayBottom(shellsort.getArrState(curSteps));
+	}
+
+	public void drawArrayStart(int[] arr) {
+		drawArray(arr, null, Color.web("#ffbea3"), Color.BLACK);
 	}
 
 	public void drawArrayFinal(int[] arr) {
-		for (int i = 0; i < n; i++) {
-			ElementShape s;
-			if (flag)
-				s = preDrawElement(arr[i], startX + i * 50, startY, Color.web("#05141a"), Color.WHITE);
-			else
-				s = preDrawElement(arr[i], Color.web("#05141a"), startX + i * 50, startY + 100);
-			arrayDisplayArea.getChildren().add(s);
-		}
-		if (!flag)
-			for (int i = 0; i < n; i++) {
-				ElementShape s;
-				s = preDrawElement(shellsort.getArrState(curSteps)[i], startX + i * 50, startY + 100);
-				arrayDisplayArea.getChildren().add(s);
-			}
+		drawArray(arr, null, Color.web("#05141a"), Color.WHITE);
 	}
 
-	public void drawArrayAnimation1(int[] arr, int[] pos) {
-		for (int i = 0; i < n; i++) {
-			if (i == pos[0] || i == pos[1])
-				continue;
-			ElementShape s;
-			if (flag)
-				s = preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
-			else
-				s = preDrawElement(arr[i], Color.web("#ffbea3"), startX + i * 50, startY + 100);
-			arrayDisplayArea.getChildren().add(s);
+	public void drawArrayAnimation(int[] arr, int[] pos, double X, double Y, int type) {
+		drawArray(arr, pos, Color.web("#ffbea3"), Color.BLACK);
+		ElementShape[] s = new ElementShape[2];
+		for (int i = 0; i < 2; ++i) {
+			s[i] = flag ? preDrawElement(arr[pos[i]], X + pos[i] * 50, Y, Color.web("#ff7f50"), Color.WHITE)
+					: preDrawElement(arr[pos[i]], Color.web("#ff7f50"), startX + pos[i] * 50, startY);
+			arrayDisplayArea.getChildren().add(s[i]);
+			if (flag && (type == 1 || type == 2))
+				s[i].movingY(type == 1 ? -50 : +50).play();
+			if (type == 3)
+				s[i].movingX(50 * (pos[1 - i] - pos[i])).play();
 		}
-		ElementShape s0, s1;
-		if (flag) {
-			s0 = preDrawElement(arr[pos[0]], startX + pos[0] * 50, startY, Color.web("#ff7f50"), Color.WHITE);
-			s1 = preDrawElement(arr[pos[1]], startX + pos[1] * 50, startY, Color.web("#ff7f50"), Color.WHITE);
-		} else {
-			s0 = preDrawElement(arr[pos[0]], Color.web("#ff7f50"), startX + pos[0] * 50, startY + 100);
-			s1 = preDrawElement(arr[pos[1]], Color.web("#ff7f50"), startX + pos[1] * 50, startY + 100);
-		}
-		int bonusY = flag ? -50 : 0;
-		arrayDisplayArea.getChildren().add(s0);
-		arrayDisplayArea.getChildren().add(s1);
-		TranslateTransition t0 = s0.movingY(bonusY);
-		t0.play();
-		TranslateTransition t1 = s1.movingY(bonusY);
-		t1.play();
-	}
 
-	public void drawArrayAnimation2(int[] arr, int[] pos) {
-		for (int i = 0; i < n; i++) {
-			if (i == pos[0] || i == pos[1])
-				continue;
-			ElementShape s;
-			if (flag)
-				s = preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
-			else
-				s = preDrawElement(arr[i], Color.web("#ffbea3"), startX + i * 50, startY + 100);
-			arrayDisplayArea.getChildren().add(s);
-		}
-		ElementShape s0, s1;
-		if (flag) {
-			s0 = preDrawElement(arr[pos[0]], startX + pos[0] * 50, startY - 50, Color.web("#ff7f50"), Color.WHITE);
-			s1 = preDrawElement(arr[pos[1]], startX + pos[1] * 50, startY - 50, Color.web("#ff7f50"), Color.WHITE);
-		} else {
-			s0 = preDrawElement(arr[pos[0]], Color.web("#ff7f50"), startX + pos[0] * 50, startY + 100);
-			s1 = preDrawElement(arr[pos[1]], Color.web("#ff7f50"), startX + pos[1] * 50, startY + 100);
-		}
-		int bonusY = flag ? +50 : 0;
-		arrayDisplayArea.getChildren().add(s0);
-		arrayDisplayArea.getChildren().add(s1);
-		TranslateTransition t0 = s0.movingY(bonusY);
-		t0.play();
-		TranslateTransition t1 = s1.movingY(bonusY);
-		t1.play();
-	}
-
-	public void drawArrayAnimation3(int[] arr, int[] pos) {
-		for (int i = 0; i < n; i++) {
-			if (i == pos[0] || i == pos[1])
-				continue;
-			ElementShape s;
-			if (flag)
-				s = preDrawElement(arr[i], startX + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
-			else
-				s = preDrawElement(arr[i], Color.web("#ffbea3"), startX + i * 50, startY + 100);
-			arrayDisplayArea.getChildren().add(s);
-		}
-		ElementShape s0, s1;
-		if (flag) {
-			s0 = preDrawElement(arr[pos[0]], startX + pos[0] * 50, startY - 50, Color.web("#ff7f50"), Color.WHITE);
-			s1 = preDrawElement(arr[pos[1]], startX + pos[1] * 50, startY - 50, Color.web("#ff7f50"), Color.WHITE);
-		} else {
-			s0 = preDrawElement(arr[pos[0]], Color.web("#ff7f50"), startX + pos[0] * 50, startY + 100);
-			s1 = preDrawElement(arr[pos[1]], Color.web("#ff7f50"), startX + pos[1] * 50, startY + 100);
-		}
-		arrayDisplayArea.getChildren().add(s0);
-		arrayDisplayArea.getChildren().add(s1);
-		TranslateTransition t0 = s0.movingX(50 * (pos[1] - pos[0]));
-		t0.play();
-		TranslateTransition t1 = s1.movingX(50 * (pos[0] - pos[1]));
-		t1.play();
-	}
-
-	public void drawArrayAnimation4(int[] arr, int[] pos) {
 	}
 }
