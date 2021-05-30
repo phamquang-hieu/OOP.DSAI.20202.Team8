@@ -139,6 +139,7 @@ public abstract class SortScreenController {
 		loader.setController(new MainScreenController());
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
+		stage.setTitle("Sorting Visualization");
 		stage.setScene(scene);
 	}
 

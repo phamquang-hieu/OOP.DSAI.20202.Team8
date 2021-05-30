@@ -10,10 +10,10 @@ Option menu (on the left of the screen):
 * You can:
   - Choose to either:
 
-    + randomize input with predefined array size. 
+    + Randomize input with predefined array size. 
       The array have to be entered in comma separated form (eg: 1, 2, 3, 4, 5)
-	
-	+ input your own array in the text field at the bottom of the screen
+ 
+	+ Input your own array in the text field at the bottom of the screen
 	
   - Choose your visualize form: node form or bar form (if available)
 
