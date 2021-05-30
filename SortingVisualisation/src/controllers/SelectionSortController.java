@@ -117,6 +117,8 @@ public class SelectionSortController extends SortScreenController {
 		}
 		else {
 			stepShow.setText("" + (ss.getAuto() -1) + "/" + (ss.getAuto()-1));
+			progressField.setText(ss.getExplanation()[ss.getAuto()-1]);
+
 
 			if (formNode.isSelected()) {
 				colorNode();
@@ -218,6 +220,7 @@ public class SelectionSortController extends SortScreenController {
 				btnBack.setDisable(false);
 				btnReset.setDisable(false);
 				btnSkip.setDisable(false);
+				btnAuto.setDisable(false);
 
 
 			}
@@ -231,6 +234,7 @@ public class SelectionSortController extends SortScreenController {
 			}
 
 		}
+		btnAuto.setDisable(true);
 		btnReset.setDisable(true);
 		btnSkip.setDisable(true);
 		btnNext.setDisable(true);
