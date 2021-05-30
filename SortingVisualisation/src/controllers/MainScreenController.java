@@ -52,9 +52,10 @@ public class MainScreenController {
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/Screens/SortScreen.fxml"));
-		loader.setController(new MergeSortScreenController());
+		loader.setController(new MergeSortController());
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
+		stage.setTitle("Merge Sort");
 		stage.setScene(scene);
 	}
 
@@ -66,6 +67,7 @@ public class MainScreenController {
 		loader.setController(new ShellSortController());
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
+		stage.setTitle("Shell Sort");
 		stage.setScene(scene);
 	}
 
@@ -77,6 +79,7 @@ public class MainScreenController {
 		loader.setController(new SelectionSortController());
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
+		stage.setTitle("Selection Sort");
 		stage.setScene(scene);
 	}
 
