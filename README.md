@@ -8,5 +8,15 @@ Members:
     + HelpMenu.java
     + helpText.txt
     + ElementShape.java (30%)
+
+2. Nguyen Vu Thien Trang - 20194459 -DSAI:
+    + SelectionSort.java
+    + SelectionSortController.java
+    + MainScreen.fxml
+    + SortScreen.fxml
+    + ElementShape.java (70%)
+    + Presenting Slides
+    
+ -references: for the auto transition mode, I use the idea of chriszq/VisualSortingAlgorithms
+
 3. Nguyen Van Thanh Tung - 20190090 - DSAI
-4. Nguyen Vu Thien Trang - 20194459 -DSAI
