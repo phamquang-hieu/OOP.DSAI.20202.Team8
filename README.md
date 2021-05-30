@@ -7,7 +7,9 @@ Members:
     + SortScreenController.java
     + HelpMenu.java
     + helpText.txt
+    + Array.java
     + ElementShape.java (20%)
+    + Draw class diagram, write part 2 of the report, colab with others in other parts.
 
 2. Nguyen Vu Thien Trang - 20194459 - DSAI:
     + SelectionSort.java
@@ -19,7 +21,7 @@ Members:
     
  -references: for the auto transition mode, I use the idea of chriszq/VisualSortingAlgorithms
 
-3. Nguyen Van Thanh Tung - 20190090 - DSAI
+3. Nguyen Van Thanh Tung - 20190090 - DSAI:
     + ShellSort.java
     + ShellSortController.java
     + ElementShape.java (20%)
