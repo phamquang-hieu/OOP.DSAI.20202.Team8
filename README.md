@@ -18,7 +18,9 @@ Members:
     + SortScreen.fxml
     + ElementShape.java (60%)
     + Presenting Slides
-    
+    + Write and fix the report
+    + Record demo video
+
  -references: for the auto transition mode, I use the idea of chriszq/VisualSortingAlgorithms
 
 3. Nguyen Van Thanh Tung - 20190090 - DSAI:
@@ -29,3 +31,5 @@ Members:
     + Array.java
     + Check, fix code, give feedback for tasks of partners
 - Hope you enjoy our job
+
+demo video: https://drive.google.com/file/d/1O5pdabqEgOShYqSxia4iShgDSblLoU-P/view?usp=sharing
