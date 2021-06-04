@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0"
+	style="-fx-background-image: url('screens/8bit.gif'); -fx-background-position: top;"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Button fx:id="btnQuit" alignment="CENTER" layoutX="952.0"
+			mnemonicParsing="false" onAction="#btnQuitPressed" prefHeight="37.0"
+			prefWidth="39.0" style="-fx-background-color: transparent;" text="x"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<font>
+				<Font name="System Bold" size="16.0" />
+			</font>
+		</Button>
+		<Button fx:id="btnHelp" layoutX="623.0" layoutY="550.0"
+			mnemonicParsing="false" onAction="#btnHelpPressed" prefHeight="30.0"
+			prefWidth="53.0" style="-fx-background-color: transparent;"
+			text="Help" textFill="WHITE" AnchorPane.bottomAnchor="24.0"
+			AnchorPane.leftAnchor="623.0" AnchorPane.rightAnchor="620.0">
+			<font>
+				<Font name="System Bold" size="14.0" />
+			</font>
+		</Button>
+		<Label alignment="TOP_CENTER" layoutX="365.0" layoutY="125.0"
+			text="Sorting Visualizer" textAlignment="CENTER"
+			AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="365.0"
+			AnchorPane.rightAnchor="364.0" AnchorPane.topAnchor="125.0">
+			<font>
+				<Font name="System Bold" size="32.0" />
+			</font>
+		</Label>
+		<StackPane layoutX="589.0" layoutY="302.0"
+			prefHeight="120.0" prefWidth="120.0"
+			style="-fx-background-color: transparent;"
+			AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="589.0"
+			AnchorPane.rightAnchor="587.0" AnchorPane.topAnchor="302.0">
+			<children>
+				<Rectangle arcHeight="50.0" arcWidth="50.0"
+					fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE"
+					strokeWidth="10.0" width="120.0" />
+				<Button fx:id="btnMergeSort" mnemonicParsing="false"
+					onAction="#btnSortPressed" prefHeight="120.0" prefWidth="120.0"
+					style="-fx-background-color: transparent;" text="Merge Sort"
+					textAlignment="CENTER" textFill="WHITE">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+			</children>
+		</StackPane>
+		<StackPane layoutX="892.0" layoutY="302.0"
+			prefHeight="120.0" prefWidth="120.0"
+			style="-fx-background-color: transparent;"
+			AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="892.0"
+			AnchorPane.rightAnchor="284.0" AnchorPane.topAnchor="302.0">
+			<children>
+				<Rectangle arcHeight="50.0" arcWidth="50.0"
+					fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE"
+					strokeWidth="10.0" width="120.0" />
+				<Button fx:id="btnShellSort" mnemonicParsing="false"
+					onAction="#btnSortPressed" prefHeight="120.0" prefWidth="120.0"
+					style="-fx-background-color: transparent;" text="Shell Sort"
+					textAlignment="CENTER" textFill="WHITE">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+			</children>
+		</StackPane>
+		<StackPane layoutX="280.0" layoutY="302.0"
+			prefHeight="120.0" prefWidth="120.0"
+			style="-fx-background-color: transparent;"
+			AnchorPane.bottomAnchor="182.0" AnchorPane.leftAnchor="280.0"
+			AnchorPane.rightAnchor="896.0" AnchorPane.topAnchor="302.0">
+			<children>
+				<Rectangle arcHeight="50.0" arcWidth="50.0"
+					fill="#ffffff03" height="120.0" stroke="WHITE" strokeType="INSIDE"
+					strokeWidth="10.0" width="120.0" />
+				<Button fx:id="btnSelectionSort" mnemonicParsing="false"
+					onAction="#btnSortPressed" prefHeight="120.0" prefWidth="120.0"
+					style="-fx-background-color: transparent;" text="Selection Sort"
+					textAlignment="CENTER" textFill="WHITE">
+					<font>
+						<Font name="System Bold" size="14.0" />
+					</font>
+				</Button>
+			</children>
+		</StackPane>
+	</children>
+</AnchorPane>
