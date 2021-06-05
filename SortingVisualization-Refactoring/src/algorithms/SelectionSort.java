@@ -1,9 +1,6 @@
 package algorithms;
 
 import javafx.animation.ParallelTransition;
-import javafx.animation.Transition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -14,18 +11,16 @@ import shapes.SquareShape;
 
 public class SelectionSort extends SortAlgorithm {
 	private double X, Y;
-	private int[][] minIndex, arrState;
 	private String[] flags;
 	private StackPane[][] staticNodes, staticBars;
-
+	private int[][] loops = new int[100][2];
+	private int[][] arrState;
 
 	public SelectionSort(int[] inputArr, Pane inputPane, TextArea inputProgressField, String inputDisplayType) {
 		super(inputArr, inputPane, inputProgressField, inputDisplayType);
-		this.arrState = new int[n][n];
-		this.arrState[0] = arr.clone();
-		this.minIndex = new int[n-1][n];
 		this.staticBars = new StackPane[100][n];
 		this.staticNodes = new StackPane[100][n+1];
+		this.arrState = new int[100][n];
 		this.X = pane.getWidth() / 2;
 		this.Y = pane.getHeight() / 2 - 40;
 		
@@ -40,31 +35,31 @@ public class SelectionSort extends SortAlgorithm {
 		
 		for (int i = 0; i < n-1; i ++) {
 			currentMinIndex = i;
-			minIndex[i][i] = currentMinIndex;
 			staticBars[numSteps] = drawArray(arr, i, -1,  X, Y, i);
-			staticNodes[numSteps] = drawArray(arr, i, arr[i], i, X, Y);
+			staticNodes[numSteps] = drawArray(arr, i, i, i, X, Y);
 			flags[numSteps] = "Start find smallest element";
 			numSteps += 1;
 			
 			for (int j = i+1; j < n; j++) {
 				flags[numSteps] = "Find smallest element";
 				staticBars[numSteps] = drawArray(arr, i, j, X, Y, currentMinIndex);
-				staticNodes[numSteps] = drawArray(arr, i, arr[currentMinIndex], j, X, Y);
+				staticNodes[numSteps] = drawArray(arr, i, currentMinIndex, j, X, Y);
 				numSteps += 1;
 				if (arr[j] < arr[currentMinIndex]) {
 					currentMinIndex = j;
 					flags[numSteps]= "Found a smaller value!";
 					staticBars[numSteps] = drawArray(arr, i, j, X, Y, currentMinIndex);
-					staticNodes[numSteps] = drawArray(arr, i, arr[currentMinIndex], j, X, Y);
+					staticNodes[numSteps] = drawArray(arr, i, currentMinIndex, j, X, Y);
 					numSteps += 1;
 
 				}
-				minIndex[i][j] = currentMinIndex;
 			}
+			arrState[i]=arr.clone();
+			loops[numSteps][0] = i;
+			loops[numSteps][1] = currentMinIndex;
 			int tmp = arr[currentMinIndex];
 			arr[currentMinIndex] = arr[i];
 			arr[i] = tmp;
-			arrState[i+1]=arr.clone();
 			staticBars[numSteps] = drawArray(arr, i+1, -1, X, Y, -1);
 			staticNodes[numSteps] = drawArray(arr, i + 1, -1, -1, X, Y);
 			flags[numSteps] = "Move the smallest value to the end of the sorted array";
@@ -72,7 +67,7 @@ public class SelectionSort extends SortAlgorithm {
 
 		}
 		staticBars[numSteps] = drawArray(arr, n - 1, n - 1, X, Y, n - 1);
-		staticNodes[numSteps] = drawArray(arr, n - 1, arr[n - 1], n -1, X, Y);
+		staticNodes[numSteps] = drawArray(arr, n - 1, n - 1, n -1, X, Y);
 		flags[numSteps] = "There is only one element left!";
 
 		numSteps += 1;
@@ -85,7 +80,6 @@ public class SelectionSort extends SortAlgorithm {
 
 	@Override
 	public void displayStartScreen() {
-		// TODO Auto-generated method stub
 		pane.getChildren().clear();
 
 
@@ -98,8 +92,6 @@ public class SelectionSort extends SortAlgorithm {
 		}
 
 		progressField.setText("Start Selection Sort!");
-//		stepShow.setText("" + (stepNum ) + "/" + (ss.getAuto()-1));
-//		curSteps += 1;
 
 	}
 
@@ -111,10 +103,35 @@ public class SelectionSort extends SortAlgorithm {
 		
 		if (curSteps < numSteps) {
 			if (displayType.equals("Node")) {
-				pane.getChildren().addAll(staticNodes[curSteps]);
+				if (flags[curSteps].equals("Move the smallest value to the end of the sorted array")) {
+					StackPane[] curArr = drawArray(arrState[loops[curSteps][0]], loops[curSteps][0], loops[curSteps][1], -1, X, Y);
+					pane.getChildren().addAll(curArr);
+					ParallelTransition pt = new ParallelTransition();
+
+					double distance = (loops[curSteps][1] - loops[curSteps][0]) * 50;
+
+					pt.getChildren().addAll(((ElementShape) curArr[loops[curSteps][0]]).movingX(distance), ((ElementShape) curArr[loops[curSteps][1]]).movingX(-distance));
+					pt.play();
+				}
+				else {
+					pane.getChildren().addAll(staticNodes[curSteps]);
+				}
 			} 
 			else {
-				pane.getChildren().addAll(staticBars[curSteps]);
+				if (flags[curSteps].equals("Move the smallest value to the end of the sorted array")) {
+					StackPane[] curArr = drawArray(arrState[loops[curSteps][0]], loops[curSteps][0], n-1, X, Y, loops[curSteps][1]);
+					pane.getChildren().addAll(curArr);
+					ParallelTransition pt = new ParallelTransition();
+
+					double distance = (loops[curSteps][1] - loops[curSteps][0]) * 50;
+
+					pt.getChildren().addAll(((ElementShape) curArr[loops[curSteps][0]]).movingX(distance), ((ElementShape) curArr[loops[curSteps][1]]).movingX(-distance));
+					pt.play();
+					
+				}
+				else {
+					pane.getChildren().addAll(staticBars[curSteps]);
+				}
 			}
 			curSteps += 1;
 
@@ -134,7 +151,6 @@ public class SelectionSort extends SortAlgorithm {
 
 	@Override
 	public void previousStep() {
-		// TODO Auto-generated method stub
 		pane.getChildren().clear();
 		if (curSteps <= 1) {
 			curSteps = 1;
@@ -170,7 +186,7 @@ public class SelectionSort extends SortAlgorithm {
 			pane.getChildren().addAll(staticNodes[0]);
 		} 
 		else {
-			pane.getChildren().addAll(staticNodes[0]);
+			pane.getChildren().addAll(staticBars[0]);
 		}
 		progressField.setText("Start Selection Sort!");
 
@@ -202,14 +218,14 @@ public class SelectionSort extends SortAlgorithm {
 		return stack;
 	}
 	
-	public StackPane[] drawArray(int[] arr, int seperate, int minValue, int index, double X, double Y) {
+	public StackPane[] drawArray(int[] arr, int seperate, int minIndex, int index, double X, double Y) {
 		double arrayLength = 40 * (arr.length + 1) + 10 * (arr.length - 2);
 		double startX = X - arrayLength / 2;
 		double startY = Y - 20;
 		StackPane[] currentArr;
-		if (minValue != -1) {
+		if (index != -1) {
 			currentArr = new StackPane[n+1];
-			currentArr[n] = drawElement(minValue, startX + 30 + index * 50, startY + 50, Color.web("#50435d"), Color.WHITE);
+			currentArr[n] = drawElement(arr[minIndex], startX + 30 + index * 50, startY + 50, Color.web("#50435d"), Color.WHITE);
 		}
 		else {
 			currentArr = new StackPane[n];
@@ -221,6 +237,9 @@ public class SelectionSort extends SortAlgorithm {
 		for (int i = seperate; i < arr.length; i++) {
 			if (i == index) {
 				currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#ab93c9"), Color.BLACK);
+			}
+			else if (i== minIndex) {
+				currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#50435d"), Color.WHITE);
 			}
 			else {
 				currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
