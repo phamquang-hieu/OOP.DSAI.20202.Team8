@@ -21,7 +21,6 @@ Members:
     + Write and fix the report
     + Record demo video
 
- -references: for the auto transition mode, I use the idea of chriszq/VisualSortingAlgorithms
 
 3. Nguyen Van Thanh Tung - 20190090 - DSAI:
     + ShellSort.java
