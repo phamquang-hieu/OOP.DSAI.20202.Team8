@@ -37,7 +37,7 @@ import javafx.util.Duration;
 public class SortController implements Initializable {
 	String sortType;
 	SortAlgorithm sort;
-
+	boolean resetFlag = false;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		progressField.setEditable(false);
@@ -251,6 +251,7 @@ public class SortController implements Initializable {
 	void btnResetPressed(ActionEvent event) {
 		sort.reset();
 		stepShow.setText("" + sort.getCurSteps() + "/" + sort.getNumSteps());
+		resetFlag = true;
 	}
 
 	@FXML
@@ -263,6 +264,10 @@ public class SortController implements Initializable {
 	void buttonAutoPressed(ActionEvent event) {
 		if (sort.getCurSteps() == sort.getNumSteps()) {
 			sort.displayFinishScreen();
+			return;
+		}
+		if(resetFlag) {
+			resetFlag = false;
 			return;
 		}
 		btnNextPressed(new ActionEvent());
