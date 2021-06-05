@@ -182,12 +182,12 @@
 								<Font name="System Bold" size="14.0" />
 							</font>
 						</Label>
-						<Label fx:id="unsortedName" layoutX="24.0" layoutY="247.0" text="Unsorted" textFill="WHITE" visible="false">
+						<Label fx:id="unsortedName" layoutX="24.0" layoutY="247.0" text="Current" textFill="WHITE" visible="false">
 							<font>
 								<Font name="System Bold" size="14.0" />
 							</font>
 						</Label>
-						<Label fx:id="currentName" layoutX="29.0" layoutY="309.0" text="Current" textFill="WHITE" visible="false">
+						<Label fx:id="currentName" layoutX="18.0" layoutY="309.0" prefHeight="20.0" prefWidth="72.0" text="Unsorted" textFill="WHITE" visible="false">
 							<font>
 								<Font name="System Bold" size="14.0" />
 							</font>

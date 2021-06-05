@@ -1,5 +1,9 @@
 package algorithms;
 
+import javafx.animation.ParallelTransition;
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -12,8 +16,7 @@ public class SelectionSort extends SortAlgorithm {
 	private double X, Y;
 	private int[][] minIndex, arrState;
 	private String[] flags;
-	private StackPane[][] staticNodes;
-	private StackPane[][] staticBars;
+	private StackPane[][] staticNodes, staticBars;
 
 
 	public SelectionSort(int[] inputArr, Pane inputPane, TextArea inputProgressField, String inputDisplayType) {
@@ -58,7 +61,6 @@ public class SelectionSort extends SortAlgorithm {
 				}
 				minIndex[i][j] = currentMinIndex;
 			}
-			
 			int tmp = arr[currentMinIndex];
 			arr[currentMinIndex] = arr[i];
 			arr[i] = tmp;
@@ -89,14 +91,10 @@ public class SelectionSort extends SortAlgorithm {
 
 		if (displayType.equals("Node")) {
 			pane.getChildren().addAll(staticNodes[0]);
-//			colorNode();
 		}
 
 		else {
 			pane.getChildren().addAll(staticBars[0]);
-//			colorBar();
-
-
 		}
 
 		progressField.setText("Start Selection Sort!");
@@ -108,34 +106,27 @@ public class SelectionSort extends SortAlgorithm {
 	@Override
 	public void nextStep() {
 		pane.getChildren().clear();
-//		stepShow.setText("" + (stepNum) + "/" + (ss.getAuto()-1));
 		progressField.setText(flags[curSteps]);
 
 		
 		if (curSteps < numSteps) {
 			if (displayType.equals("Node")) {
-//				colorNode();
 				pane.getChildren().addAll(staticNodes[curSteps]);
 			} 
 			else {
-//				colorBar();
 				pane.getChildren().addAll(staticBars[curSteps]);
-
 			}
 			curSteps += 1;
 
 		}
 		else {
-//			stepShow.setText("" + (ss.getAuto() -1) + "/" + (ss.getAuto()-1));
 			progressField.setText(flags[numSteps-1]);
 
 
 			if (displayType.equals("Node")) {
-//				colorNode();
 				pane.getChildren().addAll(staticNodes[numSteps-1]);
 			} 
 			else {
-//				colorBar();
 				pane.getChildren().addAll(staticBars[numSteps-1]);
 			}
 		}
@@ -146,39 +137,31 @@ public class SelectionSort extends SortAlgorithm {
 		// TODO Auto-generated method stub
 		pane.getChildren().clear();
 		if (curSteps <= 1) {
-//			stepShow.setText("" + (0) + "/" + (ss.getAuto()-1));
 			curSteps = 1;
 			if (displayType.equals("Node")) {
-//				colorNode();
 				pane.getChildren().addAll(staticNodes[0]);
 			} 
 			else {
-//				colorBar();
 				pane.getChildren().addAll(staticBars[0]);
 			}
 			progressField.setText("Start Selection Sort!");
 		}
 		else {
 			if (displayType.equals("Node")) {
-//				colorNode();
 				pane.getChildren().addAll(staticNodes[curSteps - 2]);
 			} 
 			else {
-//				colorBar();
 				pane.getChildren().addAll(staticBars[curSteps - 2]);
 			}
 			progressField.setText(flags[curSteps-2]);
 
 			curSteps -= 1;
-//			stepShow.setText("" + (stepNum - 1) + "/" + (ss.getAuto()-1));
-
 		}
 
 	}
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
 		pane.getChildren().clear();
 
 		curSteps = 1;
@@ -187,7 +170,6 @@ public class SelectionSort extends SortAlgorithm {
 			pane.getChildren().addAll(staticNodes[0]);
 		} 
 		else {
-//			colorBar();
 			pane.getChildren().addAll(staticNodes[0]);
 		}
 		progressField.setText("Start Selection Sort!");
@@ -196,7 +178,6 @@ public class SelectionSort extends SortAlgorithm {
 
 	@Override
 	public void displayFinishScreen() {
-		// TODO Auto-generated method stub
 		pane.getChildren().clear();
 		progressField.setText("Done sorting!");
 		curSteps = numSteps;
@@ -228,7 +209,7 @@ public class SelectionSort extends SortAlgorithm {
 		StackPane[] currentArr;
 		if (minValue != -1) {
 			currentArr = new StackPane[n+1];
-			currentArr[n] = drawElement(minValue, startX + 30 + index * 50, startY + 50, Color.web("#ffbea3"), Color.BLACK);
+			currentArr[n] = drawElement(minValue, startX + 30 + index * 50, startY + 50, Color.web("#50435d"), Color.WHITE);
 		}
 		else {
 			currentArr = new StackPane[n];
@@ -238,7 +219,12 @@ public class SelectionSort extends SortAlgorithm {
 			
 		}
 		for (int i = seperate; i < arr.length; i++) {
-			currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
+			if (i == index) {
+				currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#ab93c9"), Color.BLACK);
+			}
+			else {
+				currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
+			}
 		}
 		return currentArr;
 	}
@@ -254,17 +240,18 @@ public class SelectionSort extends SortAlgorithm {
 			currentArr[i] = drawElement(arr[i] * 5, Color.web("#05141a"), startX + i * 50, startY);
 		}
 		for (int i = seperate; i < arr.length; i++) {
-			currentArr[i] = drawElement(arr[i] * 5, Color.web("#ab93c9"), startX + i * 50, startY);
+			currentArr[i] = drawElement(arr[i] * 5, Color.web("#ffbea3"), startX + i * 50, startY);
 		}
 		if (minIndex != -1) {
 			currentArr[minIndex] = drawElement(arr[minIndex] * 5, Color.web("#50435d"), startX + minIndex * 50, startY);
 		}
 		if (index != -1 && minIndex != index) {
-			currentArr[index] = drawElement(arr[index] * 5, Color.web("#ffbea3"), startX + index * 50, startY);
+			currentArr[index] = drawElement(arr[index] * 5, Color.web("#ab93c9"), startX + index * 50, startY);
 		}
 		return currentArr;
 	}
 	
+
 	public int getCurSteps() {
 		return curSteps-1;
 	}

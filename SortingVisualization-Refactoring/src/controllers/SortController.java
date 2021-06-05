@@ -50,7 +50,22 @@ public class SortController implements Initializable {
 			selectingLabel.setVisible(true);
 			selectingNode.setVisible(true);
 		}
-		if (sortType.equals("Merge Sort")) {
+		else if (sortType.equals("Selection Sort")) {
+			sortedLabel.setVisible(false);
+			unsortedLabel.setVisible(false);
+			sortedNode.setVisible(false);
+			unsortedNode.setVisible(false);
+			sortedName.setVisible(true);
+			unsortedName.setVisible(true);
+			smallestName.setVisible(true);
+			currentName.setVisible(true);
+			sortedBar.setVisible(true);
+			unsortedBar.setVisible(true);
+			smallestBar.setVisible(true);
+			currentBar.setVisible(true);
+			
+		}
+		else if (sortType.equals("Merge Sort")) {
 			formBar.setVisible(false);
 		}
 	}
