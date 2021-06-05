@@ -21,5 +21,21 @@ public class SquareShape extends ElementShape {
 		label.setTextFill(c2);
 		getChildren().add(label);
 	}
+	
+	public SquareShape(String element, double X, double Y, Color c, int font, Color c2) {
+		rectangle = new Rectangle(X, Y, 40, 40);
+		rectangle.setFill(c);
+		rectangle.setStroke(c);
+		rectangle.setArcWidth(20);
+		rectangle.setArcHeight(20);
+
+		Label lb = new Label(element);
+		lb.setFont(new Font(font));
+		lb.setTextFill(c2);
+
+		this.getChildren().addAll(rectangle, lb);
+		this.setLayoutX(X);
+		this.setLayoutY(Y);
+	}
 
 }

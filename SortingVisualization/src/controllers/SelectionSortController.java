@@ -111,6 +111,7 @@ public class SelectionSortController extends SortScreenController {
 			else {
 				colorBar();
 				arrayDisplayArea.getChildren().addAll(ss.getStaticBars()[stepNum]);
+
 			}
 			stepNum += 1;
 

@@ -94,7 +94,6 @@ public class SelectionSort {
 		if (minValue != -1) {
 			currentArr = new StackPane[size+1];
 			currentArr[size] = drawElement(minValue, startX + 30 + index * 50, startY + 50, Color.web("#ffbea3"), Color.BLACK);
-
 		}
 		else {
 			currentArr = new StackPane[size];
@@ -107,7 +106,6 @@ public class SelectionSort {
 			currentArr[i] = drawElement(arr[i], startX + 30 + i * 50, startY, Color.web("#ffbea3"), Color.BLACK);
 		}
 		return currentArr;
-
 	}
 
 	public StackPane[] drawArray(int[] arr, int seperate, int index, double X, double Y, int minIndex) {
