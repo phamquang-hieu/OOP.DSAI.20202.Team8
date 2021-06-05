@@ -131,12 +131,7 @@ public class MergeSort extends SortAlgorithm {
 
 	@Override
 	public void nextStep() {
-		if(curSteps > numSteps) {
-			curSteps = 0;
-			return;
-		}
 		if (curSteps == numSteps) {
-			System.out.println("catch");
 			displayFinishScreen();
 			return;
 		}
@@ -163,7 +158,7 @@ public class MergeSort extends SortAlgorithm {
 		pane.getChildren().clear();
 		drawArray(this.arr, initColor, pane.getWidth() / 2 - n * 25, startY);
 		progressField.setText("Done sorting!");
-		curSteps = numSteps + 1;
+		curSteps = numSteps;
 	}
 
 	public void drawArray(int arr[], Color[] c, double startX, double startY) {
