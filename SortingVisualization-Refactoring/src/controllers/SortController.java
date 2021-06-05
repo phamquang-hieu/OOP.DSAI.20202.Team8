@@ -239,8 +239,9 @@ public class SortController implements Initializable {
 
 	@FXML
 	void btnBackPressed(ActionEvent event) {
-		stepShow.setText("" + sort.getCurSteps() + "/" + sort.getNumSteps());
 		sort.previousStep();
+		stepShow.setText("" + sort.getCurSteps() + "/" + sort.getNumSteps());
+
 	}
 
 	@FXML
@@ -264,6 +265,9 @@ public class SortController implements Initializable {
 		btnNextPressed(new ActionEvent());
 		Circle s = new Circle(0, 0, 3);
 		arrayDisplayArea.getChildren().add(s);
+		s.setFill(Color.TRANSPARENT);
+		s.setStroke(Color.TRANSPARENT);
+
 
 		Path path = new Path();
 		path.getElements().add(new MoveTo(0, 0));
