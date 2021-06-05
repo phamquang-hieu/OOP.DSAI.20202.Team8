@@ -16,7 +16,8 @@ public class SquareShape extends ElementShape {
 		rectangle.setArcWidth(10);
 		getChildren().add(rectangle);
 
-		Label label = new Label(Integer.toString(element));
+		Label label = new Label();
+		label.setText(element != -1 ? Integer.toString(element): "");
 		label.setFont(new Font(14));
 		label.setTextFill(c2);
 		getChildren().add(label);

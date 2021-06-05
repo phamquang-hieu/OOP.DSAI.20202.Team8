@@ -50,6 +50,9 @@ public class SortController implements Initializable {
 			selectingLabel.setVisible(true);
 			selectingNode.setVisible(true);
 		}
+		if (sortType.equals("Merge Sort")) {
+			formBar.setVisible(false);
+		}
 	}
 
 	public SortController(String sortType) {
