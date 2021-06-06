@@ -14,22 +14,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class MainScreenController {
-
-	@FXML
-	private Button btnQuit;
-
-	@FXML
-	private Button btnMergeSort;
-
-	@FXML
-	private Button btnShellSort;
-
-	@FXML
-	private Button btnHelp;
-
-	@FXML
-	private Button btnSelectionSort;
-
 	@FXML
 	void btnQuitPressed(ActionEvent event) {
 		int x = JOptionPane.showConfirmDialog(null, "Are you sure?", "Quit", JOptionPane.YES_NO_OPTION);
