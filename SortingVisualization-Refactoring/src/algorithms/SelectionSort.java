@@ -237,4 +237,5 @@ public class SelectionSort extends SortAlgorithm {
 		}
 		return currentArr;
 	}
+	
 }
