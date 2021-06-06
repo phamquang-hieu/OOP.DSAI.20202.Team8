@@ -23,14 +23,15 @@ public class MergeSort extends SortAlgorithm {
 		cloneArr = arr.clone();
 		curSteps = numSteps = 0;
 		assignSteps(0, n - 1, pane.getWidth() / 2 - (n) * 25, startY, 0, 0);
-		merge_sort(0, n - 1, startX, pane.getWidth(), startY);
+		merge_sort(0, n - 1, startX, pane.getWidth(), startY); //sort the array beforehand
+		
 		instructions = new String[6];
-		instructions[0] = "Split the selected array (as evenly as possible)";
+		instructions[0] = "Split the selected array (yellow)\n(as evenly as possible)";
 		instructions[1] = "Select the left sub-array and ready to merge";
 		instructions[2] = "Select the right sub-array and ready to merge";
-		instructions[3] = "Select the minimum of the two selected values \nto put into the sorted array";
-		instructions[4] = "All the elements from the left array has been taken, \ncopy all values from the right array to the sorted array";
-		instructions[5] = "All the elements from the right array has been taken, \ncopy all values from the left array to the sorted array";
+		instructions[3] = "Put the minimum of the to selected value\n(red) into the sorted array";
+		instructions[4] = "Left array run out of elements,\ncopy all remaining values \nto the sorted array";
+		instructions[5] = "Right array run out of elements,\ncopy all remaining values \nto the sorted array";
 	}
 
 	private void merge(int start, int end, int mid, double midX, double startY, double startLeftX, double startRightX) {

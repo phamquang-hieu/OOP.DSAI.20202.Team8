@@ -237,13 +237,4 @@ public class SelectionSort extends SortAlgorithm {
 		}
 		return currentArr;
 	}
-
-	public int getCurSteps() {
-		return curSteps - 1;
-	}
-
-	public int getNumSteps() {
-		return numSteps - 1;
-	}
-
 }
