@@ -84,7 +84,7 @@ public class MergeSort extends SortAlgorithm {
 
 	}
 
-	public void merge_sort(int start, int end, double startX, double endX, double startY) {
+	private void merge_sort(int start, int end, double startX, double endX, double startY) {
 		if (start < end) {
 			int mid = (int) (start + end) / 2;
 			double midX = (startX + endX) / 2;
@@ -155,7 +155,7 @@ public class MergeSort extends SortAlgorithm {
 		curSteps = numSteps;
 	}
 
-	public void drawArray(int arr[], Color[] c, double startX, double startY) {
+	private void drawArray(int arr[], Color[] c, double startX, double startY) {
 		for (int i = 0; i < arr.length; i++) {
 			SquareShape s;
 			s = new SquareShape(startX + i * 50, startY, c[0], c[1], arr[i]);
@@ -163,7 +163,7 @@ public class MergeSort extends SortAlgorithm {
 		}
 	}
 
-	public void displayStep(int stepNum) {
+	private void displayStep(int stepNum) {
 		Color[] c = initColor.clone();
 		int tmp = (int) steps[4][stepNum];
 		if (tmp == 0)
