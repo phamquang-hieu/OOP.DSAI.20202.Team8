@@ -5,15 +5,13 @@ import java.util.Arrays;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import shapes.BarShape;
-import shapes.ElementShape;
 import shapes.SquareShape;
 
 public class MergeSort extends SortAlgorithm {
 	private int[] arr, cloneArr;
 	private double startX, startY;
 	private double[][] steps;
-	private Color[] initColor = {Color.YELLOWGREEN, Color.BLACK};
+	private Color[] initColor = { Color.YELLOWGREEN, Color.BLACK };
 	private final String[] instructions;
 
 	public MergeSort(int[] inputArr, Pane inputPane, TextArea inputProgressField, String inputDisplayType) {
@@ -24,7 +22,7 @@ public class MergeSort extends SortAlgorithm {
 		this.startY = 50;
 		cloneArr = arr.clone();
 		curSteps = numSteps = 0;
-		assignSteps(0, n-1, pane.getWidth()/2 - (n) * 25, startY, 0, 0);
+		assignSteps(0, n - 1, pane.getWidth() / 2 - (n) * 25, startY, 0, 0);
 		merge_sort(0, n - 1, startX, pane.getWidth(), startY);
 		instructions = new String[6];
 		instructions[0] = "Split the selected array (as evenly as possible)";
@@ -89,7 +87,7 @@ public class MergeSort extends SortAlgorithm {
 		if (start < end) {
 			int mid = (int) (start + end) / 2;
 			double midX = (startX + endX) / 2;
-			
+
 			assignSteps(start, end, midX - (end - start + 1) * 25, startY, 4, 0);
 			assignSteps(start, mid, (startX + midX) / 2 - (mid - start + 1) * 25, startY + 80, 0, 0);
 			assignSteps(mid + 1, end, (midX + endX) / 2 - (end - mid) * 25, startY + 80, 0, 0);
@@ -143,14 +141,9 @@ public class MergeSort extends SortAlgorithm {
 	public void previousStep() {
 		pane.getChildren().clear();
 		int tmp = curSteps;
-		for(curSteps = 0 ;  curSteps <= tmp-2; ++curSteps) { 
-			displayStep(curSteps); 
+		for (curSteps = 0; curSteps <= tmp - 2; ++curSteps) {
+			displayStep(curSteps);
 		}
-	}
-
-	@Override
-	public void reset() {
-		displayStartScreen();
 	}
 
 	@Override
@@ -182,15 +175,15 @@ public class MergeSort extends SortAlgorithm {
 			c[0] = Color.WHITE;
 		else if (tmp == 4)
 			c[0] = Color.YELLOW;
-		
+
 		if (steps[0][stepNum] == -1) {
 			int[] tmp2 = new int[1];
 			tmp2[0] = (int) steps[1][stepNum];
 			drawArray(tmp2, c, steps[2][stepNum], steps[3][stepNum]);
 		} else {
 			if (steps[4][curSteps] != 3) {
-				drawArray(Arrays.copyOfRange(cloneArr, (int) steps[0][stepNum], (int) steps[1][stepNum] + 1), 
-						c, steps[2][stepNum], steps[3][stepNum]);
+				drawArray(Arrays.copyOfRange(cloneArr, (int) steps[0][stepNum], (int) steps[1][stepNum] + 1), c,
+						steps[2][stepNum], steps[3][stepNum]);
 			} else {
 				int len = (int) (steps[1][stepNum] - steps[0][stepNum] + 1);
 				int[] tmp3 = new int[len];

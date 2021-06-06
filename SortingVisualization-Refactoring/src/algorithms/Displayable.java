@@ -7,8 +7,6 @@ public interface Displayable {
 
 	public void previousStep();
 
-	public void reset();
-
 	public void displayFinishScreen();
 
 }

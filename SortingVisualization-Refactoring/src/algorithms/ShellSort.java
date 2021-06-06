@@ -15,6 +15,14 @@ public class ShellSort extends SortAlgorithm {
 	private final Color[] selectingColor = { Color.web("#ff7f50"), Color.WHITE };
 	private final Color[] bottomColor = { Color.WHITE, Color.BLACK };
 
+	private void addState(int i, int j, int flag) {
+		steps[numSteps][0] = i;
+		steps[numSteps][1] = j;
+		arrState[numSteps] = arr.clone();
+		flags[numSteps] = flag;
+		++numSteps;
+	}
+
 	public ShellSort(int[] inputArr, Pane inputPane, TextArea inputProgressField, String displayType) {
 		super(inputArr, inputPane, inputProgressField, displayType);
 
@@ -34,40 +42,15 @@ public class ShellSort extends SortAlgorithm {
 				int j = pos;
 				while (j >= gap) {
 					int i = j - gap;
-					steps[numSteps][0] = i;
-					steps[numSteps][1] = j;
-					arrState[numSteps] = arr.clone();
-					flags[numSteps] = 1;
-					++numSteps;
-
+					addState(i, j, 1);
 					if (arr[i] <= arr[j]) {
-						steps[numSteps][0] = i;
-						steps[numSteps][1] = j;
-						arrState[numSteps] = arr.clone();
-						flags[numSteps] = 2;
-						++numSteps;
-
-						steps[numSteps][0] = i;
-						steps[numSteps][1] = j;
-						arrState[numSteps] = arr.clone();
-						flags[numSteps] = 4;
-						++numSteps;
+						addState(i, j, 2);
+						addState(i, j, 4);
 						break;
 					}
-
 					swap(i, j);
-					steps[numSteps][0] = i;
-					steps[numSteps][1] = j;
-					arrState[numSteps] = arr.clone();
-					flags[numSteps] = 3;
-					++numSteps;
-
-					steps[numSteps][0] = i;
-					steps[numSteps][1] = j;
-					arrState[numSteps] = arr.clone();
-					flags[numSteps] = 2;
-					++numSteps;
-
+					addState(i, j, 3);
+					addState(i, j, 2);
 					j -= gap;
 				}
 			}
@@ -76,6 +59,7 @@ public class ShellSort extends SortAlgorithm {
 
 	@Override
 	public void displayStartScreen() {
+		curSteps = 0;
 		progressField.setText("Start Shell Sort!");
 		drawArray(arrState[0], null, unsortedColor);
 	}
@@ -129,12 +113,6 @@ public class ShellSort extends SortAlgorithm {
 			progressField.setText("Increment size = " + (pos[1] - pos[0]) + ".\n" + "Next!");
 			drawArray(arrState[curSteps], null, unsortedColor);
 		}
-	}
-
-	@Override
-	public void reset() {
-		curSteps = 0;
-		displayStartScreen();
 	}
 
 	@Override

@@ -38,6 +38,7 @@ public class SortController implements Initializable {
 	String sortType;
 	SortAlgorithm sort;
 	boolean resetFlag = false;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		progressField.setEditable(false);
@@ -49,8 +50,7 @@ public class SortController implements Initializable {
 			unsortedNode.setVisible(true);
 			selectingLabel.setVisible(true);
 			selectingNode.setVisible(true);
-		}
-		else if (sortType.equals("Selection Sort")) {
+		} else if (sortType.equals("Selection Sort")) {
 			sortedLabel.setVisible(false);
 			unsortedLabel.setVisible(false);
 			sortedNode.setVisible(false);
@@ -63,9 +63,7 @@ public class SortController implements Initializable {
 			unsortedBar.setVisible(true);
 			smallestBar.setVisible(true);
 			currentBar.setVisible(true);
-			
-		}
-		else if (sortType.equals("Merge Sort")) {
+		} else if (sortType.equals("Merge Sort")) {
 			formBar.setVisible(false);
 		}
 	}
@@ -259,12 +257,11 @@ public class SortController implements Initializable {
 	void btnBackPressed(ActionEvent event) {
 		sort.previousStep();
 		stepShow.setText("" + sort.getCurSteps() + "/" + sort.getNumSteps());
-
 	}
 
 	@FXML
 	void btnResetPressed(ActionEvent event) {
-		sort.reset();
+		sort.displayStartScreen();
 		stepShow.setText("" + sort.getCurSteps() + "/" + sort.getNumSteps());
 		resetFlag = true;
 	}
@@ -281,16 +278,15 @@ public class SortController implements Initializable {
 			sort.displayFinishScreen();
 			return;
 		}
-		if(resetFlag) {
+		if (resetFlag) {
 			resetFlag = false;
 			return;
 		}
 		btnNextPressed(new ActionEvent());
 		Circle s = new Circle(0, 0, 3);
+		s.setFill(Color.BLACK);
+		s.setStroke(Color.BLACK);
 		arrayDisplayArea.getChildren().add(s);
-		s.setFill(Color.TRANSPARENT);
-		s.setStroke(Color.TRANSPARENT);
-
 
 		Path path = new Path();
 		path.getElements().add(new MoveTo(0, 0));
