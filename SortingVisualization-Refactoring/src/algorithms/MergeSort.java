@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import shapes.SquareShape;
 
 public class MergeSort extends SortAlgorithm {
-	private int[] arr, cloneArr;
+	private int[] cloneArr;
 	private double startX, startY;
 	private double[][] steps;
 	private Color[] initColor = { Color.YELLOWGREEN, Color.BLACK };
