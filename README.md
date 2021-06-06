@@ -29,8 +29,8 @@ Members:
     + Check, fix code, feedback for other tasks of partners
 - Hope you enjoy our job
 
-demo video: https://drive.google.com/file/d/1O5pdabqEgOShYqSxia4iShgDSblLoU-P/view?usp=sharing
-presentation video: https://web.microsoftstream.com/video/28349de3-d9f6-46c4-b83a-4692d9bbb602
-In this repo, there are all of our works so far. 
-Every file ended with "refactored or updated" is the result of the refactoring works.
+demo video: https://drive.google.com/file/d/1O5pdabqEgOShYqSxia4iShgDSblLoU-P/view?usp=sharing  
+presentation video: https://web.microsoftstream.com/video/28349de3-d9f6-46c4-b83a-4692d9bbb602  
+In this repo, there are all of our works so far.  
+Every file ended with "refactored or updated" is the result of the refactoring works.  
 
