@@ -10,10 +10,10 @@ public class SquareShape extends ElementShape {
 		setLayoutX(X);
 		setLayoutY(Y);
 
-		Rectangle rectangle = new Rectangle(X, Y, 40, 40);
+		rectangle = new Rectangle(40, 40);
 		rectangle.setFill(c1);
-		rectangle.setArcHeight(10);
-		rectangle.setArcWidth(10);
+		rectangle.setArcHeight(20);
+		rectangle.setArcWidth(20);
 		getChildren().add(rectangle);
 
 		Label label = new Label();
